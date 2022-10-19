@@ -1,0 +1,28 @@
+# leekbox 韭菜合子
+
+ 采用拟物风格设计开发 打卡.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
+
+**大小分析工具 **
+
+    flutter build apk --analyze-size
+    flutter build appbundle --analyze-size
+    flutter build ios --analyze-size
+    flutter build linux --analyze-size
+    flutter build macos --analyze-size
+    flutter build windows --analyze-size
+
+**--split-per-abi**
