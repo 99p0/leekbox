@@ -42,6 +42,22 @@ android {
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
   }
+  // 构架多个不同架构的 apk 包
+  splits {
+    // 基于不同的abi架构配置不同的apk
+    abi {
+      // 必须为true，打包才会为不同的abi生成不同的apk
+      enable true
+      // 所以使用reset()清空所有的ABI，再使用include指定我们想要生成的架构armeabi-v7a、arm-v8a
+      reset()
+      // 逗号分隔列表的形式指定 Gradle 应针对哪些 ABI 生成 APK。只与 reset() 结合使用，以指定确切的 ABI 列表。
+      include "arm64-v8a", "armeabi-v7a"
+      // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
+      universalApk false
+      // 设置所有不要支持的abi类型
+      exclude "x86"
+    }
+  }
 
   defaultConfig {
     // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -55,6 +71,18 @@ android {
     versionName flutterVersionName
     // 添加多 dex分包支持
     multiDexEnabled true
+    // 打出的 apk 包含多个架构的 so库 需要下面的配置：
+    //    ndk {
+    //      //选择要添加的对应cpu类型的.so库。
+    //      abiFilters 'armeabi-v7a','arm64-v8a'
+    //      // 还可以添加
+    //      // 'arm64-v8a', 64 bit ARM architecture,it can use v7 version
+    //      //              unless you are too much concerned about performance
+    //      // mips,mips64, There are no devices with MIPS
+    //      //  x86_64, No android devices and anyway it can use X86 version
+    //      //  armeabi, very old architecture. Unsupported after Android 4.4
+    //      // 'x86', Intel based devices
+    //    }
   }
 
   buildTypes {
@@ -64,10 +92,9 @@ android {
       signingConfig signingConfigs.debug
 
       //
-      //            shrinkResources true
-      //
-      //            minifyEnabled true
-      //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' // add this
+      // shrinkResources true
+      // minifyEnabled true
+      // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' // add this
     }
   }
 }

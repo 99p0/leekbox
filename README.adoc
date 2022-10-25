@@ -18,11 +18,15 @@ samples, guidance on mobile development, and a full API reference.
 
 **大小分析工具 **
 
-    flutter build apk --analyze-size
+    flutter build apk --analyze-size --target-platform android-arm64
     flutter build appbundle --analyze-size
     flutter build ios --analyze-size
     flutter build linux --analyze-size
     flutter build macos --analyze-size
     flutter build windows --analyze-size
 
-**--split-per-abi**
+
+**拆分打包：针对不同的CPU进行打包**
+
+    flutter build apk --split-per-abi
+    flutter build apk --obfuscate --split-debug-info debuginfo   --target-platform android-arm64 --split-per-abi

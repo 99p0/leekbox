@@ -30,7 +30,7 @@ dependencies:
   #  字体
   google_fonts: ^3.0.1
   #
-  package_info_plus: ^3.0.1
+  package_info_plus: ^3.0.0
   connectivity_plus: ^3.0.2
   device_info_plus: ^7.0.1
   # 适配屏幕
@@ -114,13 +114,14 @@ dependencies:
   flutter_local_notifications: ^12.0.2
   #
   table_calendar: ^3.0.7
-  #
+  #  tensorflow:
   #  tflite_flutter: ^0.9.0
+  #  tflite_flutter_helper: ^0.3.1
+  # need upgrade, clone local edit
   tflite_flutter:
     path: packages/tflite_flutter_plugin
-  #  tflite_flutter_helper: ^0.3.1
-  tflite_flutter_helper:
-    path: packages/tflite_flutter_helper
+#  tflite_flutter_helper:
+#    path: packages/tflite_flutter_helper
   #  项目分包处理
   leekbox_infra:
     path: packages/leekbox_infra

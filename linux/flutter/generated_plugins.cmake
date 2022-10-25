@@ -7,6 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   leekbox_infra
   leekbox_sdk
   smart_auth
+  tflite_flutter
   url_launcher_linux
 )
 
