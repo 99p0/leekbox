@@ -163,7 +163,10 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/images/
+    - assets/local/
+    - assets/tflites/
 
   fonts:
     - family: Digital
