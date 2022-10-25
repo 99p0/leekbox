@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
 
 ///
 class ActivityDetailPage extends StatefulWidget {
@@ -8,11 +8,10 @@ class ActivityDetailPage extends StatefulWidget {
 }
 
 class _ActivityDetailPageState extends State<ActivityDetailPage> {
-  final log = Logger('ActivityDetailPage');
 
   @override
   Widget build(BuildContext context) {
-    log.info('ActivityDetailPage build');
+    Log.debug('ActivityDetailPage build');
     return Scaffold(
       body: Center(
         child: Text("ActivityDetailPage"),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
 
 /// 页面
 class NoticePage extends StatefulWidget {
@@ -9,12 +9,11 @@ class NoticePage extends StatefulWidget {
 
 class _NoticePageState extends State<NoticePage>  {
 
-  final log = Logger('NoticePage');
   @override
   Widget build(BuildContext context) {
     // super.build(context);
 
-    log.info('NoticePage build');
+    Log.debug('NoticePage build');
     return Scaffold(
 
       appBar: AppBar(

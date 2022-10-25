@@ -3,8 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus
   dynamic_color
   geolocator_windows
+  leekbox_infra
+  leekbox_sdk
   permission_handler_windows
   smart_auth
   url_launcher_windows

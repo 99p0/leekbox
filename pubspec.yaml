@@ -1,51 +1,38 @@
 name: leekbox
 description: A new Flutter project for leekbox.
 
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-# In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
-  # 国际化
   flutter_localizations:
     sdk: flutter
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
+  #
+  ffi: ^2.0.1
+  isolates: ^3.0.3+8
+  protobuf: ^2.1.0
+  uuid: ^3.0.6
+  #  状态管理
+  flutter_riverpod: ^2.0.2
   #  动态主题
   dynamic_color: ^1.5.4
-  logging: ^1.1.0
+  path_provider: ^2.0.11
+  markdown: ^6.0.1
   #  路由
   go_router: ^5.0.5
   #  字体
   google_fonts: ^3.0.1
   #
-  package_info_plus: ^1.4.3+1
+  package_info_plus: ^3.0.1
+  connectivity_plus: ^3.0.2
+  device_info_plus: ^7.0.1
   # 适配屏幕
   flutter_screenutil: ^5.5.4
   #  下拉 刷新
@@ -67,13 +54,11 @@ dependencies:
   # bottomBar
   salomon_bottom_bar: ^3.3.1
   flutter_svg: ^1.1.5
+  #  加载指示器
+  #  loading_indicator: ^3.1.0
   # 媒体选择
   #  wechat_assets_picker: ^8.1.3
   #  wechat_camera_picker: ^2.4.1
-  # 图片缓存
-  cached_network_image: ^3.2.2
-  # 图片预览
-  photo_view: ^0.14.0
   # 视频播放
   chewie: ^1.3.5
   video_player: ^2.4.7
@@ -92,6 +77,7 @@ dependencies:
   carousel_slider: ^4.1.1
   #  网络请求
   dio: ^4.0.6
+  oktoast: ^3.3.1
   # WeChatSDK 插件
   #  fluwx: ^3.9.2
   #  链接
@@ -99,32 +85,87 @@ dependencies:
   # 视频图片压缩
   #  video_compress: ^3.1.0
   flutter_image_compress: ^1.1.3
+  # 数据存储 基于sqlite3 封装
+  drift: ^2.2.0
+  # 查看本地存储的sqlite数据
+  #  db_viewer: ^1.0.3
+  # 富文本编辑器
+  #  flutter_quill: ^6.0.10
+  # 图表库
+  fl_chart: ^0.55.2
+  skeletons: ^0.0.3
+  # 图片缓存
+  cached_network_image: ^3.2.2
+  # 图片预览
+  photo_view: ^0.14.0
+  # 模糊图片
+  blurhash_dart:
+    git:
+      url: git@github.com:justacid/blurhash-dart.git
+      ref: master
+  # 图片库： https://github.com/alibaba/power_image
+  power_image: 0.1.0-pre.2
+  image_picker: ^0.8.6
+  # 重写image
+  image: ^3.2.2
+  #  多滚动集合
+  linked_scroll_controller: ^0.2.0
+  # 本地通知
+  flutter_local_notifications: ^12.0.2
+  #
+  table_calendar: ^3.0.7
+  #
+  #  tflite_flutter: ^0.9.0
+  tflite_flutter:
+    path: packages/tflite_flutter_plugin
+  #  tflite_flutter_helper: ^0.3.1
+  tflite_flutter_helper:
+    path: packages/tflite_flutter_helper
+  #  项目分包处理
+  leekbox_infra:
+    path: packages/leekbox_infra
+  leekbox_sdk:
+    path: packages/leekbox_sdk
 
+
+
+# 强制升级版本
+dependency_overrides:
+  power_image_ext: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.1
+  build_runner: ^2.2.1
+  #
+  drift_dev: ^2.2.0+1
+  #  logo 生成插件   flutter pub run flutter_launcher_icons:main
+  flutter_launcher_icons: "^0.10.0"
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+flutter_icons:
+  android: false
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
 
   assets:
     - assets/images/
 
-#  fonts:
-#    - family: Schyler
-#      fonts:
-#        - asset: assets/fonts/Schyler-Regular.ttf
-#        - asset: assets/fonts/Schyler-Italic.ttf
-#          style: italic
+  fonts:
+    - family: Digital
+      fonts:
+        - asset: assets/fonts/digital-7.ttf
+          style: italic

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
 
 ///
 class WalletPage extends StatefulWidget {
@@ -10,12 +10,11 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage>
     {
 
-  final log = Logger('WalletPage');
 
   @override
   Widget build(BuildContext context) {
     // super.build(context);
-    log.info('WalletPage build');
+    Log.debug('WalletPage build');
     return Scaffold(
       body: Column(
         children: <Widget>[

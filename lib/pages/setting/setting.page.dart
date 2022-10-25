@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
 
 ///
 class SettingPage extends StatefulWidget {
@@ -8,13 +8,11 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  final log = Logger('SettingPage');
-
   @override
   Widget build(BuildContext context) {
     // super.build(context);
 
-    log.info('SettingPage build');
+    Log.debug('SettingPage build');
     return Scaffold(
       body: Center(
         child: Text("SettingPage"),

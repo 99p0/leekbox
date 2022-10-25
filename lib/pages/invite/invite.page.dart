@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
 
 /// 页面
 class InvitePage extends StatefulWidget {
@@ -8,13 +8,12 @@ class InvitePage extends StatefulWidget {
 }
 
 class _InvitePageState extends State<InvitePage> {
-  final log = Logger('InvitePage');
 
   @override
   Widget build(BuildContext context) {
     // super.build(context);
 
-    log.info('InvitePage build');
+    Log.debug('InvitePage build');
     return Scaffold(
       appBar: AppBar(
         title: const Text('LEEK BOX'),

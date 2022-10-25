@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:leekbox/pages/index.page.dart';
+import 'package:leekbox/components/watermark/watermark_controller.dart';
+import 'package:leekbox/pages/home/index.page.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';
 import 'package:leekbox/pages/tongji/tongji.page.dart';
@@ -47,6 +48,15 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  /// 添加水印
+  Future<void> addWatermark(BuildContext context) async {
+    String version = '2022.10.21';
+    // 防止 widget 尚未加载完成
+    Future<void>.delayed(const Duration(milliseconds: 1000), () {
+      WatermarkController.theOne.addWatermark(context, 'LEEKBOX V$version');
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -57,6 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    addWatermark(context);
+
     return Scaffold(
       /// 滑动组件 , 界面的核心元素
       body: PageView(

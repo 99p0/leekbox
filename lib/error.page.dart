@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logging/logging.dart';
+import 'package:leekbox_sdk/log.dart';
+
 
 class ErrorPage extends StatefulWidget {
   @override
@@ -8,11 +9,9 @@ class ErrorPage extends StatefulWidget {
 }
 
 class _ErrorPageState extends State<ErrorPage> {
-
-  final log = Logger('ErrorPage');
   @override
   Widget build(BuildContext context) {
-    log.info('ErrorPage build');
+    Log.debug('ErrorPage build');
     return Scaffold(
       body: Center(
         child: Column(
