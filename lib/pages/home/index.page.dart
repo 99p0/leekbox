@@ -87,11 +87,11 @@ class _IndexPageState extends State<IndexPage> {
         controller: _refreshController,
         onRefresh: _onRefresh,
         onLoading: _onLoading,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-          child: ListView.builder(
-            physics: const ClampingScrollPhysics(),
-            itemBuilder: (c, i) => Card(
+        child: ListView.builder(
+          physics: const ClampingScrollPhysics(),
+          itemBuilder: (c, i) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -122,9 +122,9 @@ class _IndexPageState extends State<IndexPage> {
                 child: Text('Apply badge colors and font styles ${items[i]}'),
               ),
             ),
-            itemExtent: 100.0,
-            itemCount: items.length,
           ),
+          itemExtent: 100.0,
+          itemCount: items.length,
         ),
       ),
     );
