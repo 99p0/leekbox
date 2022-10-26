@@ -1,2 +1,5 @@
 #include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
 #include "Generated.xcconfig"
+
+# 代码混淆
+# EXTRA_GEN_SNAPSHOT_OPTIONS=--obfuscate
