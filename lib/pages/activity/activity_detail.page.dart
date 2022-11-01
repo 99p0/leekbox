@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_sdk/log.dart';
+import 'package:leekbox_infra/log/log.dart';
 
 ///
 class ActivityDetailPage extends StatefulWidget {
@@ -8,7 +8,6 @@ class ActivityDetailPage extends StatefulWidget {
 }
 
 class _ActivityDetailPageState extends State<ActivityDetailPage> {
-
   @override
   Widget build(BuildContext context) {
     Log.debug('ActivityDetailPage build');

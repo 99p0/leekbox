@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:leekbox_sdk/log.dart';
+import 'package:leekbox_infra/log/log.dart';
 
+class ErrorPage extends StatelessWidget {
+  const ErrorPage(this.error, {Key? key}) : super(key: key);
 
-class ErrorPage extends StatefulWidget {
-  @override
-  _ErrorPageState createState() => _ErrorPageState();
-}
+  /// The error to display.
+  final Exception error;
 
-class _ErrorPageState extends State<ErrorPage> {
   @override
   Widget build(BuildContext context) {
     Log.debug('ErrorPage build');
@@ -17,7 +16,8 @@ class _ErrorPageState extends State<ErrorPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
+            SelectableText(error.toString()),
+            TextButton(
               onPressed: () => context.go('/'),
               child: const Text('Go back to home page'),
             ),

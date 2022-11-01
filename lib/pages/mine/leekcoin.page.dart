@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_sdk/log.dart';
+import 'package:leekbox_infra/log/log.dart';
 
 ///
 class LeekCoinPage extends StatefulWidget {
@@ -7,10 +7,7 @@ class LeekCoinPage extends StatefulWidget {
   _LeekCoinPageState createState() => _LeekCoinPageState();
 }
 
-class _LeekCoinPageState extends State<LeekCoinPage>
-    {
-
-
+class _LeekCoinPageState extends State<LeekCoinPage> {
   @override
   Widget build(BuildContext context) {
     // super.build(context);

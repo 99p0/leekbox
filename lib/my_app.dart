@@ -1,13 +1,12 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/pages/miui10_anim.dart';
+import 'package:leekbox/routes/app_routes.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'app_routes.dart';
 import 'color_schemes.g.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
 
       /// Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
       child: ScreenUtilInit(
-          designSize: const Size(750, 1334),
+          // designSize: const Size(750, 1334),
           minTextAdapt: true,
           splitScreenMode: true,
           // 禁止
@@ -86,6 +85,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// 下拉刷新全局配置
   Widget refreshScaffold({required Widget child}) => RefreshConfiguration(
         // 配置默认头部指示器,假如你每个页面的头部指示器都一样的话,你需要设置这个
         headerBuilder: () => const WaterDropHeader(),

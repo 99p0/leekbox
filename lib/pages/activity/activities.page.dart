@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_sdk/log.dart';
+import 'package:leekbox_infra/log/log.dart';
 
 ///
 class ActivityListPage extends StatefulWidget {

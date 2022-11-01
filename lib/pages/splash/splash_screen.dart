@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_sdk/log.dart';
-
+import 'package:leekbox_infra/log/log.dart';
 
 /// 闪屏 + 介绍页
 class SplashScreenPage extends StatefulWidget {
@@ -9,7 +8,6 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
-
   @override
   Widget build(BuildContext context) {
     Log.debug('SplashScreen build');

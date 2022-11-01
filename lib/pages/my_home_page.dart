@@ -7,8 +7,6 @@ import 'package:leekbox/pages/mine/mine.page.dart';
 import 'package:leekbox/pages/tongji/tongji.page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import 'pages/notice/notice.page.dart';
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -99,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.home_outlined),
             activeIcon: const Icon(Icons.home),
-            title: const Text(""),
+            title: const Text("首页"),
           ),
 
           /// Invite

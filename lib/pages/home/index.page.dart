@@ -1,7 +1,7 @@
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:leekbox_sdk/log.dart';
+import 'package:leekbox_infra/log/log.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:image/image.dart' as img;

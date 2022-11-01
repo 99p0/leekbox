@@ -9,13 +9,13 @@ class CreditCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      padding: EdgeInsets.only(left: 20, top: 20),
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: const EdgeInsets.only(left: 20, top: 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: this.data.cardColors,
+          colors: data.cardColors,
         ),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
@@ -32,7 +32,7 @@ class CreditCard extends StatelessWidget {
             right: -100,
             bottom: -100,
             child: Image.asset(
-              this.data.bankLogoUrl,
+              data.bankLogoUrl,
               width: 250,
               height: 250,
               color: Colors.white10,
@@ -52,27 +52,27 @@ class CreditCard extends StatelessWidget {
                       radius: 25,
                       backgroundColor: Colors.white,
                       child: Image.asset(
-                        this.data.bankLogoUrl,
+                        data.bankLogoUrl,
                         width: 36,
                         height: 36,
                         fit: BoxFit.scaleDown,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 15)),
+                    const Padding(padding: EdgeInsets.only(left: 15)),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          this.data.bankName,
-                          style: TextStyle(
+                          data.bankName,
+                          style: const TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
                         Text(
-                          this.data.cardType,
-                          style: TextStyle(
+                          data.cardType,
+                          style: const TextStyle(
                             fontSize: 14,
                             color: Color.fromARGB(200, 255, 255, 255),
                           ),
@@ -82,10 +82,10 @@ class CreditCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 65, top: 20),
+                  padding: const EdgeInsets.only(left: 65, top: 20),
                   child: Text(
                     this.data.cardNumber,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontFamily: 'Farrington',
                       letterSpacing: 3,
@@ -94,10 +94,10 @@ class CreditCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 65, top: 15),
+                  padding: const EdgeInsets.only(left: 65, top: 15),
                   child: Text(
-                    this.data.validDate,
-                    style: TextStyle(
+                    data.validDate,
+                    style: const TextStyle(
                       fontSize: 13,
                       color: Colors.white,
                     ),
