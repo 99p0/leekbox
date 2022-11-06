@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:leekbox/components/watermark/watermark_controller.dart';
+import 'package:leekbox/common/widgets/watermark/watermark_controller.dart';
 import 'package:leekbox/pages/home/index.page.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';

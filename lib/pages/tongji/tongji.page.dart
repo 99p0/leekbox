@@ -9,7 +9,7 @@ import 'package:leekbox/pages/tongji/line_chart/line_chart_page4.dart';
 import 'package:leekbox/pages/tongji/pie_chart/pie_chart_page.dart';
 import 'package:leekbox/pages/tongji/radar_chart/radar_chart_page.dart';
 import 'package:leekbox/pages/tongji/scatter_chart/scatter_chart_page.dart';
-import 'package:leekbox/util/platform_info.dart';
+import 'package:leekbox/common/utils/platform_info.dart';
 
 
 ///

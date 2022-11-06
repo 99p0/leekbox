@@ -1,13 +1,15 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:leekbox/lang/translation_service.dart';
 import 'package:leekbox/pages/miui10_anim.dart';
-import 'package:leekbox/routes/app_routes.dart';
+import 'package:leekbox/routes/app_pages.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'color_schemes.g.dart';
+
+import 'theme/color_schemes.g.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,34 +28,30 @@ class MyApp extends StatelessWidget {
           // designSize: const Size(750, 1334),
           minTextAdapt: true,
           splitScreenMode: true,
-          // 禁止
+          // 禁止跟随系统变化
           useInheritedMediaQuery: true,
           builder: (context, child) {
             /// 下拉刷新 全剧控制
-            return refreshScaffold(
-              /// dynamic color
-              child: DynamicColorBuilder(
-                builder: (lightDynamic, darkDynamic) {
-                  /// 全局toast
-                  return OKToast(
-                    // 2-A: wrap your app with OKToast
-                    textStyle:
-                        const TextStyle(fontSize: 19.0, color: Colors.white),
-                    backgroundColor: Colors.grey,
-                    animationCurve: Curves.easeIn,
-                    animationBuilder: const Miui10AnimBuilder(),
-                    animationDuration: const Duration(milliseconds: 200),
-                    duration: const Duration(seconds: 3),
-                    child: MaterialApp.router(
-                      // showPerformanceOverlay: kDebugMode,
-                      //
-                      debugShowCheckedModeBanner: kDebugMode,
-                      title: '',
+            return OKToast(
+              // 2-A: wrap your app with OKToast
+              // textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
+              backgroundColor: Colors.grey,
+              animationCurve: Curves.easeIn,
+              animationBuilder: const Miui10AnimBuilder(),
+              animationDuration: const Duration(milliseconds: 200),
+              duration: const Duration(seconds: 3),
 
-                      /// use go_router
-                      routerConfig: AppRoutes.router,
+              /// 全剧下拉配置
+              child: refreshScaffold(
+                /// dynamic color
+                child: DynamicColorBuilder(
+                  builder: (lightDynamic, darkDynamic) {
+                    /// 全局toast
+                    return GetMaterialApp(
+                      // 开发配置
+                      debugShowCheckedModeBanner: false,
 
-                      /// use material 3
+                      /// theme use material 3
                       theme: ThemeData(
                         colorScheme: lightDynamic ?? lightColorScheme,
                         useMaterial3: true,
@@ -64,8 +62,22 @@ class MyApp extends StatelessWidget {
                         useMaterial3: true,
                         visualDensity: VisualDensity.adaptivePlatformDensity,
                       ),
+                      themeMode: ThemeMode.system,
 
                       ///
+                      initialRoute: AppPages.INITIAL,
+                      getPages: AppPages.routes,
+
+                      ///
+                      enableLog: true,
+                      defaultTransition: Transition.fade,
+                      opaqueRoute: Get.isOpaqueRouteDefault,
+                      popGesture: Get.isPopGestureEnable,
+
+                      /// i18n
+                      locale: TranslationService.locale,
+                      fallbackLocale: TranslationService.fallbackLocale,
+                      translations: TranslationService(),
                       localizationsDelegates: const [
                         GlobalMaterialLocalizations.delegate,
                         GlobalWidgetsLocalizations.delegate,
@@ -76,9 +88,9 @@ class MyApp extends StatelessWidget {
                         Locale('zh'),
                         Locale('en', ''),
                       ],
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             );
           }),

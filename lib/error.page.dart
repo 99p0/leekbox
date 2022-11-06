@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -18,7 +18,7 @@ class ErrorPage extends StatelessWidget {
           children: <Widget>[
             SelectableText(error.toString()),
             TextButton(
-              onPressed: () => context.go('/'),
+              onPressed: () => Get.offAndToNamed('/'),
               child: const Text('Go back to home page'),
             ),
           ],

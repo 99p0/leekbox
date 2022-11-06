@@ -1,5 +1,5 @@
 import 'package:leekbox/pages/tongji/pie_chart/samples/indicator.dart';
-import 'package:leekbox/util/color_extensions.dart';
+import 'package:leekbox/common/utils/color_extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

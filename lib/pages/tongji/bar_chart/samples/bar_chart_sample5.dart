@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:leekbox/util/app_utils.dart';
+import 'package:leekbox/common/utils/app_utils.dart';
 
 class BarChartSample5 extends StatefulWidget {
   const BarChartSample5({super.key});

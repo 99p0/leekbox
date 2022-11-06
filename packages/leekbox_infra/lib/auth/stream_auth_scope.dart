@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'StreamAuthNotifier.dart';
+import 'stream_auth_notifier.dart';
 import 'stream_auth.dart';
 
 /// A scope that provides [StreamAuth] for the subtree.
