@@ -1,56 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_infra/auth/stream_auth_scope.dart';
-import 'package:leekbox_infra/log/log.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:leekbox/routes/auth.dart';
 
-///
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
-  bool loggingIn = false;
-  late final AnimationController controller;
+class LoginPage extends ConsumerWidget {
+  const LoginPage({super.key});
+  static String get routeName => 'login';
+  static String get routeLocation => '/$routeName';
 
   @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..addListener(() {
-        setState(() {});
-      });
-    controller.repeat();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Log.debug('LoginPage build...');
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      appBar: null,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (loggingIn) CircularProgressIndicator(value: controller.value),
-            if (!loggingIn)
-              ElevatedButton(
-                onPressed: () {
-                  StreamAuthScope.of(context).signIn('test-user');
-                  setState(() {
-                    loggingIn = true;
-                  });
-                },
-                child: const Text('Login'),
-              ),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text("Login Page"),
+            ElevatedButton(
+              onPressed: () async {
+                ref.read(authProvider.notifier).login(
+                      "myEmail",
+                      "myPassword",
+                    );
+              },
+              child: const Text("Login"),
+            ),
           ],
         ),
       ),

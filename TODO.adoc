@@ -56,3 +56,46 @@
 请求访问日志记录：请求参数，时间，结果，IP，耗时
 首页下拉超过屏幕 图标要变成the top，点击后 置顶
 app 优先使用本地数据， 然后再请求服务器更新。
+
+
+
+```dart
+Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+          child: PlanetWidget(
+            children: viewModel.recommendNovels
+                .take(min(15, viewModel.recommendNovels.length))
+                .map((element) => GestureDetector(
+                      onTap: () {
+                        Fluttertoast.showToast(
+                            msg: 'Item ${element.title} clicked');
+                      },
+                      child: Container(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 30,
+                              height: 40,
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    READER_IMAGE_URL + (element.cover ?? ''),
+                                height: 40,
+                                width: 30,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                            Text(
+                              element.title ?? '',
+                              style: TextStyle(fontSize: 14),
+                            )
+                          ],
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
+        );
+```

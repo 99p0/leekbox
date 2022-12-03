@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:leekbox_infra/log/log.dart';
 
-/// 闪屏 + 介绍页
-class SplashScreenPage extends StatefulWidget {
-  @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
-}
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
+  static String get routeName => 'splash';
+  static String get routeLocation => '/$routeName';
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
-    Log.debug('SplashScreen build');
-    return Scaffold(
-      body: Center(
-        child: Text("SplashScreen"),
-      ),
+    ///预缓存背景图片
+    // precacheImage(const AssetImage(R.assetsImagesLoginBackground), context);
+    return const Scaffold(
+      body: Center(child: Text("Splash Page")),
     );
   }
 }

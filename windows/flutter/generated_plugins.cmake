@@ -5,9 +5,11 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
   dynamic_color
+  flutter_secure_storage_windows
   geolocator_windows
   leekbox_infra
   leekbox_sdk
+  local_auth_windows
   permission_handler_windows
   smart_auth
   url_launcher_windows

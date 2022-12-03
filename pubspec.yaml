@@ -14,26 +14,32 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.5
+  animations: ^2.0.7
   #
   ffi: ^2.0.1
   isolates: ^3.0.3+8
   protobuf: ^2.1.0
-  uuid: ^3.0.6
+#  uuid: ^3.0.7
   json_annotation: ^4.7.0
+  equatable: ^2.0.5
+  built_value: ^8.4.2
+  #
+  flutter_secure_storage: ^6.1.0
+  sign_in_with_apple: ^4.2.0
+  local_auth: ^2.1.2
+  # 存储
   shared_preferences: ^2.0.15
   #  动态主题
   dynamic_color: ^1.5.4
   # 文件读写
   path_provider: ^2.0.11
-  # yyds
-  get: ^4.6.5
-  # 官方推荐：状态管理 + 路由
-  # flutter_riverpod: ^2.1.1
-  # go_router: ^5.1.3
+  # 官方推荐：状态管理 + 路由   VS  getx
+  flutter_riverpod: ^2.1.1
+  go_router: ^5.2.0
   #  字体
   # google_fonts: ^3.0.1
   #
-  package_info_plus: ^3.0.0
+  package_info_plus: ^3.0.2
   connectivity_plus: ^3.0.2
   device_info_plus: ^7.0.1
   # 适配屏幕
@@ -50,23 +56,23 @@ dependencies:
   timeline_tile: ^2.0.0
   # 输入框
   pinput: ^2.2.12
-  #  markdown: ^6.0.1
   # 瀑布流
-  #  waterfall_flow: ^3.0.2
-  # 头部背景
-  #  draggable_home: ^1.0.3
-  # bottomBar
+  waterfall_flow: ^3.0.2
+  # google style nav bar
   salomon_bottom_bar: ^3.3.1
+  scrollable_positioned_list: ^0.3.5
+  #
+  # showcaseview: ^2.0.0+1
   #  加载指示器
   #  loading_indicator: ^3.1.0
   # 媒体选择
-  #  wechat_assets_picker: ^8.1.3
-  #  wechat_camera_picker: ^2.4.1
+  wechat_assets_picker: ^8.1.3
+  wechat_camera_picker: ^3.6.3
   # 视频播放
-  #  chewie: ^1.3.5
-  #  video_player: ^2.4.7
+  chewie: ^1.3.6
+  video_player: ^2.4.8
   # 打开链接
-  url_launcher: ^6.1.6
+  url_launcher: ^6.1.7
   # 版本升级
   r_upgrade: ^0.4.0
   version: ^3.0.2
@@ -78,6 +84,8 @@ dependencies:
   crypto: ^3.0.2
   #  滑块
   carousel_slider: ^4.1.1
+  # 动画
+  lottie: ^2.0.0
   #  网络请求
   dio: ^4.0.6
   oktoast: ^3.3.1
@@ -89,7 +97,7 @@ dependencies:
   #  video_compress: ^3.1.0
   #  flutter_image_compress: ^1.1.3
   # 数据存储 基于sqlite3 封装
-  drift: ^2.2.0
+  drift: ^2.3.0
   # 查看本地存储的sqlite数据
   #  db_viewer: ^1.0.3
   # 富文本编辑器
@@ -100,7 +108,7 @@ dependencies:
   #
   flutter_svg: ^1.1.6
   # 图片缓存
-  cached_network_image: ^3.2.2
+  cached_network_image: ^3.2.3
   # 图片预览
   photo_view: ^0.14.0
   # 模糊图片
@@ -109,14 +117,17 @@ dependencies:
       url: git@github.com:justacid/blurhash-dart.git
       ref: master
   # 图片库： https://github.com/alibaba/power_image
-  #  power_image: 0.1.0-pre.2
+#  power_image: ^0.1.0-pre.2
   image_picker: ^0.8.6
-  # 重写image
-  image: ^3.2.2
+  #  image: ^3.2.2
   #
   # flutter_neumorphic: ^3.2.0
   #  多滚动集合
   linked_scroll_controller: ^0.2.0
+  # 不同分辨率的手机上查看UI效果
+  device_preview: ^1.1.0
+  webview_flutter: ^3.0.4
+#  flutter_native_splash: ^2.2.16
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
   #
@@ -134,7 +145,9 @@ dependencies:
     path: packages/leekbox_infra
   leekbox_sdk:
     path: packages/leekbox_sdk
-
+  # 类似酷狗tabbar滑动方式
+  custom_tabbar:
+    path: packages/custom_tabbar
 # 强制升级版本
 dependency_overrides:
 #  power_image_ext: ^3.0.0
@@ -148,7 +161,7 @@ dev_dependencies:
   #
   drift_dev: ^2.2.0+1
   #  logo 生成插件   flutter pub run flutter_launcher_icons:main
-  flutter_launcher_icons: "^0.10.0"
+  flutter_launcher_icons: ^0.11.0
 
 flutter_icons:
   android: false
@@ -179,3 +192,6 @@ flutter:
       fonts:
         - asset: assets/fonts/digital-7.ttf
           style: italic
+
+flutter_intl:
+  enabled: true

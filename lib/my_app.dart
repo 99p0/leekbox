@@ -1,99 +1,108 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:leekbox/lang/translation_service.dart';
-import 'package:leekbox/pages/miui10_anim.dart';
-import 'package:leekbox/routes/app_pages.dart';
+import 'package:leekbox/generated/l10n.dart';
+import 'package:leekbox/routes/app_routes.dart';
+import 'package:leekbox/theme/color_schemes.g.dart';
+import 'package:leekbox_infra/log/log.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'theme/color_schemes.g.dart';
-
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    /// app 是否 置灰： 纪念某个时刻
-    return ColorFiltered(
-      colorFilter: const ColorFilter.mode(
-        Colors.transparent, // Colors.grey
-        BlendMode.color,
+  Widget build(BuildContext context, WidgetRef ref) {
+    //
+    final router = ref.watch(routerProvider);
+
+    ///  是否 禁用
+    return IgnorePointer(
+      ignoring: false,
+
+      ///  是否 置灰： 纪念某个时刻return
+      child: ColorFiltered(
+        colorFilter: const ColorFilter.mode(
+          Colors.transparent, //Colors.grey, //
+          BlendMode.color,
+        ),
+
+        /// Toast 配置
+        child: OKToast(
+          position: ToastPosition.center,
+          radius: 20,
+          movingOnWindowChange: false,
+          textPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          backgroundColor: Colors.black87,
+
+          /// 全剧下拉配置
+          child: refreshScaffold(
+            /// 屏幕适配: 填入设计稿中设备的屏幕尺寸,单位dp
+            child: ScreenUtilInit(
+              designSize: const Size(360, 690),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              useInheritedMediaQuery: true,
+              builder: (context, child) {
+                /// 动态主题
+                return DynamicColorBuilder(
+                    builder: (lightDynamic, darkDynamic) {
+                  ///
+                  return MaterialApp.router(
+                    /// go_router
+                    routeInformationParser: router.routeInformationParser,
+                    routerDelegate: router.routerDelegate,
+                    routeInformationProvider: router.routeInformationProvider,
+
+                    /// theme use material 3
+                    theme: ThemeData(
+                      colorScheme: lightDynamic ?? lightColorScheme,
+                      useMaterial3: true,
+                      visualDensity: VisualDensity.adaptivePlatformDensity,
+                    ),
+                    darkTheme: ThemeData(
+                      colorScheme: darkDynamic ?? darkColorScheme,
+                      useMaterial3: true,
+                      visualDensity: VisualDensity.adaptivePlatformDensity,
+                    ),
+
+                    /// localization
+                    localizationsDelegates: const [
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                      RefreshLocalizations.delegate,
+                      S.delegate,
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+
+                    debugShowCheckedModeBanner: false,
+                    title: 'LEEKBOX',
+
+                    ///
+                    builder: (BuildContext context, Widget? child) {
+                      Log.debug('root builder...');
+                      // hideKeyboard(context);
+                      // 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
+                      return MediaQuery(
+                        data: MediaQuery.of(context).copyWith(
+                          textScaleFactor: 1.0,
+                        ),
+                        child: GestureDetector(
+                          onTap: () => hideKeyboard(context),
+                          child: child,
+                        ),
+                      );
+                    },
+                  );
+                });
+              },
+            ),
+          ),
+        ),
       ),
-
-      /// Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
-      child: ScreenUtilInit(
-          // designSize: const Size(750, 1334),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          // 禁止跟随系统变化
-          useInheritedMediaQuery: true,
-          builder: (context, child) {
-            /// 下拉刷新 全剧控制
-            return OKToast(
-              // 2-A: wrap your app with OKToast
-              // textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
-              backgroundColor: Colors.grey,
-              animationCurve: Curves.easeIn,
-              animationBuilder: const Miui10AnimBuilder(),
-              animationDuration: const Duration(milliseconds: 200),
-              duration: const Duration(seconds: 3),
-
-              /// 全剧下拉配置
-              child: refreshScaffold(
-                /// dynamic color
-                child: DynamicColorBuilder(
-                  builder: (lightDynamic, darkDynamic) {
-                    /// 全局toast
-                    return GetMaterialApp(
-                      // 开发配置
-                      debugShowCheckedModeBanner: false,
-
-                      /// theme use material 3
-                      theme: ThemeData(
-                        colorScheme: lightDynamic ?? lightColorScheme,
-                        useMaterial3: true,
-                        visualDensity: VisualDensity.adaptivePlatformDensity,
-                      ),
-                      darkTheme: ThemeData(
-                        colorScheme: darkDynamic ?? darkColorScheme,
-                        useMaterial3: true,
-                        visualDensity: VisualDensity.adaptivePlatformDensity,
-                      ),
-                      themeMode: ThemeMode.system,
-
-                      ///
-                      initialRoute: AppPages.INITIAL,
-                      getPages: AppPages.routes,
-
-                      ///
-                      enableLog: true,
-                      defaultTransition: Transition.fade,
-                      opaqueRoute: Get.isOpaqueRouteDefault,
-                      popGesture: Get.isPopGestureEnable,
-
-                      /// i18n
-                      locale: TranslationService.locale,
-                      fallbackLocale: TranslationService.fallbackLocale,
-                      translations: TranslationService(),
-                      localizationsDelegates: const [
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
-                        RefreshLocalizations.delegate,
-                      ],
-                      supportedLocales: const [
-                        Locale('zh'),
-                        Locale('en', ''),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            );
-          }),
     );
   }
 
@@ -122,4 +131,12 @@ class MyApp extends StatelessWidget {
         enableBallisticLoad: true,
         child: child,
       );
+
+  ///
+  void hideKeyboard(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
+  }
 }

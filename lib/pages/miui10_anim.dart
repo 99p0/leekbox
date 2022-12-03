@@ -8,12 +8,8 @@ class Miui10AnimBuilder extends BaseAnimationBuilder {
 
   @Deprecated('Please build animation builders outside the package')
   @override
-  Widget buildWidget(
-    BuildContext context,
-    Widget child,
-    AnimationController controller,
-    double percent,
-  ) {
+  Widget buildWidget(BuildContext context, Widget child,
+      AnimationController controller, double percent) {
     final double opacity = min(1.0, percent + 0.2);
     final double offset = (1 - percent) * 20;
 

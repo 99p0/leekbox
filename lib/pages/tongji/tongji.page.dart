@@ -1,7 +1,7 @@
+import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/pages/tongji/bar_chart/bar_chart_page.dart';
-import 'package:leekbox/pages/tongji/bar_chart/bar_chart_page2.dart';
-import 'package:leekbox/pages/tongji/bar_chart/bar_chart_page3.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page2.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page3.dart';
@@ -9,21 +9,25 @@ import 'package:leekbox/pages/tongji/line_chart/line_chart_page4.dart';
 import 'package:leekbox/pages/tongji/pie_chart/pie_chart_page.dart';
 import 'package:leekbox/pages/tongji/radar_chart/radar_chart_page.dart';
 import 'package:leekbox/pages/tongji/scatter_chart/scatter_chart_page.dart';
-import 'package:leekbox/common/utils/platform_info.dart';
+import 'package:leekbox_infra/log/log.dart';
 
+import 'bar_chart/bar_chart_page2.dart';
+import 'bar_chart/bar_chart_page3.dart';
 
 ///
 class TongjiPage extends StatefulWidget {
+  const TongjiPage({super.key});
+
   @override
   _TongjiPageState createState() => _TongjiPageState();
 }
 
-class _TongjiPageState extends State<TongjiPage> {
-  int _currentPage = 0;
+class _TongjiPageState extends State<TongjiPage>
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  @override
+  bool get wantKeepAlive => true;
+  late TabController _tabController;
 
-  final _controller = PageController();
-  final _duration = const Duration(milliseconds: 300);
-  final _curve = Curves.easeInOutCubic;
   final _pages = const [
     LineChartPage(),
     LineChartPage2(),
@@ -37,61 +41,75 @@ class _TongjiPageState extends State<TongjiPage> {
     RadarChartPage(),
   ];
 
-  bool get isDesktopOrWeb => PlatformInfo().isDesktopOrWeb();
+  final List<Tab> myTabs = const <Tab>[
+    Tab(text: "音乐 1"),
+    Tab(text: "音乐 2"),
+    Tab(text: "动态 3"),
+    Tab(text: "语文 4"),
+    Tab(text: "音乐 5"),
+    Tab(text: "动态 6"),
+    Tab(text: "语文 7"),
+    Tab(text: "音乐 8"),
+    Tab(text: "动态 9"),
+    Tab(text: "语文 10")
+  ];
 
   @override
   void initState() {
+    _tabController = TabController(length: _pages.length, vsync: this);
     super.initState();
-    _controller.addListener(() {
-      setState(() {
-        _currentPage = _controller.page!.round();
-      });
-    });
+    _tabController.animation?.addListener(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    Log.debug('MinePage build');
     return Scaffold(
-      body: Center(
-        child: PageView(
-          physics: isDesktopOrWeb
-              ? const NeverScrollableScrollPhysics()
-              : const AlwaysScrollableScrollPhysics(),
-          controller: _controller,
-          children: _pages,
-        ),
-      ),
-      bottomNavigationBar: isDesktopOrWeb
-          ? Container(
-              padding: const EdgeInsets.all(16),
-              color: Colors.transparent,
-              child: Row(
-                children: [
-                  Visibility(
-                    visible: _currentPage != 0,
-                    child: FloatingActionButton(
-                      onPressed: () => _controller.previousPage(
-                        duration: _duration,
-                        curve: _curve,
-                      ),
-                      child: const Icon(Icons.chevron_left_rounded),
-                    ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: ScreenUtil().statusBarHeight,
+          ),
+          CustomScrollView(
+            shrinkWrap: true,
+            slivers: <Widget>[
+              // SliverToBoxAdapter(
+              //   child: Text('asda'),
+              // ),
+              SliverToBoxAdapter(
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.blue),
+                  child: KuGouTabBar(
+                    indicatorMinWidth: 6,
+                    indicator: const RRecTabIndicator(
+                        radius: 4, insets: EdgeInsets.only(bottom: 5)),
+                    controller: _tabController,
+                    labelColor: Colors.black,
+                    tabs: <Widget>[...myTabs],
+                    isScrollable: true,
                   ),
-                  const Spacer(),
-                  Visibility(
-                    visible: _currentPage != _pages.length - 1,
-                    child: FloatingActionButton(
-                      onPressed: () => _controller.nextPage(
-                        duration: _duration,
-                        curve: _curve,
-                      ),
-                      child: const Icon(Icons.chevron_right_rounded),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            )
-          : null,
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 600,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: _pages,
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 20,
+                  color: Colors.blue,
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

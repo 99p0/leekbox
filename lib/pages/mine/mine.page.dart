@@ -4,35 +4,90 @@ import 'package:leekbox_infra/log/log.dart';
 
 ///
 class MinePage extends StatefulWidget {
+  const MinePage({super.key});
+
   @override
   _MinePageState createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  //滑动控制器
+  late ScrollController _controller;
+
+  @override
+  void initState() {
+    //初始化控制器
+    _controller = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    //销毁控制器
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // super.build(context);
+    super.build(context);
     Log.debug('MinePage build');
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          ClipPath(
-            clipper: MyClipper(),
-            child: Container(
-              padding: EdgeInsets.only(left: 25.w, right: 25.w),
-              height: 450.h,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Color(0xFF3383CD), Color(0xFF11249F)],
-                ),
+    return Material(
+      child: CustomScrollView(
+        controller: _controller,
+        slivers: <Widget>[
+          // AppBar，包含一个导航栏
+          SliverAppBar(
+            // 设置为true时，向下滑动时，即使当前CustomScrollView不在顶部，SliverAppBar也会跟着一起向下出现
+            floating: true,
+            //设置为true时，当SliverAppBar内容滑出屏幕时，将始终渲染一个固定在顶部的收起状态
+            pinned: true,
+            // 设置为true时，当手指放开时，SliverAppBar会根据当前的位置进行调整，始终保持展开或收起的状态，此效果在floating=true时生效
+            snap: false,
+            expandedHeight: 250.0,
+            leading: IconButton(
+              icon: Icon(Icons.person_outline),
+              onPressed: () {},
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('返回顶部'),
+                onPressed: () {
+                  _controller.animateTo(.0,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.ease);
+                },
               ),
-              child: _buildHeader(),
+
+              // _buildHeader(),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text('LEEKBOX'),
+              collapseMode: CollapseMode.pin,
+              background: Image.network(
+                "https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/389e31d03d36465d8acd9939784df6f0.jpg!sswm",
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          _buildCard(),
+          //List
+          SliverFixedExtentList(
+            itemExtent: 60.0,
+            delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+              //创建列表项
+              return new Container(
+                alignment: Alignment.center,
+                color: Colors.lightBlue[100 * (index % 9)],
+                child: new Text('list item $index'),
+              );
+            }, childCount: 50 //50个列表项
+                ),
+          ),
         ],
       ),
     );
@@ -40,8 +95,8 @@ class _MinePageState extends State<MinePage> {
 
   Widget _buildAvatar() {
     return Container(
-      width: 120.w,
-      height: 120.w,
+      width: 76.w,
+      height: 76.w,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -95,13 +150,13 @@ class _MinePageState extends State<MinePage> {
         // 二维码和右箭头
         Icon(
           Icons.qr_code,
-          size: 30.w,
+          size: 24.w,
           color: Theme.of(context).primaryTextTheme.headline6?.color,
         ),
         SizedBox(width: 20.w),
         Icon(
           Icons.chevron_right,
-          size: 30.w,
+          size: 24.w,
           color: Theme.of(context).primaryTextTheme.headline6?.color,
         ),
       ],
@@ -130,15 +185,17 @@ class _MinePageState extends State<MinePage> {
   Widget _buildNumberTextWidget(String number, String text) {
     var foreColor = Theme.of(context).primaryColor;
     return TextButton(
-      child: Column(children: [
-        Text(number, style: TextStyle(fontSize: 30, color: foreColor)),
-        Text(text, style: TextStyle(color: foreColor)),
-      ]),
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(horizontal: 40)),
       ),
       onPressed: () {},
+      child: Column(
+        children: [
+          Text(number, style: TextStyle(fontSize: 22.sp, color: foreColor)),
+          Text(text, style: TextStyle(color: foreColor)),
+        ],
+      ),
     );
   }
 // @override
