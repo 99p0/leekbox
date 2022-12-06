@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
-  brightness: Brightness.light,
+  brightness: Brightness.dark,
   surfaceTint: Color(0xFF6750A4),
   onErrorContainer: Color(0xFF410E0B),
   onError: Color(0xFFFFFFFF),
@@ -33,7 +33,7 @@ const lightColorScheme = ColorScheme(
 );
 
 const darkColorScheme = ColorScheme(
-  brightness: Brightness.dark,
+  brightness: Brightness.light,
   surfaceTint: Color(0xFFD0BCFF),
   onErrorContainer: Color(0xFFF2B8B5),
   onError: Color(0xFF601410),

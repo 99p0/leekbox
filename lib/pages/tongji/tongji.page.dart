@@ -1,8 +1,6 @@
 import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/pages/tongji/bar_chart/bar_chart_page.dart';
-import 'package:leekbox/pages/tongji/line_chart/line_chart_page.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page2.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page3.dart';
 import 'package:leekbox/pages/tongji/line_chart/line_chart_page4.dart';
@@ -13,6 +11,7 @@ import 'package:leekbox_infra/log/log.dart';
 
 import 'bar_chart/bar_chart_page2.dart';
 import 'bar_chart/bar_chart_page3.dart';
+import 'line_chart/line_chart_page.dart';
 
 ///
 class TongjiPage extends StatefulWidget {
@@ -65,12 +64,9 @@ class _TongjiPageState extends State<TongjiPage>
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('MinePage build');
-    return Scaffold(
-      body: Column(
+    return Container(
+      child: Column(
         children: <Widget>[
-          Container(
-            height: ScreenUtil().statusBarHeight,
-          ),
           CustomScrollView(
             shrinkWrap: true,
             slivers: <Widget>[

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:leekbox/pages/demo/drawer/drawer_user_controller.dart';
+import 'package:leekbox/pages/demo/drawer/home_drawer.dart';
+import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:leekbox_infra/watermark/watermark_controller.dart';
 
-import 'home/drawer/drawer_user_controller.dart';
-import 'home/drawer/home_drawer.dart';
-import 'home/my_home_page.dart';
+import '../../activity/activities.page.dart';
+import '../../home/my_home_page.dart';
+import '../../notice/notice.page.dart';
 
 class GoHomeScreen extends StatefulWidget {
   const GoHomeScreen({super.key});
-
-  static String get routeName => 'home';
-
-  static String get routeLocation => '/';
+  //
+  // static String get routeName => 'home';
+  //
+  // static String get routeLocation => '/';
 
   @override
   _GoHomeScreenState createState() => _GoHomeScreenState();
@@ -98,34 +100,23 @@ class _GoHomeScreenState extends State<GoHomeScreen>
     WidgetsBinding.instance?.removeObserver(this);
   }
 
-  /// 添加水印
-  Future<void> addWatermark(BuildContext context) async {
-    String version = '2022.10.21';
-    // 防止 widget 尚未加载完成
-    Future<void>.delayed(const Duration(milliseconds: 1000), () {
-      WatermarkController.theOne.addWatermark(context, 'LEEKBOX V$version');
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Log.debug('GoHomePage build');
-    addWatermark(context);
-    return Container(
-      child: SafeArea(
-        top: false,
-        bottom: false,
-        child: Scaffold(
-          body: DrawerUserController(
-            screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
-            onDrawerCall: (DrawerIndex drawerIndexdata) {
-              changeIndex(drawerIndexdata);
-              //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
-            },
-            screenView: screenView,
-            //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
-          ),
+
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Scaffold(
+        body: DrawerUserController(
+          screenIndex: drawerIndex,
+          drawerWidth: MediaQuery.of(context).size.width * 0.85,
+          onDrawerCall: (DrawerIndex drawerIndexdata) {
+            changeIndex(drawerIndexdata);
+            //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
+          },
+          screenView: screenView,
+          //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
         ),
       ),
     );
@@ -140,15 +131,15 @@ class _GoHomeScreenState extends State<GoHomeScreen>
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          screenView = MyHomePage();
+          screenView = ActivityListPage();
         });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
         setState(() {
-          screenView = MyHomePage();
+          screenView = NoticePage();
         });
       } else if (drawerIndex == DrawerIndex.Invite) {
         setState(() {
-          screenView = MyHomePage();
+          screenView = SettingPage();
         });
       } else {
         //do in your way......

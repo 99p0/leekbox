@@ -8,17 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/my_app.dart';
+import 'package:leekbox_infra/log/log.dart';
 
 void main() {
-  runZonedGuarded(() {
+  runZonedGuarded(() async {
+    ///
     WidgetsFlutterBinding.ensureInitialized();
-
-    /// License
-    // LicenseRegistry.addLicense(() async* {
-    //   // Google fonts Licensing Fonts
-    //   final license = await rootBundle.loadString('google_fonts/OFL.txt');
-    //   yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-    // });
 
     /// 咸鱼 PowerImage图片库
     // PowerImageBinding();
@@ -30,8 +25,14 @@ void main() {
 
     // await SpUtil.getInstance();
 
-    ///
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // 全屏模式 SystemUiMode.edgeToEdge
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+    // 竖屏模式：just now
+    await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
 
     ///
     runApp(
@@ -51,13 +52,20 @@ void main() {
       ));
     }
 
-    /// 屏幕刷新率和显示率不一致时的优化，必须挪动到 runApp 之后
+    // 在输入频率与显示刷新率不匹配情况下提供平滑的滚动效果 :: 后遗症：这个方法会带来巨大的输入延迟，而且可能看起来不对劲
     GestureBinding.instance.resamplingEnabled = true;
+
+    /// License
+    LicenseRegistry.addLicense(() async* {
+      // Google fonts Licensing Fonts
+      final license = await rootBundle.loadString('google_fonts/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
 
     /// do others
   }, (Object obj, StackTrace stack) {
-    print(obj);
-    print(stack);
+    Log.error('obj:: $obj');
+    Log.error('stack:: $stack');
   });
 }
 

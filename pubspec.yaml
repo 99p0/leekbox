@@ -19,7 +19,7 @@ dependencies:
   ffi: ^2.0.1
   isolates: ^3.0.3+8
   protobuf: ^2.1.0
-#  uuid: ^3.0.7
+  #  uuid: ^3.0.7
   json_annotation: ^4.7.0
   equatable: ^2.0.5
   built_value: ^8.4.2
@@ -37,11 +37,12 @@ dependencies:
   flutter_riverpod: ^2.1.1
   go_router: ^5.2.0
   #  字体
-  # google_fonts: ^3.0.1
+  google_fonts: ^3.0.1
   #
   package_info_plus: ^3.0.2
   connectivity_plus: ^3.0.2
   device_info_plus: ^7.0.1
+  network_info_plus: ^3.0.1
   # 适配屏幕
   flutter_screenutil: ^5.6.0
   #  下拉 刷新
@@ -60,6 +61,8 @@ dependencies:
   waterfall_flow: ^3.0.2
   # google style nav bar
   salomon_bottom_bar: ^3.3.1
+  sliding_clipped_nav_bar: ^3.1.0+3
+  #
   scrollable_positioned_list: ^0.3.5
   #
   # showcaseview: ^2.0.0+1
@@ -84,10 +87,20 @@ dependencies:
   crypto: ^3.0.2
   #  滑块
   carousel_slider: ^4.1.1
+  #
+  syncfusion_flutter_datagrid: ^20.3.59
+  #
+  flutter_rating_bar: ^4.0.1
+  #
+  flutter_scankit: ^1.2.4
+
   # 动画
   lottie: ^2.0.0
   #  网络请求
   dio: ^4.0.6
+  dio_cookie_manager: ^2.0.0
+  cookie_jar: ^3.0.1
+  #
   oktoast: ^3.3.1
   # WeChatSDK 插件
   #  fluwx: ^3.9.2
@@ -117,7 +130,7 @@ dependencies:
       url: git@github.com:justacid/blurhash-dart.git
       ref: master
   # 图片库： https://github.com/alibaba/power_image
-#  power_image: ^0.1.0-pre.2
+  #  power_image: ^0.1.0-pre.2
   image_picker: ^0.8.6
   #  image: ^3.2.2
   #
@@ -127,7 +140,7 @@ dependencies:
   # 不同分辨率的手机上查看UI效果
   device_preview: ^1.1.0
   webview_flutter: ^3.0.4
-#  flutter_native_splash: ^2.2.16
+  #  flutter_native_splash: ^2.2.16
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
   #
@@ -184,6 +197,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/mine/
     - assets/local/
     - assets/tflites/
 

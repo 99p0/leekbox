@@ -10,6 +10,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   leekbox_infra
   leekbox_sdk
   local_auth_windows
+  network_info_plus
   permission_handler_windows
   smart_auth
   url_launcher_windows

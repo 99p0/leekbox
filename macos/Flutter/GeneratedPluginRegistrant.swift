@@ -12,6 +12,7 @@ import flutter_secure_storage_macos
 import geolocator_apple
 import leekbox_infra
 import leekbox_sdk
+import network_info_plus
 import package_info_plus
 import path_provider_macos
 import photo_manager
@@ -30,6 +31,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   GeolocatorPlugin.register(with: registry.registrar(forPlugin: "GeolocatorPlugin"))
   LeekboxInfraPlugin.register(with: registry.registrar(forPlugin: "LeekboxInfraPlugin"))
   LeekboxSdkPlugin.register(with: registry.registrar(forPlugin: "LeekboxSdkPlugin"))
+  NetworkInfoPlusPlugin.register(with: registry.registrar(forPlugin: "NetworkInfoPlusPlugin"))
   FLTPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FLTPackageInfoPlusPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   PhotoManagerPlugin.register(with: registry.registrar(forPlugin: "PhotoManagerPlugin"))

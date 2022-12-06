@@ -65,7 +65,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.5),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -92,7 +91,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                       parent: widget.iconAnimationController!,
                                       curve: Curves.fastOutSlowIn))
                                   .value /
-                              360),
+                              380),
                           child: Container(
                             height: 120,
                             width: 120,
@@ -173,9 +172,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   onTapped();
                 },
               ),
-              SizedBox(
-                height: MediaQuery.of(context).padding.bottom,
-              )
+              // SizedBox(
+              //   height: MediaQuery.of(context).padding.bottom,
+              // )
             ],
           ),
         ],
