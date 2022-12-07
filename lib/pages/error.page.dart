@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:lottie/lottie.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -17,13 +19,14 @@ class ErrorPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Lottie.asset(
-                'assets/json/error2.json',
+                'assets/lotties/loading.json',
                 width: size.width / 1.3,
                 height: 160,
                 fit: BoxFit.fill,
                 alignment: Alignment.center,
               ),
             ),
+            Gaps.vGap100,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -31,14 +34,14 @@ class ErrorPage extends StatelessWidget {
                   '虽然什么也没有,要不刷新看看',
                   style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
                 ),
-                // GestureDetector(
-                //   onTap: () => this.helpAction(),
-                //   child: Icon(
-                //     IconFont.icon_info,
-                //     size: 18,
-                //     color: Colors.grey,
-                //   ),
-                // ),
+                GestureDetector(
+                  onTap: () => context.go('/'),
+                  child: Icon(
+                    Icons.info_outlined,
+                    size: 18,
+                    color: Colors.grey,
+                  ),
+                ),
               ],
             ),
           ],

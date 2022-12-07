@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox/common/utils/date_util.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 
@@ -37,20 +38,30 @@ class TimeAndWordView extends StatelessWidget {
                   child: Text(
                     '${DateUtil.getNowTimeString()}好，',
                     style: Theme.of(context).textTheme.headline1?.copyWith(
-                        fontWeight: FontWeight.bold, fontSize: 20.sp),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                        ),
                   ),
                 ),
                 Gaps.vGap10,
                 Text(
                   words.word,
                   style: Theme.of(context).textTheme.headline1?.copyWith(
-                      fontSize: 14.sp, fontWeight: FontWeight.normal),
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.normal,
+                      ),
                 ),
-                Gaps.vGap4,
+                Gaps.vGap8,
                 Text(
                   words.wordEnglish,
-                  style: Theme.of(context).textTheme.headline1?.copyWith(
-                      fontSize: 14.sp, fontWeight: FontWeight.normal),
+                  style: GoogleFonts.lato(
+                    textStyle: Theme.of(context).textTheme.headline1,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  // style: Theme.of(context).textTheme.headline1?.copyWith(
+                  //     fontSize: 14.sp, fontWeight: FontWeight.normal),
                 )
               ],
             ),

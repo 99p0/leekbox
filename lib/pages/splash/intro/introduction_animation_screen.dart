@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:leekbox/pages/login/login.dart';
+import 'package:leekbox_infra/log/log.dart';
 
 import 'components/care_view.dart';
 import 'components/center_next_button.dart';
@@ -8,22 +11,25 @@ import 'components/splash_view.dart';
 import 'components/top_back_skip_view.dart';
 import 'components/welcome_view.dart';
 
-class IntroductionAnimationScreen extends StatefulWidget {
-  const IntroductionAnimationScreen({Key? key}) : super(key: key);
+class IntroScreen extends StatefulWidget {
+  static String get routeName => 'intro';
+
+  static String get routeLocation => '/$routeName';
+
+  const IntroScreen({Key? key}) : super(key: key);
 
   @override
-  _IntroductionAnimationScreenState createState() =>
-      _IntroductionAnimationScreenState();
+  _IntroScreenState createState() => _IntroScreenState();
 }
 
-class _IntroductionAnimationScreenState
-    extends State<IntroductionAnimationScreen> with TickerProviderStateMixin {
+class _IntroScreenState extends State<IntroScreen>
+    with TickerProviderStateMixin {
   AnimationController? _animationController;
 
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 8));
+        AnimationController(vsync: this, duration: const Duration(seconds: 8));
     _animationController?.animateTo(0.0);
     super.initState();
   }
@@ -36,9 +42,9 @@ class _IntroductionAnimationScreenState
 
   @override
   Widget build(BuildContext context) {
-    print(_animationController?.value);
+    Log.debug(_animationController?.value);
     return Scaffold(
-      backgroundColor: Color(0xffF7EBE1),
+      // backgroundColor: const Color(0xffF7EBE1),
       body: ClipRect(
         child: Stack(
           children: [
@@ -74,7 +80,7 @@ class _IntroductionAnimationScreenState
 
   void _onSkipClick() {
     _animationController?.animateTo(0.8,
-        duration: Duration(milliseconds: 1200));
+        duration: const Duration(milliseconds: 1200));
   }
 
   void _onBackClick() {
@@ -113,6 +119,7 @@ class _IntroductionAnimationScreenState
   }
 
   void _signUpClick() {
-    Navigator.pop(context);
+    //
+    context.go(LoginPage.routeLocation);
   }
 }

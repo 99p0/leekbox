@@ -107,10 +107,10 @@ class _MySetCellState extends State<MySetCell> {
                   child: Text(
                     widget.title,
                     style: widget.titleStyle ??
-                        TextStyle(
-                          fontSize: 14.0.sp,
-                          color: Colors.black,
-                        ),
+                        Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp,
+                            ),
                   ),
                 ),
               ),
@@ -118,10 +118,10 @@ class _MySetCellState extends State<MySetCell> {
                 child: Text(
                   widget.text,
                   style: widget.textStyle ??
-                      TextStyle(
-                        fontSize: 14.0.sp,
-                        color: Colors.black,
-                      ),
+                      Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13.sp,
+                          ),
                   textAlign: widget.textAlign,
                 ),
               ),

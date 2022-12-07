@@ -163,7 +163,7 @@ packages:
       name: camera_android
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.0+4"
+    version: "0.10.0+5"
   camera_avfoundation:
     dependency: transitive
     description:
@@ -401,7 +401,7 @@ packages:
       name: extended_image
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.3.2"
+    version: "6.3.4"
   extended_image_library:
     dependency: transitive
     description:
@@ -583,8 +583,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed:
+    dependency: "direct dev"
+    description:
+      name: freezed
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.3.1"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: freezed_annotation
       url: "https://pub.flutter-io.cn"
@@ -652,7 +659,7 @@ packages:
       name: go_router
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -1184,7 +1191,7 @@ packages:
       name: r_upgrade
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.1"
   recase:
     dependency: transitive
     description:
@@ -1364,7 +1371,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:
@@ -1427,14 +1434,14 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "20.3.59"
+    version: "20.3.60"
   syncfusion_flutter_datagrid:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_datagrid
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "20.3.59"
+    version: "20.3.60"
   synchronized:
     dependency: transitive
     description:
@@ -1700,7 +1707,7 @@ packages:
       name: wechat_camera_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.6.3"
+    version: "3.6.5"
   win32:
     dependency: transitive
     description:

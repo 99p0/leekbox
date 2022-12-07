@@ -2,10 +2,14 @@ import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
+import 'package:leekbox/common/widgets/gaps.dart';
+import 'package:leekbox/pages/demo/design_course/home_design_course.dart';
 import 'package:leekbox/pages/home/widgets/one_day_normal_view.dart';
+import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
+import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -119,6 +123,7 @@ class _IndexPageState extends State<IndexPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // appBar(),
+          Gaps.vGap4,
 
           /// 问候语
           FutureBuilder<bool>(
@@ -129,18 +134,39 @@ class _IndexPageState extends State<IndexPage>
                 } else {
                   animationController?.forward();
                   return TimeAndWordView(
-                    animation:
-                        Tween<Offset>(begin: Offset(0, 1), end: Offset.zero)
-                            .animate(
+                    animation: Tween<Offset>(
+                            begin: const Offset(0, 1), end: Offset.zero)
+                        .animate(
                       CurvedAnimation(
                         parent: animationController,
-                        curve: Interval(0.1, 1, curve: Curves.fastOutSlowIn),
+                        curve:
+                            const Interval(0.1, 1, curve: Curves.fastOutSlowIn),
                       ),
                     ),
                     animationController: animationController,
                   );
                 }
               }),
+          ElevatedButton(
+            onPressed: () {
+              context.go(PrivacyPolicyPage.routeLocation);
+            },
+            child: Text('隐私'),
+          ),
+          SizedBox(
+            height: 53,
+            width: 230,
+            child: ElevatedButton(
+              child: Text('something'),
+              onPressed: () {},
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context.go(IntroScreen.routeLocation);
+            },
+            child: Text('引导页'),
+          ),
 
           /// 表格
           // Expanded(
@@ -236,7 +262,12 @@ class _IndexPageState extends State<IndexPage>
                           animationController: animationController,
                           listData: homeList[index],
                           callBack: () {
-                            showToast('${homeList[index].imagePath}');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DesignCourseHomeScreen(),
+                              ),
+                            );
                           },
                         );
                       },
@@ -261,7 +292,7 @@ class _IndexPageState extends State<IndexPage>
     return Container(
       height: AppBar().preferredSize.height,
       //边框设置
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.redAccent,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25.0),
@@ -278,10 +309,10 @@ class _IndexPageState extends State<IndexPage>
               height: AppBar().preferredSize.height - 8,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: EdgeInsets.only(top: 4),
                 child: Text(
                   'LEEKBOX',
                   style: TextStyle(
@@ -495,7 +526,7 @@ class EmployeeDataSource extends DataGridSource {
         cells: row.getCells().map<Widget>((e) {
       return Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Text(e.value.toString()),
       );
     }).toList());

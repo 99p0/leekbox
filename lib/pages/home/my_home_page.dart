@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/pages/home/index.page.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
@@ -70,6 +71,85 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.inactive:
+        //  应用程序处于闲置状态并且没有收到用户的输入事件。
+        //注意这个状态，在切换到后台时候会触发，所以流程应该是先冻结窗口，然后停止UI
+        Log.debug('>AppLifecycleState.inactive');
+        break;
+      case AppLifecycleState.paused:
+//      应用程序处于不可见状态
+        Log.debug('>AppLifecycleState.paused');
+        break;
+      case AppLifecycleState.resumed:
+        //    进入应用时候不会触发该状态
+        //  应用程序处于可见状态，并且可以响应用户的输入事件。它相当于 Android 中Activity的onResume。
+        Log.debug('>AppLifecycleState.resumed');
+        break;
+      case AppLifecycleState.detached:
+        //当前页面即将退出
+        Log.debug('>AppLifecycleState.detached');
+        break;
+    }
+  }
+
+  ///当前系统改变了一些访问性活动的回调
+  @override
+  void didChangeAccessibilityFeatures() {
+    super.didChangeAccessibilityFeatures();
+    Log.debug("@@@@@@@@@ didChangeAccessibilityFeatures");
+  }
+
+  ///低内存回调
+  @override
+  void didHaveMemoryPressure() {
+    super.didHaveMemoryPressure();
+    Log.debug("@@@@@@@@@ didHaveMemoryPressure");
+  }
+
+  ///应用尺寸改变时回调，例如旋转
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    Size size = WidgetsBinding.instance.window.physicalSize;
+    Log.debug("@@@@@@@@@ didChangeMetrics  ：宽：${size.width} 高：${size.height}");
+  }
+
+  @override
+  Future<bool> didPopRoute() {
+    Log.debug('didPopRoute'); //页面弹出
+    return Future.value(false); //true为拦截，false不拦截
+  }
+
+  @override
+  Future<bool> didPushRoute(String route) {
+    Log.debug('PushRoute');
+    return Future.value(true);
+  }
+
+  @override
+  Future<bool> didPushRouteInformation(RouteInformation routeInformation) {
+    Log.debug('didPushRouteInformation');
+    return Future.value(true);
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    final window = WidgetsBinding.instance.window;
+    final brightness = window.platformBrightness;
+    // Brightness.light 亮色
+    // Brightness.dark 暗色
+    Log.debug('平台主题改变-didChangePlatformBrightness$brightness');
+    window.onPlatformBrightnessChanged = () {
+      // This callback gets invoked every time brightness changes
+      final brightness = window.platformBrightness;
+      Log.debug('平台亮度改变-didChangePlatformBrightness$brightness');
+    };
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
@@ -101,11 +181,25 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           key: _scaffoldKey,
           appBar: _currentIndex == 0
               ? AppBar(
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   title: const Text(""),
-                  leading: IconButton(
-                    icon: const Icon(Icons.dashboard_outlined),
-                    onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+                  leading: GestureDetector(
+                    onTap: () => _scaffoldKey.currentState?.openDrawer(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: CircleAvatar(
+                        radius: 28.0.w,
+                        foregroundColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: NetworkImage(
+                            'https://img.zcool.cn/community/0162225743fc7132f8759a3e2592e5.jpg@1280w_1l_2o_100sh.jpg'),
+                      ),
+                    ),
                   ),
+                  // IconButton(
+                  //       icon: const Icon(Icons.tune_rounded),
+                  //       onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+                  //     ),
                   actions: <Widget>[
                     TextButton(
                       child: const Text('Colorful?'),
@@ -116,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                       },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.tune_rounded),
+                      icon: const Icon(Icons.color_lens_outlined),
                       onPressed: () {
                         _scaffoldKey.currentState?.openEndDrawer();
                       },
@@ -139,29 +233,37 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             },
           ),
           bottomNavigationBar: _colorful
-              ? SlidingClippedNavBar(
-                  backgroundColor: Colors.white,
+              ? SlidingClippedNavBar.colorful(
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   onButtonPressed: _onItemTapped,
-                  iconSize: 29,
+                  iconSize: 24,
                   fontSize: 14.0,
-                  activeColor: const Color(0xFF01579B),
+                  // activeColor: const Color(0xFF01579B),
                   selectedIndex: _currentIndex,
                   barItems: <BarItem>[
                     BarItem(
                       icon: Icons.home_outlined,
                       title: '首页',
+                      activeColor: Colors.blue,
+                      inactiveColor: Colors.orange,
                     ),
                     BarItem(
                       icon: Icons.favorite_border,
                       title: '邀请',
+                      activeColor: Colors.deepPurpleAccent,
+                      inactiveColor: Colors.green,
                     ),
                     BarItem(
                       icon: Icons.moving,
                       title: '统计',
+                      activeColor: Colors.blue,
+                      inactiveColor: Colors.red,
                     ),
                     BarItem(
                       icon: Icons.person_outline,
                       title: '我',
+                      activeColor: Colors.cyan,
+                      inactiveColor: Colors.purple,
                     ),
                   ],
                 )

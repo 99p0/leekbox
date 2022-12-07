@@ -25,7 +25,7 @@ class MyApp extends ConsumerWidget {
       ///  是否 置灰： 纪念某个时刻return
       child: ColorFiltered(
         colorFilter: const ColorFilter.mode(
-          Colors.transparent, //Colors.grey, //
+          Colors.transparent, //Colors.grey
           BlendMode.color,
         ),
 
