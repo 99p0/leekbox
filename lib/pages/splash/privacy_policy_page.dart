@@ -28,53 +28,72 @@ class PrivacyPolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Card(
-            child: Text('$msg'),
-          ),
-          Gaps.vGap8,
-          Card(
-            child: Row(
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text('$msg'),
+              ),
+            ),
+            Gaps.vGap8,
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Row(
+                  children: [
+                    const Text('阅读完整版本'),
+                    TextButton(
+                        onPressed: () {
+                          _handleURLButtonPress(
+                            context,
+                            "https://rule.tencent.com/rule/preview/46a15f24-e42c-4cb6-a308-2347139b1201",
+                            "用户协议",
+                          );
+                        },
+                        child: const Text('《用户协议》')),
+                    const Text('和'),
+                    TextButton(
+                        onPressed: () {
+                          _handleURLButtonPress(
+                            context,
+                            "https://www.huawei.com/cn/privacy-policy",
+                            "隐私政策",
+                          );
+                        },
+                        child: const Text('《隐私政策》')),
+                  ],
+                ),
+              ),
+            ),
+            Gaps.vGap24,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('阅读完整版本'),
-                TextButton(
+                SizedBox(
+                  width: 250,
+                  height: 48,
+                  child: ElevatedButton(
                     onPressed: () {
-                      _handleURLButtonPress(
-                        context,
-                        "https://rule.tencent.com/rule/preview/46a15f24-e42c-4cb6-a308-2347139b1201",
-                        "用户协议",
-                      );
+                      context.go(MyHomePage.routeLocation);
                     },
-                    child: const Text('《用户协议》')),
-                const Text('和'),
-                TextButton(
-                    onPressed: () {
-                      _handleURLButtonPress(
-                        context,
-                        "https://www.huawei.com/cn/privacy-policy",
-                        "隐私政策",
-                      );
-                    },
-                    child: const Text('《隐私政策》')),
+                    child: const Text('同意'),
+                  ),
+                ),
               ],
             ),
-          ),
-          Gaps.vGap12,
-          ElevatedButton(
-              onPressed: () {
-                context.go(MyHomePage.routeLocation);
-              },
-              child: const Text('同意')),
-          Gaps.vGap8,
-          TextButton(
+            TextButton(
+              child: const Text('不同意并退出'),
               onPressed: () {
                 exit(0);
               },
-              child: const Text('不同意并退出')),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

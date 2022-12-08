@@ -6,10 +6,15 @@ import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/design_course/home_design_course.dart';
-import 'package:leekbox/pages/home/widgets/one_day_normal_view.dart';
+import 'package:leekbox/pages/device_info/device_info.dart';
+import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
+import 'package:leekbox/pages/home/components/statistics_item.dart';
+import 'package:leekbox/pages/home/components/statistics_line_chart.dart';
 import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
 import 'package:leekbox/pages/splash/privacy_policy_page.dart';
+import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -147,25 +152,41 @@ class _IndexPageState extends State<IndexPage>
                   );
                 }
               }),
+          StatisticsItem(
+            content: const StatisticsLineChart(
+              textColor: Color(0xFFD4E2FA),
+              lineColor: Color(0xFFAFCAFA),
+              datas: [0.6, 0.9, 0.3, 0.8, 0.3, 0.6, 0.8],
+              animationStyle: StatisticsLineAnimationStyle.horizontal,
+            ),
+            title: '订单统计',
+            onTap: () {
+              showToast('订单统计');
+            },
+          ),
           ElevatedButton(
             onPressed: () {
               context.go(PrivacyPolicyPage.routeLocation);
             },
-            child: Text('隐私'),
+            child: const Text('隐私页'),
           ),
-          SizedBox(
-            height: 53,
-            width: 230,
-            child: ElevatedButton(
-              child: Text('something'),
-              onPressed: () {},
-            ),
+          ElevatedButton(
+            onPressed: () {
+              context.go(SplashPage.routeLocation);
+            },
+            child: const Text('启动页'),
           ),
           ElevatedButton(
             onPressed: () {
               context.go(IntroScreen.routeLocation);
             },
-            child: Text('引导页'),
+            child: const Text('引导页'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context.go(DeviceInfoPage.routeLocation);
+            },
+            child: const Text('设备页'),
           ),
 
           /// 表格

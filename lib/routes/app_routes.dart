@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/login/login.dart';
@@ -44,6 +45,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       return isAuth ? null : SplashPage.routeLocation;
     },
     routes: [
+      GoRoute(
+        path: PrivacyPolicyPage.routeLocation,
+        name: PrivacyPolicyPage.routeName,
+        builder: (context, state) {
+          return const PrivacyPolicyPage();
+        },
+      ),
+      GoRoute(
+        path: DeviceInfoPage.routeLocation,
+        name: DeviceInfoPage.routeName,
+        builder: (context, state) {
+          return DeviceInfoPage();
+        },
+      ),
       GoRoute(
         path: SplashPage.routeLocation,
         name: SplashPage.routeName,

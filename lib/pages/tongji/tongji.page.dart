@@ -65,45 +65,32 @@ class _TongjiPageState extends State<TongjiPage>
     super.build(context);
     Log.debug('MinePage build');
     return Container(
-      child: Column(
-        children: <Widget>[
-          CustomScrollView(
-            shrinkWrap: true,
-            slivers: <Widget>[
-              // SliverToBoxAdapter(
-              //   child: Text('asda'),
-              // ),
-              SliverToBoxAdapter(
-                child: Container(
-                  decoration: const BoxDecoration(color: Colors.blue),
-                  child: KuGouTabBar(
-                    indicatorMinWidth: 6,
-                    indicator: const RRecTabIndicator(
-                        radius: 4, insets: EdgeInsets.only(bottom: 5)),
-                    controller: _tabController,
-                    labelColor: Colors.black,
-                    tabs: <Widget>[...myTabs],
-                    isScrollable: true,
-                  ),
-                ),
+      child: CustomScrollView(
+        shrinkWrap: true,
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.blue),
+              child: KuGouTabBar(
+                indicatorMinWidth: 6,
+                indicator: const RRecTabIndicator(
+                    radius: 4, insets: EdgeInsets.only(bottom: 5)),
+                controller: _tabController,
+                labelColor: Colors.black,
+                tabs: <Widget>[...myTabs],
+                isScrollable: true,
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 600,
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: _pages,
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 20,
-                  color: Colors.blue,
-                ),
-              )
-            ],
+            ),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 300,
+              child: TabBarView(
+                controller: _tabController,
+                children: _pages,
+              ),
+            ),
+          )
         ],
       ),
     );

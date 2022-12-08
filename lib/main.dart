@@ -38,7 +38,7 @@ void main() {
     runApp(
       ProviderScope(
         child: DevicePreview(
-          enabled: false, //kDebugMode,
+          enabled: kDebugMode,
           builder: (context) => const MyApp(),
         ),
       ),
