@@ -15,6 +15,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   animations: ^2.0.7
+  nil: ^1.1.1
   #
   ffi: ^2.0.1
   isolates: ^3.0.3+8
@@ -163,6 +164,7 @@ dependencies:
   # 类似酷狗tabbar滑动方式
   custom_tabbar:
     path: packages/custom_tabbar
+
 
 # 强制升级版本
 dependency_overrides:

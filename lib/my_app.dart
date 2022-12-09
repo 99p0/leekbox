@@ -79,6 +79,9 @@ class MyApp extends ConsumerWidget {
                     supportedLocales: S.delegate.supportedLocales,
 
                     debugShowCheckedModeBanner: true,
+                    checkerboardOffscreenLayers: false,
+                    checkerboardRasterCacheImages: false,
+                    showPerformanceOverlay: false,
                     title: 'LEEKBOX',
 
                     ///

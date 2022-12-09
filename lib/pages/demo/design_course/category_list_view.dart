@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/utils/hex_color.dart';
+import 'package:nil/nil.dart';
 
 import 'design_course_app_theme.dart';
 import 'models/category.dart';
@@ -45,7 +46,7 @@ class _CategoryListViewState extends State<CategoryListView>
           future: getData(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (!snapshot.hasData) {
-              return const SizedBox();
+              return nil;
             } else {
               return ListView.builder(
                 padding: const EdgeInsets.only(

@@ -86,8 +86,8 @@ android {
       signingConfig signingConfigs.debug
 
       // 代码混淆
-//      shrinkResources true
-//      minifyEnabled true
+      shrinkResources true
+      minifyEnabled true
 //      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
