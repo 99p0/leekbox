@@ -15,20 +15,20 @@ class StatisticsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 8, left: 16, right: 16),
+      margin: EdgeInsets.only(bottom: 8),
       padding: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        // color: Colors.white,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
         boxShadow: [
-          BoxShadow(
-            color: const Color(0xffDCE7FA).withOpacity(0.5),
-            offset: Offset(0, 2),
-            blurRadius: 8,
-            spreadRadius: 2,
-          ),
+          // BoxShadow(
+          //   color: const Color(0xffDCE7FA).withOpacity(0.5),
+          //   offset: Offset(0, 2),
+          //   blurRadius: 8,
+          //   spreadRadius: 2,
+          // ),
         ],
       ),
       height: 160,

@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/pages/demo/design_course/home_design_course.dart';
 import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
@@ -123,15 +122,16 @@ class _IndexPageState extends State<IndexPage>
     Log.debug('IndexPage build');
 
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // appBar(),
-          Gaps.vGap4,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Gaps.vGap4,
 
-          /// 问候语
-          FutureBuilder<bool>(
+            /// 问候语
+            FutureBuilder<bool>(
               future: getData(),
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                 if (!snapshot.hasData) {
@@ -151,224 +151,166 @@ class _IndexPageState extends State<IndexPage>
                     animationController: animationController,
                   );
                 }
-              }),
-          StatisticsItem(
-            content: const StatisticsLineChart(
-              textColor: Color(0xFFD4E2FA),
-              lineColor: Color(0xFFAFCAFA),
-              datas: [0.6, 0.9, 0.3, 0.8, 0.3, 0.6, 0.8],
-              animationStyle: StatisticsLineAnimationStyle.horizontal,
-            ),
-            title: '订单统计',
-            onTap: () {
-              showToast('订单统计');
-            },
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go(PrivacyPolicyPage.routeLocation);
-            },
-            child: const Text('隐私页'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go(SplashPage.routeLocation);
-            },
-            child: const Text('启动页'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go(IntroScreen.routeLocation);
-            },
-            child: const Text('引导页'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go(DeviceInfoPage.routeLocation);
-            },
-            child: const Text('设备页'),
-          ),
-
-          /// 表格
-          // Expanded(
-          //   flex: 6,
-          //   child: FutureBuilder<bool>(
-          //     future: getEmployeesData(),
-          //     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          //       if (!snapshot.hasData) {
-          //         return const SizedBox();
-          //       } else {
-          //         return SfDataGrid(
-          //           columnWidthMode: ColumnWidthMode.fill,
-          //           headerRowHeight: 50.0,
-          //           frozenColumnsCount: 1,
-          //           gridLinesVisibility: GridLinesVisibility.both,
-          //           headerGridLinesVisibility: GridLinesVisibility.both,
-          //           selectionMode: SelectionMode.multiple,
-          //           columnResizeMode: ColumnResizeMode.onResize,
-          //           allowColumnsResizing: true,
-          //           onColumnResizeUpdate: (detail) {
-          //             setState(() {
-          //               columnWidth[detail.column.columnName] = detail.width;
-          //             });
-          //             return true;
-          //           },
-          //           source: employeeDataSource,
-          //           columns: <GridColumn>[
-          //             GridColumn(
-          //                 columnName: 'id',
-          //                 label: Container(
-          //                     color: Colors.blue[200],
-          //                     padding: EdgeInsets.all(16.0),
-          //                     alignment: Alignment.center,
-          //                     child: Text('ID'))),
-          //             GridColumn(
-          //                 columnName: 'name',
-          //                 label: Container(
-          //                     color: Colors.blue[300],
-          //                     padding: EdgeInsets.all(8.0),
-          //                     alignment: Alignment.center,
-          //                     child: Text('Name'))),
-          //             GridColumn(
-          //                 columnName: 'designation',
-          //                 label: Container(
-          //                     color: Colors.blue[400],
-          //                     padding: EdgeInsets.all(8.0),
-          //                     alignment: Alignment.center,
-          //                     child: Text(
-          //                       'Designation',
-          //                       overflow: TextOverflow.ellipsis,
-          //                     ))),
-          //             GridColumn(
-          //                 columnName: 'salary',
-          //                 label: Container(
-          //                     color: Colors.blue[500],
-          //                     padding: EdgeInsets.all(8.0),
-          //                     alignment: Alignment.center,
-          //                     child: Text('Salary'))),
-          //           ],
-          //         );
-          //       }
-          //     },
-          //   ),
-          // ),
-
-          /// 推荐
-          Expanded(
-            child: FutureBuilder<bool>(
-              future: getData(),
-              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                if (!snapshot.hasData) {
-                  return const SizedBox();
-                } else {
-                  return GridView(
-                    padding: const EdgeInsets.only(top: 0, left: 12, right: 12),
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    children: List<Widget>.generate(
-                      homeList.length,
-                      (int index) {
-                        final int count = homeList.length;
-                        final Animation<double> animation =
-                            Tween<double>(begin: 0.0, end: 1.0).animate(
-                          CurvedAnimation(
-                            parent: animationController!,
-                            curve: Interval((1 / count) * index, 1.0,
-                                curve: Curves.fastOutSlowIn),
-                          ),
-                        );
-                        animationController?.forward();
-                        return HomeListView(
-                          animation: animation,
-                          animationController: animationController,
-                          listData: homeList[index],
-                          callBack: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DesignCourseHomeScreen(),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: multiple ? 4 : 1,
-                      mainAxisSpacing: 12.0,
-                      crossAxisSpacing: 12.0,
-                      childAspectRatio: 1.5,
-                    ),
-                  );
-                }
               },
             ),
-          ),
-        ],
-      ),
-    );
-  }
+            StatisticsItem(
+              content: const StatisticsLineChart(
+                textColor: Color(0xFFD4E2FA),
+                lineColor: Color(0xFFAFCAFA),
+                datas: [0.6, 0.9, 0.3, 0.8, 0.3, 0.6, 0.8],
+                animationStyle: StatisticsLineAnimationStyle.horizontal,
+              ),
+              title: '近期收益曲线',
+              onTap: () {
+                showToast('近期收益曲线');
+              },
+            ),
 
-  Widget appBar() {
-    return Container(
-      height: AppBar().preferredSize.height,
-      //边框设置
-      decoration: const BoxDecoration(
-        color: Colors.redAccent,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25.0),
-          bottomRight: Radius.circular(25.0),
+            ElevatedButton(
+              onPressed: () {
+                context.go(PrivacyPolicyPage.routeLocation);
+              },
+              child: const Text('隐私页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go(SplashPage.routeLocation);
+              },
+              child: const Text('启动页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go(IntroScreen.routeLocation);
+              },
+              child: const Text('引导页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go(DeviceInfoPage.routeLocation);
+              },
+              child: const Text('设备页'),
+            ),
+
+            /// 表格
+            // Expanded(
+            //   flex: 6,
+            //   child: FutureBuilder<bool>(
+            //     future: getEmployeesData(),
+            //     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            //       if (!snapshot.hasData) {
+            //         return const SizedBox();
+            //       } else {
+            //         return SfDataGrid(
+            //           columnWidthMode: ColumnWidthMode.fill,
+            //           headerRowHeight: 50.0,
+            //           frozenColumnsCount: 1,
+            //           gridLinesVisibility: GridLinesVisibility.both,
+            //           headerGridLinesVisibility: GridLinesVisibility.both,
+            //           selectionMode: SelectionMode.multiple,
+            //           columnResizeMode: ColumnResizeMode.onResize,
+            //           allowColumnsResizing: true,
+            //           onColumnResizeUpdate: (detail) {
+            //             setState(() {
+            //               columnWidth[detail.column.columnName] = detail.width;
+            //             });
+            //             return true;
+            //           },
+            //           source: employeeDataSource,
+            //           columns: <GridColumn>[
+            //             GridColumn(
+            //                 columnName: 'id',
+            //                 label: Container(
+            //                     color: Colors.blue[200],
+            //                     padding: EdgeInsets.all(16.0),
+            //                     alignment: Alignment.center,
+            //                     child: Text('ID'))),
+            //             GridColumn(
+            //                 columnName: 'name',
+            //                 label: Container(
+            //                     color: Colors.blue[300],
+            //                     padding: EdgeInsets.all(8.0),
+            //                     alignment: Alignment.center,
+            //                     child: Text('Name'))),
+            //             GridColumn(
+            //                 columnName: 'designation',
+            //                 label: Container(
+            //                     color: Colors.blue[400],
+            //                     padding: EdgeInsets.all(8.0),
+            //                     alignment: Alignment.center,
+            //                     child: Text(
+            //                       'Designation',
+            //                       overflow: TextOverflow.ellipsis,
+            //                     ))),
+            //             GridColumn(
+            //                 columnName: 'salary',
+            //                 label: Container(
+            //                     color: Colors.blue[500],
+            //                     padding: EdgeInsets.all(8.0),
+            //                     alignment: Alignment.center,
+            //                     child: Text('Salary'))),
+            //           ],
+            //         );
+            //       }
+            //     },
+            //   ),
+            // ),
+
+            /// 推荐
+            // Expanded(
+            //   child: FutureBuilder<bool>(
+            //     future: getData(),
+            //     builder:
+            //         (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            //       if (!snapshot.hasData) {
+            //         return const SizedBox();
+            //       } else {
+            //         return GridView(
+            //           padding:
+            //               const EdgeInsets.only(top: 0, left: 12, right: 12),
+            //           physics: const BouncingScrollPhysics(),
+            //           scrollDirection: Axis.vertical,
+            //           children: List<Widget>.generate(
+            //             homeList.length,
+            //             (int index) {
+            //               final int count = homeList.length;
+            //               final Animation<double> animation =
+            //                   Tween<double>(begin: 0.0, end: 1.0).animate(
+            //                 CurvedAnimation(
+            //                   parent: animationController!,
+            //                   curve: Interval((1 / count) * index, 1.0,
+            //                       curve: Curves.fastOutSlowIn),
+            //                 ),
+            //               );
+            //               animationController?.forward();
+            //               return HomeListView(
+            //                 animation: animation,
+            //                 animationController: animationController,
+            //                 listData: homeList[index],
+            //                 callBack: () {
+            //                   Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                       builder: (context) =>
+            //                           DesignCourseHomeScreen(),
+            //                     ),
+            //                   );
+            //                 },
+            //               );
+            //             },
+            //           ),
+            //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //             crossAxisCount: multiple ? 4 : 1,
+            //             mainAxisSpacing: 12.0,
+            //             crossAxisSpacing: 12.0,
+            //             childAspectRatio: 1.5,
+            //           ),
+            //         );
+            //       }
+            //     },
+            //   ),
+            // ),
+          ],
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 8, left: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 8,
-              height: AppBar().preferredSize.height - 8,
-            ),
-          ),
-          const Expanded(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.only(top: 4),
-                child: Text(
-                  'LEEKBOX',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8, right: 8),
-            child: Container(
-              width: AppBar().preferredSize.height - 38,
-              height: AppBar().preferredSize.height - 38,
-              color: Colors.white,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius:
-                      BorderRadius.circular(AppBar().preferredSize.height),
-                  child: Icon(
-                    multiple ? Icons.dashboard : Icons.view_agenda,
-                    color: Colors.grey,
-                  ),
-                  onTap: () {
-                    setState(() {
-                      multiple = !multiple;
-                    });
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
