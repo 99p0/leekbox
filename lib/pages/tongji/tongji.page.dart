@@ -78,12 +78,12 @@ class _TongjiPageState extends State<TongjiPage>
               padding: EdgeInsets.only(
                 left: 22.0,
                 right: 22.0,
-                top: MediaQuery.of(context).padding.top,
+                top: MediaQuery.of(context).padding.top + 22,
                 bottom: 12.0,
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: const BorderRadius.all(Radius.circular(18)),
                   boxShadow: [
                     BoxShadow(

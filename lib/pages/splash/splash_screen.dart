@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
       if (count == 0) {
         goHome();
       } else {
-        setState(() {});
+        if (mounted) setState(() {});
       }
     }
 
@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage> {
 
   void goHome() {
     _timer?.cancel();
-    context.go(LoginPage.routeLocation);
+    if (mounted) context.go(LoginPage.routeLocation);
   }
 
   @override

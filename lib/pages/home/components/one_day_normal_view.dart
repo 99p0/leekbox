@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox/common/utils/date_util.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 
@@ -26,17 +25,18 @@ class TimeAndWordView extends StatelessWidget {
           position: animation,
           child: Padding(
             padding: EdgeInsets.only(
-                left: 16,
-                right: 50,
-                top: MediaQuery.of(context).padding.top,
-                bottom: 20),
+              left: 16,
+              right: 50,
+              top: MediaQuery.of(context).padding.top,
+              bottom: 16,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () async {},
                   child: Text(
-                    '${DateUtil.getNowTimeString()}好，',
+                    '${DateUtil.getNowTimeString()}好~',
                     style: Theme.of(context).textTheme.headline1?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
@@ -51,18 +51,16 @@ class TimeAndWordView extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                       ),
                 ),
-                Gaps.vGap8,
-                Text(
-                  words.wordEnglish,
-                  style: GoogleFonts.lato(
-                    textStyle: Theme.of(context).textTheme.headline1,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.italic,
-                  ),
-                  // style: Theme.of(context).textTheme.headline1?.copyWith(
-                  //     fontSize: 14.sp, fontWeight: FontWeight.normal),
-                )
+                // Gaps.vGap8,
+                // Text(
+                //   words.wordEnglish,
+                //   style: GoogleFonts.lato(
+                //     textStyle: Theme.of(context).textTheme.headline1,
+                //     fontSize: 13.sp,
+                //     fontWeight: FontWeight.normal,
+                //     fontStyle: FontStyle.italic,
+                //   ),
+                // ),
               ],
             ),
           ),

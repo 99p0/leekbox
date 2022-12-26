@@ -13,13 +13,20 @@ class _IndexSecondFloorPageState extends State<IndexSecondFloorPage> {
     // super.build(context);
 
     Log.debug('IndexSecondFloorPage build');
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('LEEK BOX'),
-      ),
-      body: Center(
-        child: Text("IndexSecondFloorPage"),
-      ),
+    return Stack(
+      children: <Widget>[
+        // SmartRefresher.of(context)?.controller.twoLevelComplete();
+        Center(
+          child: Wrap(
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {},
+                child: Text("2楼"),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

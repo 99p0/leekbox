@@ -5,6 +5,9 @@ import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/login/login.dart';
+import 'package:leekbox/pages/notice/notice.page.dart';
+import 'package:leekbox/pages/notice/recent_notice.dart';
+import 'package:leekbox/pages/setting/global_ui.setting.dart';
 import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
 import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
@@ -42,21 +45,50 @@ final routerProvider = Provider<GoRouter>((ref) {
         return isAuth ? MyHomePage.routeLocation : null;
       }
 
-      return isAuth ? null : SplashPage.routeLocation;
+      return isAuth ? null : MyHomePage.routeLocation;
     },
     routes: [
-      GoRoute(
-        path: PrivacyPolicyPage.routeLocation,
-        name: PrivacyPolicyPage.routeName,
-        builder: (context, state) {
-          return const PrivacyPolicyPage();
-        },
-      ),
       GoRoute(
         path: DeviceInfoPage.routeLocation,
         name: DeviceInfoPage.routeName,
         builder: (context, state) {
           return DeviceInfoPage();
+        },
+      ),
+      GoRoute(
+        path: NoticePage.routeLocation,
+        name: NoticePage.routeName,
+        builder: (context, state) {
+          return const NoticePage();
+        },
+      ),
+      GoRoute(
+        path: RecentNoticePage.routeLocation,
+        name: RecentNoticePage.routeName,
+        builder: (context, state) {
+          return const RecentNoticePage();
+        },
+      ),
+      GoRoute(
+        path: GlobalUISettingPage.routeLocation,
+        name: GlobalUISettingPage.routeName,
+        builder: (context, state) {
+          return const GlobalUISettingPage();
+        },
+      ),
+      GoRoute(
+        path: MyHomePage.routeLocation,
+        name: MyHomePage.routeName,
+        builder: (context, state) {
+          return const MyHomePage();
+        },
+        routes: [],
+      ),
+      GoRoute(
+        path: PrivacyPolicyPage.routeLocation,
+        name: PrivacyPolicyPage.routeName,
+        builder: (context, state) {
+          return const PrivacyPolicyPage();
         },
       ),
       GoRoute(
@@ -71,13 +103,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: IntroScreen.routeName,
         builder: (context, state) {
           return const IntroScreen();
-        },
-      ),
-      GoRoute(
-        path: MyHomePage.routeLocation,
-        name: MyHomePage.routeName,
-        builder: (context, state) {
-          return const MyHomePage();
         },
       ),
       GoRoute(

@@ -15,13 +15,11 @@ class StatisticsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 8),
-      padding: EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: 16),
+      decoration: const BoxDecoration(
         // color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           // BoxShadow(
           //   color: const Color(0xffDCE7FA).withOpacity(0.5),
@@ -40,17 +38,17 @@ class StatisticsItem extends StatelessWidget {
             behavior: HitTestBehavior.translucent,
             child: Row(
               children: [
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Text(
                     title,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontWeight: FontWeight.w100),
                   ),
                 ),
                 Container(
-                  width: 48,
-                  height: 48,
-                  padding: EdgeInsets.all(16),
+                  width: 38,
+                  height: 38,
+                  padding: const EdgeInsets.all(13),
                   child: Image.asset(
                     'assets/images/icon_selected.png',
                     height: 16,
@@ -62,7 +60,7 @@ class StatisticsItem extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 16, right: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: content,
             ),
           ),

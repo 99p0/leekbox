@@ -1,6 +1,5 @@
 import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 class DeviceInfoPage extends StatefulWidget {
@@ -40,13 +39,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     return Scaffold(
       appBar: AppBar(
         title: const Text('设备信息'),
-        backgroundColor: Color.fromRGBO(2, 122, 255, 1),
-        leading: TextButton(
-          onPressed: () {
-            context.go('/');
-          },
-          child: Icon(Icons.arrow_back_ios_outlined),
-        ),
+        backgroundColor: const Color.fromRGBO(2, 122, 255, 1),
         bottom: KuGouTabBar(
           tabs: const [
             Tab(text: "DASHBOARD"),

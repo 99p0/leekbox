@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
-import 'package:leekbox/pages/home/index.page.dart';
+import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';
+import 'package:leekbox/pages/notice/notice.page.dart';
 import 'package:leekbox/pages/tongji/tongji.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
-import 'my_drawer.dart';
-import 'my_enddrawer.dart';
+import 'components/drawer/my_drawer.dart';
+import 'components/drawer/my_enddrawer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -31,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool _colorful = false;
+  bool _colorful = true;
 
   /// 当前的索引值
   int _currentIndex = 0;
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Widget> _pages = <Widget>[
     IndexPage(), // 首页
     InvitePage(), // 邀请页
-    // NoticePage(), // 消息页
+    const NoticePage(), // 消息页
     const TongjiPage(), // 统计页
     const MinePage(), // 个人页
   ];
@@ -95,66 +96,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     }
   }
 
-  ///当前系统改变了一些访问性活动的回调
-  @override
-  void didChangeAccessibilityFeatures() {
-    super.didChangeAccessibilityFeatures();
-    Log.debug("@@@@@@@@@ didChangeAccessibilityFeatures");
-  }
-
-  ///低内存回调
-  @override
-  void didHaveMemoryPressure() {
-    super.didHaveMemoryPressure();
-    Log.debug("@@@@@@@@@ didHaveMemoryPressure");
-  }
-
-  ///应用尺寸改变时回调，例如旋转
-  @override
-  void didChangeMetrics() {
-    super.didChangeMetrics();
-    Size size = WidgetsBinding.instance.window.physicalSize;
-    Log.debug("@@@@@@@@@ didChangeMetrics  ：宽：${size.width} 高：${size.height}");
-  }
-
-  @override
-  Future<bool> didPopRoute() {
-    Log.debug('didPopRoute'); //页面弹出
-    return Future.value(false); //true为拦截，false不拦截
-  }
-
-  @override
-  Future<bool> didPushRoute(String route) {
-    Log.debug('PushRoute');
-    return Future.value(true);
-  }
-
-  @override
-  Future<bool> didPushRouteInformation(RouteInformation routeInformation) {
-    Log.debug('didPushRouteInformation');
-    return Future.value(true);
-  }
-
-  @override
-  void didChangePlatformBrightness() {
-    final window = WidgetsBinding.instance.window;
-    final brightness = window.platformBrightness;
-    // Brightness.light 亮色
-    // Brightness.dark 暗色
-    Log.debug('平台主题改变-didChangePlatformBrightness$brightness');
-    window.onPlatformBrightnessChanged = () {
-      // This callback gets invoked every time brightness changes
-      final brightness = window.platformBrightness;
-      Log.debug('平台亮度改变-didChangePlatformBrightness$brightness');
-    };
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    /// 在加载后初始化
-    addWatermark(context);
+    if (mounted) addWatermark(context);
   }
 
   /// 添加水印
@@ -179,27 +125,23 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         },
         child: Scaffold(
           key: _scaffoldKey,
-          appBar: _currentIndex == 0
+          appBar: _currentIndex == 6
               ? AppBar(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  title: const Text(""),
+                  title: const Text("LEEKBOX"),
                   leading: GestureDetector(
                     onTap: () => _scaffoldKey.currentState?.openDrawer(),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: CircleAvatar(
-                        radius: 28.0.w,
+                        radius: 25.0.w,
                         foregroundColor: Colors.transparent,
                         backgroundColor: Colors.transparent,
-                        backgroundImage: NetworkImage(
+                        backgroundImage: const NetworkImage(
                             'https://img.zcool.cn/community/0162225743fc7132f8759a3e2592e5.jpg@1280w_1l_2o_100sh.jpg'),
                       ),
                     ),
                   ),
-                  // IconButton(
-                  //       icon: const Icon(Icons.tune_rounded),
-                  //       onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-                  //     ),
                   actions: <Widget>[
                     TextButton(
                       child: const Text('Colorful?'),
@@ -254,6 +196,12 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                       inactiveColor: Colors.red,
                     ),
                     BarItem(
+                      icon: Icons.messenger_outline,
+                      title: '消息',
+                      activeColor: Colors.lightBlue,
+                      inactiveColor: Colors.lightBlue,
+                    ),
+                    BarItem(
                       icon: Icons.moving,
                       title: '统计',
                       activeColor: Colors.green,
@@ -279,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                       activeIcon: const Icon(Icons.home),
                       title: const Text("首页"),
                       // selectedColor: HexColor("#06c05f"),
-                      selectedColor: Color.fromRGBO(9, 187, 7, 1),
+                      selectedColor: const Color.fromRGBO(9, 187, 7, 1),
                     ),
 
                     /// Invite
@@ -288,22 +236,23 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                       activeIcon: const Icon(Icons.favorite),
                       title: const Text("邀请"),
                       // selectedColor: HexColor("#027AFF"),
-                      selectedColor: Color.fromRGBO(2, 122, 255, 1),
+                      selectedColor: const Color.fromRGBO(2, 122, 255, 1),
                     ),
 
                     /// notice
-                    // SalomonBottomBarItem(
-                    //   icon: const Icon(Icons.message_outlined),
-                    //   activeIcon: const Icon(Icons.message),
-                    //   title: const Text("消息"),
-                    // ),
+                    SalomonBottomBarItem(
+                      icon: const Icon(Icons.messenger_outline),
+                      activeIcon: const Icon(Icons.messenger),
+                      title: const Text("消息"),
+                      selectedColor: const Color.fromRGBO(2, 122, 255, 1),
+                    ),
 
                     /// Tongji
                     SalomonBottomBarItem(
                       icon: const Icon(Icons.moving),
                       activeIcon: const Icon(Icons.graphic_eq),
                       title: const Text("统计"),
-                      selectedColor: Color.fromRGBO(254, 194, 44, 1),
+                      selectedColor: const Color.fromRGBO(254, 194, 44, 1),
                     ),
 
                     /// Mine
@@ -315,7 +264,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                       ),
                       activeIcon: const Icon(Icons.person),
                       title: const Text("我"),
-                      selectedColor: Color.fromRGBO(255, 36, 67, 1),
+                      selectedColor: const Color.fromRGBO(255, 36, 67, 1),
                     ),
                   ],
                 ),

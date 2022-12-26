@@ -4,6 +4,7 @@ import 'package:leekbox/routes/auth.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
+
   static String get routeName => 'login';
   static String get routeLocation => '/$routeName';
 
