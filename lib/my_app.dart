@@ -10,6 +10,8 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'pages/miui10_anim.dart';
+
 class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -31,11 +33,17 @@ class MyApp extends ConsumerWidget {
 
         /// Toast 配置
         child: OKToast(
-          position: ToastPosition.center,
+          position: ToastPosition.bottom,
           radius: 20,
+          dismissOtherOnShow: true,
           movingOnWindowChange: false,
           textPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          backgroundColor: Colors.black87,
+
+          textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
+          backgroundColor: Colors.grey,
+          animationCurve: Curves.easeIn,
+          animationBuilder: const Miui10AnimBuilder(),
+          animationDuration: const Duration(milliseconds: 200),
 
           /// 全剧下拉配置
           child: refreshScaffold(

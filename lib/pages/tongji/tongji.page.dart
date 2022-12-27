@@ -69,8 +69,8 @@ class _TongjiPageState extends State<TongjiPage>
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('MinePage build');
-    return Container(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: <Widget>[

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
+import 'package:leekbox/pages/demo/app_toast.dart';
 import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
@@ -135,7 +136,7 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
       ),
       title: '近期收益曲线',
       onTap: () {
-        showToast('近期收益曲线');
+        showToastWidget(const CorrectToast(child: Text('近期收益曲线')));
       },
     );
   }

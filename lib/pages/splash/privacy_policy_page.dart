@@ -100,6 +100,10 @@ class PrivacyPolicyPage extends StatelessWidget {
 }
 
 void _handleURLButtonPress(BuildContext context, String url, String title) {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => WebViewPage(url, title)));
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => WebViewPage(url, title),
+    ),
+  );
 }
