@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox/pages/home/components/statistics_circle_chart.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
 import 'package:leekbox/pages/home/components/statistics_line_chart.dart';
@@ -70,15 +72,25 @@ class _TongjiPageState extends State<TongjiPage>
     super.build(context);
     Log.debug('MinePage build');
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '统计',
+          style: GoogleFonts.zcoolXiaoWei(
+            textStyle: Theme.of(context).textTheme.headline1,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+            // fontStyle: FontStyle.italic,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 22.0,
                 right: 22.0,
-                top: MediaQuery.of(context).padding.top + 22,
                 bottom: 12.0,
               ),
               child: Container(

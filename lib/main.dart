@@ -31,7 +31,6 @@ void main() {
     // 竖屏模式：just now
     await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown
     ]);
 
     ///

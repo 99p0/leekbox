@@ -1,5 +1,7 @@
 import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// 页面
 class InvitePage extends StatefulWidget {
@@ -35,6 +37,17 @@ class _InvitePageState extends State<InvitePage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '邀请',
+          style: GoogleFonts.zcoolQingKeHuangYou(
+            textStyle: Theme.of(context).textTheme.headline1,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+            // fontStyle: FontStyle.italic,
+          ),
+        ),
+      ),
       body: NestedScrollView(
         controller: _scrollViewController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

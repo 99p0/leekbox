@@ -27,8 +27,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-  compileSdkVersion 33 // flutter.compileSdkVersion // 保持最高姿态
-  ndkVersion flutter.ndkVersion
+  compileSdkVersion 33 // flutter.compileSdkVersion
+  ndkVersion "25.1.8937393" // flutter.ndkVersion
 
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_11

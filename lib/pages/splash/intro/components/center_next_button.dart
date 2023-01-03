@@ -95,11 +95,12 @@ class CenterNextButton extends StatelessWidget {
                       );
                     },
                     child: _signUpMoveAnimation.value > 0.7
-                        ? SizedBox(
-                            height: 58,
-                            width: 58 + (200 * _signUpMoveAnimation.value),
-                            child: ElevatedButton(
-                              onPressed: onNextClick,
+                        ? InkWell(
+                            key: const ValueKey('Sign Up button'),
+                            onTap: onNextClick,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16.0, right: 16.0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -112,19 +113,19 @@ class CenterNextButton extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    color: Colors.white,
-                                  ),
+                                  Icon(Icons.arrow_forward_rounded,
+                                      color: Colors.white),
                                 ],
                               ),
                             ),
                           )
-                        : ElevatedButton(
-                            onPressed: onNextClick,
-                            child: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.white,
+                        : InkWell(
+                            key: const ValueKey('next button'),
+                            onTap: onNextClick,
+                            child: const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Icon(Icons.arrow_forward_ios_rounded,
+                                  color: Colors.white),
                             ),
                           ),
                   ),
@@ -138,7 +139,7 @@ class CenterNextButton extends StatelessWidget {
               position: _loginTextMoveAnimation,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Gaps.vGap10,
                 ],
               ),

@@ -39,8 +39,8 @@ class MyApp extends ConsumerWidget {
           movingOnWindowChange: false,
           textPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
 
-          textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
-          backgroundColor: Colors.grey,
+          // textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
+          // backgroundColor: Colors.grey,
           animationCurve: Curves.easeIn,
           animationBuilder: const Miui10AnimBuilder(),
           animationDuration: const Duration(milliseconds: 200),
@@ -86,7 +86,7 @@ class MyApp extends ConsumerWidget {
                     ],
                     supportedLocales: S.delegate.supportedLocales,
 
-                    debugShowCheckedModeBanner: true,
+                    debugShowCheckedModeBanner: false,
                     checkerboardOffscreenLayers: false,
                     checkerboardRasterCacheImages: false,
                     showPerformanceOverlay: false,

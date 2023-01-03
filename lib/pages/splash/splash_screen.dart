@@ -71,27 +71,9 @@ class _SplashPageState extends State<SplashPage> {
           constraints: const BoxConstraints.expand(),
           child: Image.asset(
             _bg,
-            fit: BoxFit.contain,
+            fit: BoxFit.fill,
           ),
         ),
-        // ElevatedButton(
-        //   onPressed: () {
-        //     context.go(MyHomePage.routeLocation);
-        //   },
-        //   child: Text('首页'),
-        // ),
-        // ElevatedButton(
-        //   onPressed: () {
-        //     context.go(PrivacyPolicyPage.routeLocation);
-        //   },
-        //   child: Text('隐私'),
-        // ),
-        // ElevatedButton(
-        //   onPressed: () {
-        //     context.go(IntroScreen.routeLocation);
-        //   },
-        //   child: Text('引导页'),
-        // ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 10.0, 0.0),
           child: ElevatedButton(
@@ -99,7 +81,7 @@ class _SplashPageState extends State<SplashPage> {
               goHome();
             },
             child: Text(
-              "$count 跳过",
+              "${count}s 跳过",
               style: const TextStyle(color: Colors.white, fontSize: 12.0),
             ),
           ),

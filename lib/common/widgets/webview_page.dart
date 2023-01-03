@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nil/nil.dart';
 import 'package:oktoast/oktoast.dart';
@@ -111,7 +112,14 @@ Page resource error:
     return Scaffold(
       appBar: AppBar(
         leading: nil,
-        title: Text(title),
+        leadingWidth: 0,
+        title: Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall
+              ?.copyWith(fontSize: 15.0.sp),
+        ),
         actions: <Widget>[
           // NavigationControls(webViewController: _controller),
           // SampleMenu(webViewController: _controller),

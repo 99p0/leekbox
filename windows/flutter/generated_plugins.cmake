@@ -3,12 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  connectivity_plus
   dynamic_color
-  flutter_secure_storage_windows
   leekbox_infra
   leekbox_sdk
-  network_info_plus
   permission_handler_windows
   rive_common
   url_launcher_windows

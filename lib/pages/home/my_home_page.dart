@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:badges/badges.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
@@ -15,9 +13,6 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-
-import 'components/drawer/my_drawer.dart';
-import 'components/drawer/my_enddrawer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -33,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool _colorful = true;
+  final bool _colorful = true;
 
   /// 当前的索引值
   int _currentIndex = 0;
@@ -42,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   late PageController _pageController;
 
   final List<Widget> _pages = <Widget>[
-    IndexPage(), // 首页
+    const IndexPage(), // 首页
     const InvitePage(), // 邀请页
     const NoticePage(), // 消息页
     const TongjiPage(), // 统计页
@@ -106,32 +101,12 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   /// 添加水印
   Future<void> addWatermark(BuildContext context) async {
-    Log.debug('addWatermark ...');
-    String version = '2022.10.21';
+    Log.debug('添加水印 ...');
+    String version = '1.10.201';
     // 防止 widget 尚未加载完成
     Future<void>.delayed(const Duration(milliseconds: 500), () {
       WatermarkController.theOne.addWatermark(context, 'LEEKBOX V$version');
     });
-  }
-
-  _buildCircleAvatar() {
-    return CachedNetworkImage(
-      imageUrl:
-          "https://tupian.qqw21.com/article/UploadPic/2019-5/201951113193417891.jpeg",
-      imageBuilder: (context, imageProvider) => Container(
-        width: 38.w,
-        height: 38.h,
-        // margin: const EdgeInsets.only(left: 12),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(image: imageProvider),
-        ),
-        // child: Text('TNT'),
-      ),
-      placeholder: (context, url) => const SizedBox(width: 38, height: 38),
-      errorWidget: (context, url, error) =>
-          const SizedBox(width: 38, height: 38),
-    );
   }
 
   @override
@@ -145,41 +120,41 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         return false;
       },
       child: Scaffold(
-        extendBody: true,
         // Important: to remove background of bottom navigation (making the bar transparent doesn't help)
+        extendBody: true,
         backgroundColor: Colors.transparent,
         key: _scaffoldKey,
-        appBar: _currentIndex == 0
-            ? AppBar(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                leadingWidth: 42.w,
-                leading: GestureDetector(
-                  onTap: () => _scaffoldKey.currentState?.openDrawer(),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: _buildCircleAvatar(),
-                  ),
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    child: const Text('Colorful?'),
-                    onPressed: () {
-                      setState(() {
-                        _colorful = !_colorful;
-                      });
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.color_lens_outlined),
-                    onPressed: () {
-                      _scaffoldKey.currentState?.openEndDrawer();
-                    },
-                  ),
-                ],
-              )
-            : null,
-        drawer: const MyDrawer(),
-        endDrawer: const MyEndDrawer(),
+        // appBar: _currentIndex == 0
+        //     ? AppBar(
+        //         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        //         leadingWidth: 42.w,
+        //         leading: GestureDetector(
+        //           onTap: () => _scaffoldKey.currentState?.openDrawer(),
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 15.0),
+        //             child: _buildCircleAvatar(),
+        //           ),
+        //         ),
+        //         actions: <Widget>[
+        //           TextButton(
+        //             child: const Text('Colorful?'),
+        //             onPressed: () {
+        //               setState(() {
+        //                 _colorful = !_colorful;
+        //               });
+        //             },
+        //           ),
+        //           IconButton(
+        //             icon: const Icon(Icons.color_lens_outlined),
+        //             onPressed: () {
+        //               _scaffoldKey.currentState?.openEndDrawer();
+        //             },
+        //           ),
+        //         ],
+        //       )
+        //     : null,
+        // drawer: const MyDrawer(),
+        // endDrawer: const MyEndDrawer(),
         // drawerEdgeDragWidth: 0.0,// 去除滑动打开
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
@@ -213,7 +188,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                     onButtonPressed: _onItemTapped,
                     iconSize: 24,
                     fontSize: 14.0,
-                    // activeColor: const Color(0xFF01579B),
                     selectedIndex: _currentIndex,
                     barItems: <BarItem>[
                       BarItem(

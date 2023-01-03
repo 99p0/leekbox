@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/app_toast.dart';
 import 'package:leekbox/pages/device_info/device_info.dart';
@@ -136,7 +138,19 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
       ),
       title: '近期收益曲线',
       onTap: () {
-        showToastWidget(const CorrectToast(child: Text('近期收益曲线')));
+        showToastWidget(
+          context: context,
+          CorrectToast(
+            child: Text(
+              '近期收益曲线',
+              style: GoogleFonts.cabin(
+                textStyle: Theme.of(context).textTheme.headline1,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+        );
       },
     );
   }

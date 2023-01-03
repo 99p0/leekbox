@@ -44,7 +44,7 @@ class _IntroScreenState extends State<IntroScreen>
   Widget build(BuildContext context) {
     Log.debug(_animationController?.value);
     return Scaffold(
-      // backgroundColor: const Color(0xffF7EBE1),
+      backgroundColor: const Color(0xffF7EBE1),
       body: ClipRect(
         child: Stack(
           children: [
