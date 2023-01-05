@@ -14,7 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  #  fluentui_system_icons: ^1.1.188
+  mockito: ^5.3.2
+  fluentui_system_icons: ^1.1.189
   animations: ^2.0.7
   nil: ^1.1.1
   tuple: ^2.0.1
@@ -127,7 +128,7 @@ dependencies:
   # 图片缓存
   cached_network_image: ^3.2.3
   # 图片预览
-  #  photo_view: ^0.14.0
+  photo_view: ^0.14.0
   # 模糊图片
   blurhash_dart:
     git:
@@ -155,6 +156,8 @@ dependencies:
   #  tflite_flutter_helper: ^0.3.1
   # need upgrade, clone local edit
   wakelock: ^0.6.2
+#  in_app_review: 2.0.4
+
   #  flutter_smart_dialog: ^4.7.1
 
   #  tflite_flutter:
@@ -180,6 +183,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.1
   build_runner: ^2.2.1
+  flutter_gen_runner: ^5.1.0+1
   json_serializable: ^6.5.4
   freezed: ^2.3.2
   #
@@ -201,6 +205,46 @@ flutter_icons:
     generate: true
     image_path: "assets/images/icon.png"
     icon_size: 48 # min:48, max:256, default: 48
+
+
+flutter_gen:
+  output: lib/gen/ # Optional (default: lib/gen/)
+  line_length: 80 # Optional (default: 80)
+
+  #
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
+    lottie: true
+
+  assets:
+    enabled: true
+    outputs:
+      class_name: MyAssets
+      package_parameter_enabled: false
+      # Assets.imagesChip
+      # style: camel-case
+
+      # Assets.images_chip
+      # style: snake-case
+
+      # Assets.images.chip (default style)
+      style: dot-delimiter
+    exclude:
+      - assets/flare/
+
+  fonts:
+    enabled: true
+    outputs:
+      class_name: MyFontFamily
+
+  colors:
+    enabled: true
+    outputs:
+      class_name: MyColor
+    inputs:
+      - assets/color/colors.xml
 
 flutter:
   uses-material-design: true

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
+import 'package:leekbox/common/widgets/photoview.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -87,14 +88,18 @@ class _MinePageState extends State<MinePage>
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  SizedBox(
-                    width: 55.w,
-                    height: 55.w,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/def_avatar.png',
-                        gaplessPlayback: true,
+                  GestureDetector(
+                    onTap: _showAvatarView(context,
+                        const AssetImage('assets/images/def_avatar.png')),
+                    child: SizedBox(
+                      width: 55.w,
+                      height: 55.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/def_avatar.png',
+                          gaplessPlayback: true,
+                        ),
                       ),
                     ),
                   ),
@@ -203,5 +208,14 @@ class _MinePageState extends State<MinePage>
         ),
       ),
     );
+  }
+
+  _showAvatarView(context, ImageProvider image) {
+    showDialog(
+        barrierColor: Colors.black,
+        context: context,
+        builder: (context) {
+          return PhotoViewPage(imageProvider: image, heroTag: '');
+        });
   }
 }

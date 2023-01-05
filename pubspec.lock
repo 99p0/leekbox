@@ -170,7 +170,7 @@ packages:
       name: checked_yaml
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   cli_util:
     dependency: transitive
     description:
@@ -199,6 +199,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.16.0"
+  color:
+    dependency: transitive
+    description:
+      name: color
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
   convert:
     dependency: transitive
     description:
@@ -241,6 +248,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.4"
+  dartx:
+    dependency: transitive
+    description:
+      name: dartx
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.0"
   device_frame:
     dependency: transitive
     description:
@@ -275,14 +289,14 @@ packages:
       name: drift
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.3.0"
+    version: "2.4.1"
   drift_dev:
     dependency: "direct dev"
     description:
       name: drift_dev
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.3.3"
+    version: "2.4.0"
   dynamic_color:
     dependency: "direct main"
     description:
@@ -339,6 +353,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.55.2"
+  fluentui_system_icons:
+    dependency: "direct main"
+    description:
+      name: fluentui_system_icons
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.189"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -358,6 +379,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.3.0"
+  flutter_gen_core:
+    dependency: transitive
+    description:
+      name: flutter_gen_core
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.1.0+1"
+  flutter_gen_runner:
+    dependency: "direct dev"
+    description:
+      name: flutter_gen_runner
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.1.0+1"
   flutter_hooks:
     dependency: transitive
     description:
@@ -505,7 +540,7 @@ packages:
       name: image
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.2.2"
+    version: "3.3.0"
   intl:
     dependency: transitive
     description:
@@ -618,6 +653,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.3"
+  mockito:
+    dependency: "direct main"
+    description:
+      name: mockito
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.3.2"
   nested:
     dependency: transitive
     description:
@@ -772,6 +814,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.1.0"
+  photo_view:
+    dependency: "direct main"
+    description:
+      name: photo_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.14.0"
   platform:
     dependency: transitive
     description:
@@ -1021,7 +1070,7 @@ packages:
       name: sqlparser
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.24.0"
+    version: "0.25.0"
   stack_trace:
     dependency: transitive
     description:
@@ -1063,14 +1112,14 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "20.4.38"
+    version: "20.4.41"
   syncfusion_flutter_datagrid:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_datagrid
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "20.4.38"
+    version: "20.4.41"
   synchronized:
     dependency: transitive
     description:
@@ -1092,6 +1141,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.12"
+  time:
+    dependency: transitive
+    description:
+      name: time
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.3"
   timer_count_down:
     dependency: "direct main"
     description:

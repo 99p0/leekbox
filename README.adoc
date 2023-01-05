@@ -33,3 +33,33 @@ samples, guidance on mobile development, and a full API reference.
 
     flutter build apk --split-per-abi
     flutter build apk --obfuscate --split-debug-info debuginfo   --target-platform android-arm64 --split-per-abi
+
+**Use FlutterGen**
+
+     flutter packages pub run build_runner build
+
+
+
+**brewhome**
+```
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+```
+
+
+
+
+**Git: 单个文件超过100M > https://git-lfs.com/ **
+```
+# 1.安装Git命令行扩展。只需要设置一次Git LFS
+$ git lfs install
+# 2.选择您希望Git LFS管理的文件类型
+$ git lfs track "*.psd"
+# 确保跟踪.gitattributes
+$ git add .gitattributes
+# 3.Just commit and push to GitHub as you normally would.
+$ git add file.psd
+$ git commit -m "Add design file"
+$ git push origin master
+```
