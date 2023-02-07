@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/invite/invite.page.dart';
@@ -13,6 +12,7 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
+import 'package:tuple/tuple.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -56,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
     _pageController = PageController(initialPage: 0);
+    const t = Tuple2<String, int>('a', 10);
+
+    print(t.item1); // prints 'a'
+    print(t.item2); // prints '10'
+    final t2 = t.withItem1('c');
+    print(t.item1); // prints 'c'
   }
 
   @override
@@ -264,10 +270,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
                       /// Mine
                       SalomonBottomBarItem(
-                        icon: Badge(
-                          toAnimate: false,
-                          badgeContent: const Text(''),
-                          child: const Icon(Icons.person_outline),
+                        icon: const badges.Badge(
+                          badgeContent: Text(''),
+                          child: Icon(Icons.person_outline),
                         ),
                         activeIcon: const Icon(Icons.person),
                         title: const Text("我"),
