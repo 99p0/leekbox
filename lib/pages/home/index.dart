@@ -57,15 +57,15 @@ class _IndexPageState extends State<IndexPage>
         child: Scaffold(
           // extendBodyBehindAppBar: true,
           appBar: AppBar(
-            leading: Builder(
-              builder: (BuildContext context) {
-                return GestureDetector(
-                  child: _buildCircleAvatar(),
-                  onTap: () async =>
-                      context.push(GlobalUISettingPage.routeLocation),
-                );
-              },
-            ),
+            // leading: Builder(
+            //   builder: (BuildContext context) {
+            //     return GestureDetector(
+            //       child: _buildCircleAvatar(),
+            //       onTap: () async =>
+            //           context.push(GlobalUISettingPage.routeLocation),
+            //     );
+            //   },
+            // ),
             leadingWidth: 40.w,
             title: KuGouTabBar(
               tabs: _tabList,

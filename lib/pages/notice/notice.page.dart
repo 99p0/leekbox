@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 /// 页面
@@ -25,12 +23,7 @@ class _NoticePageState extends State<NoticePage>
       appBar: AppBar(
         title: Text(
           '消息',
-          style: GoogleFonts.zcoolQingKeHuangYou(
-            textStyle: Theme.of(context).textTheme.headline1,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            // fontStyle: FontStyle.italic,
-          ),
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
       body: const Center(

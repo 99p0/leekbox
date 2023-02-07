@@ -904,7 +904,7 @@ packages:
       name: rive
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.0"
+    version: "0.10.1"
   rive_common:
     dependency: transitive
     description:

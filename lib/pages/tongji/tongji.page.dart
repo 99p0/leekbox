@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:leekbox/pages/home/components/statistics_circle_chart.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
 import 'package:leekbox/pages/home/components/statistics_line_chart.dart';
@@ -75,12 +73,7 @@ class _TongjiPageState extends State<TongjiPage>
       appBar: AppBar(
         title: Text(
           '统计',
-          style: GoogleFonts.zcoolXiaoWei(
-            textStyle: Theme.of(context).textTheme.headline1,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            // fontStyle: FontStyle.italic,
-          ),
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
       body: SingleChildScrollView(

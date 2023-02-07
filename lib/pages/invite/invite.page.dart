@@ -1,7 +1,5 @@
 import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// 页面
 class InvitePage extends StatefulWidget {
@@ -40,12 +38,7 @@ class _InvitePageState extends State<InvitePage>
       appBar: AppBar(
         title: Text(
           '邀请',
-          style: GoogleFonts.zcoolQingKeHuangYou(
-            textStyle: Theme.of(context).textTheme.headline1,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            // fontStyle: FontStyle.italic,
-          ),
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
       body: NestedScrollView(
@@ -58,7 +51,7 @@ class _InvitePageState extends State<InvitePage>
               expandedHeight: 280,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
-                background: Container(
+                background: SizedBox(
                   //头部整个背景颜色
                   height: double.infinity,
                   // color: const Color(0xffcccccc),
@@ -66,7 +59,7 @@ class _InvitePageState extends State<InvitePage>
                     children: <Widget>[
                       _buildBanner(),
                       _buildButtons(),
-                      _buildTabBarBg()
+                      _buildTabBarBg(),
                     ],
                   ),
                 ),

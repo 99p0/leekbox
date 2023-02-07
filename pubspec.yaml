@@ -100,7 +100,7 @@ dependencies:
   flutter_scankit: ^1.2.4
   # 动画
   lottie: ^2.0.0
-  rive: ^0.10.0
+  rive: ^0.10.1
   #  网络请求
   dio: ^4.0.6
   dio_cookie_manager: ^2.0.0
@@ -258,6 +258,7 @@ flutter:
     - assets/fonts/
     - assets/local/
     - assets/tflites/
+    - assets/rives/
     - assets/lotties/
 
   fonts:
