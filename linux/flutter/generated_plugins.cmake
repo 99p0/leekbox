@@ -5,7 +5,6 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   leekbox_infra
-  leekbox_sdk
   url_launcher_linux
 )
 

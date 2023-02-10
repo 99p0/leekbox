@@ -5,7 +5,6 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   leekbox_infra
-  leekbox_sdk
   permission_handler_windows
   rive_common
   url_launcher_windows

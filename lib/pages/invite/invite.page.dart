@@ -38,7 +38,7 @@ class _InvitePageState extends State<InvitePage>
       appBar: AppBar(
         title: Text(
           '邀请',
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
       body: NestedScrollView(

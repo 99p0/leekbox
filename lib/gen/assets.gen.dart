@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -129,18 +129,37 @@ class $AssetsImagesGen {
 class $AssetsLottiesGen {
   const $AssetsLottiesGen();
 
+  /// File path: assets/lotties/alarm-clock-lottie-v440.json
+  LottieGenImage get alarmClockLottieV440 =>
+      const LottieGenImage('assets/lotties/alarm-clock-lottie-v440.json');
+
   /// File path: assets/lotties/empty.json
   LottieGenImage get empty => const LottieGenImage('assets/lotties/empty.json');
 
   /// File path: assets/lotties/error.json
   LottieGenImage get error => const LottieGenImage('assets/lotties/error.json');
 
+  /// File path: assets/lotties/geometrical-animation.json
+  LottieGenImage get geometricalAnimation =>
+      const LottieGenImage('assets/lotties/geometrical-animation.json');
+
+  /// File path: assets/lotties/hamburger_arrow.json
+  LottieGenImage get hamburgerArrow =>
+      const LottieGenImage('assets/lotties/hamburger_arrow.json');
+
   /// File path: assets/lotties/loading.json
   LottieGenImage get loading =>
       const LottieGenImage('assets/lotties/loading.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [empty, error, loading];
+  List<LottieGenImage> get values => [
+        alarmClockLottieV440,
+        empty,
+        error,
+        geometricalAnimation,
+        hamburgerArrow,
+        loading
+      ];
 }
 
 class $AssetsTflitesGen {
@@ -465,13 +484,14 @@ class SvgGenImage {
     AlignmentGeometry alignment = Alignment.center,
     bool allowDrawingOutsideViewBox = false,
     WidgetBuilder? placeholderBuilder,
-    Color? color,
-    BlendMode colorBlendMode = BlendMode.srcIn,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    Clip clipBehavior = Clip.hardEdge,
-    bool cacheColorFilter = false,
-    SvgTheme? theme,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated Clip? clipBehavior,
+    @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
       _assetName,
@@ -485,13 +505,14 @@ class SvgGenImage {
       alignment: alignment,
       allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
       placeholderBuilder: placeholderBuilder,
-      color: color,
-      colorBlendMode: colorBlendMode,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
+      theme: theme,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
-      theme: theme,
     );
   }
 

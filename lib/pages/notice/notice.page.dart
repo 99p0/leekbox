@@ -23,7 +23,7 @@ class _NoticePageState extends State<NoticePage>
       appBar: AppBar(
         title: Text(
           '消息',
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
       ),
       body: const Center(

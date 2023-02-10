@@ -28,7 +28,7 @@ class _TongjiPageState extends State<TongjiPage>
       appBar: AppBar(
         title: Text(
           '统计',
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
       body: SingleChildScrollView(

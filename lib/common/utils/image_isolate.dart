@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:isolate';
+
 import 'package:image/image.dart';
 
 class DecodeParam {
@@ -15,7 +16,7 @@ void decode(DecodeParam param) {
   // decoder.
   final image = decodeImage(param.file.readAsBytesSync())!;
   // Resize the image to a 120x? thumbnail (maintaining the aspect ratio).
-  final thumbnail = gaussianBlur(copyResize(image, width: 120), 5);
+  final thumbnail = gaussianBlur(copyResize(image, width: 120), radius: 5);
   param.sendPort.send(thumbnail);
 }
 

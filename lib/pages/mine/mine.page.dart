@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
-import 'package:leekbox/common/widgets/photoview.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -211,11 +210,11 @@ class _MinePageState extends State<MinePage>
   }
 
   _showAvatarView(context, ImageProvider image) {
-    showDialog(
-        barrierColor: Colors.black,
-        context: context,
-        builder: (context) {
-          return PhotoViewPage(imageProvider: image, heroTag: '');
-        });
+    // showDialog(
+    //     barrierColor: Colors.black,
+    //     context: context,
+    //     builder: (context) {
+    //       return PhotoViewPage(imageProvider: image, heroTag: '');
+    //     });
   }
 }

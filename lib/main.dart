@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,11 +54,11 @@ void main() {
     GestureBinding.instance.resamplingEnabled = true;
 
     /// License
-    LicenseRegistry.addLicense(() async* {
-      // Google fonts Licensing Fonts
-      final license = await rootBundle.loadString('google_fonts/OFL.txt');
-      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-    });
+    // LicenseRegistry.addLicense(() async* {
+    //   // Google fonts Licensing Fonts
+    //   final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    //   yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    // });
 
     /// do others
   }, (Object obj, StackTrace stack) {

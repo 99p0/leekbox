@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=2.19.1 <3.0.0'
 
 dependencies:
   flutter:
@@ -15,7 +15,6 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   mockito: ^5.3.2
-  fluentui_system_icons: ^1.1.189
   animations: ^2.0.7
   nil: ^1.1.1
   tuple: ^2.0.1
@@ -23,33 +22,33 @@ dependencies:
   isolates: ^3.0.3+8
   #  protobuf: ^2.1.0
   #  uuid: ^3.0.7
-  json_annotation: ^4.7.0
+  json_annotation: ^4.8.0
   equatable: ^2.0.5
-  built_value: ^8.4.2
+  built_value: ^8.4.3
   freezed_annotation: ^2.2.0
   #
   #  flutter_secure_storage: ^7.0.1
   #  sign_in_with_apple: ^4.2.0
   #  local_auth: ^2.1.2
   # 存储
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.17
   #  动态主题
-  dynamic_color: ^1.5.4
+  dynamic_color: ^1.6.2
   # 文件读写
-  path_provider: ^2.0.11
+  path_provider: ^2.0.12
   # 官方推荐：状态管理 + 路由   VS  getx
   flutter_riverpod: ^2.1.1
   hooks_riverpod: ^2.1.1
-  go_router: ^6.0.0
+  go_router: ^6.0.4
   #  字体
-  google_fonts: ^3.0.1
+#  google_fonts: ^4.0.3
   #
   #  package_info_plus: ^3.0.2
   #  connectivity_plus: ^3.0.2
   #  device_info_plus: ^7.0.1
   #  network_info_plus: ^3.0.1
   # 适配屏幕
-  flutter_screenutil: ^5.6.0
+  flutter_screenutil: ^5.6.1
   #  下拉 刷新
   pull_to_refresh: ^2.0.0
   # 权限
@@ -57,7 +56,7 @@ dependencies:
   # card 角标 https://github.com/kalaganov/corner_decoration
   rotated_corner_decoration: ^2.0.0
   # 角标 https://github.com/yako-dev/flutter_badges
-  badges: ^2.0.3
+  badges: ^3.0.2
   # 时间线 https://github.com/JHBitencourt/timeline_tile
   #  timeline_tile: ^2.0.0
   # 输入框
@@ -80,12 +79,12 @@ dependencies:
   #  chewie: ^1.3.6
   #  video_player: ^2.4.9
   # 打开链接
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.9
   # 版本升级
   r_upgrade: ^0.4.1
   version: ^3.0.2
   # 倒计时
-  timer_count_down: ^2.2.1
+  timer_count_down: ^2.2.2
   # 定位
   #  geolocator: ^9.0.2
   # 加密
@@ -99,7 +98,7 @@ dependencies:
   #
   flutter_scankit: ^1.2.4
   # 动画
-  lottie: ^2.0.0
+  lottie: ^2.2.0
   rive: ^0.10.1
   #  网络请求
   dio: ^4.0.6
@@ -115,25 +114,22 @@ dependencies:
   #  video_compress: ^3.1.0
   #  flutter_image_compress: ^1.1.3
   # 数据存储 基于sqlite3 封装
-  drift: ^2.3.0
+  drift: ^2.5.0
   # 查看本地存储的sqlite数据
   #  db_viewer: ^1.0.3
   # 富文本编辑器
   #  flutter_quill: ^6.0.10
   # 图表库
-  fl_chart: ^0.55.2
+#  fl_chart: ^0.66.0
   #  skeletons: ^0.0.3
   #
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.0+1
   # 图片缓存
   cached_network_image: ^3.2.3
   # 图片预览
   photo_view: ^0.14.0
   # 模糊图片
-  blurhash_dart:
-    git:
-      url: git@github.com:justacid/blurhash-dart.git
-      ref: master
+  blurhash_dart: ^1.2.1
   # 图片库： https://github.com/alibaba/power_image
   #  power_image: ^0.1.0-pre.2
   #  image_picker: ^0.8.6
@@ -145,7 +141,7 @@ dependencies:
   # 不同分辨率的手机上查看UI效果
   device_preview: ^1.1.0
   #
-  webview_flutter: ^4.0.1
+  webview_flutter: ^4.0.2
   #  flutter_native_splash: ^2.2.16
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
@@ -156,7 +152,7 @@ dependencies:
   #  tflite_flutter_helper: ^0.3.1
   # need upgrade, clone local edit
   wakelock: ^0.6.2
-#  in_app_review: 2.0.4
+  #  in_app_review: 2.0.4
 
   #  flutter_smart_dialog: ^4.7.1
 
@@ -167,8 +163,6 @@ dependencies:
   #  项目分包处理
   leekbox_infra:
     path: packages/leekbox_infra
-  leekbox_sdk:
-    path: packages/leekbox_sdk
   # 类似酷狗tabbar滑动方式
   custom_tabbar:
     path: packages/custom_tabbar
@@ -182,14 +176,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
-  build_runner: ^2.2.1
-  flutter_gen_runner: ^5.1.0+1
-  json_serializable: ^6.5.4
+  build_runner: ^2.3.3
+  flutter_gen_runner: ^5.2.0
+  json_serializable: ^6.6.1
   freezed: ^2.3.2
   #
-  drift_dev: ^2.3.3
+  drift_dev: ^2.5.1
   #  logo 生成插件   flutter pub run flutter_launcher_icons:main
-  flutter_launcher_icons: ^0.11.0
+#  flutter_launcher_icons: ^0.11.0
 
 flutter_icons:
   android: false
@@ -206,7 +200,7 @@ flutter_icons:
     image_path: "assets/images/icon.png"
     icon_size: 48 # min:48, max:256, default: 48
 
-
+# flutter packages pub run build_runner build
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)
   line_length: 80 # Optional (default: 80)
