@@ -37,7 +37,7 @@ dependencies:
   # 文件读写
   path_provider: ^2.0.12
   # 官方推荐：状态管理 + 路由   VS  getx
-  flutter_riverpod: ^2.1.1
+  flutter_riverpod: ^2.2.0
   hooks_riverpod: ^2.1.1
   go_router: ^6.0.4
   #  字体
