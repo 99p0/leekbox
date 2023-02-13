@@ -35,7 +35,7 @@ migrate_working_dir/
 .pub/
 /build/
 /debuginfo/
-pubspec.lock
+/pubspec.lock
 
 # Symbolication related
 app.*.symbols
