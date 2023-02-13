@@ -58,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     _pageController = PageController(initialPage: 0);
     const t = Tuple2<String, int>('a', 10);
 
-    print(t.item1); // prints 'a'
-    print(t.item2); // prints '10'
+    Log.debug(t.item1); // prints 'a'
+    Log.debug(t.item2); // prints '10'
     final t2 = t.withItem1('c');
-    print(t.item1); // prints 'c'
+    Log.debug(t.item1); // prints 'c'
   }
 
   @override

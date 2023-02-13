@@ -261,5 +261,11 @@ flutter:
         - asset: assets/fonts/digital-7.ttf
           style: italic
 
+    - family: DINPro
+      fonts:
+        - asset: assets/fonts/DIN-Pro-Regular.otf
+          style: normal
+
+
 flutter_intl:
   enabled: true
