@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:custom_tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:leekbox/pages/setting/global_ui.setting.dart';
+import 'package:leekbox/pages/setting/general.setting.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 import 'index.recommend.dart';
@@ -62,7 +59,7 @@ class _IndexPageState extends State<IndexPage>
             //     return GestureDetector(
             //       child: _buildCircleAvatar(),
             //       onTap: () async =>
-            //           context.push(GlobalUISettingPage.routeLocation),
+            //           context.push(GeneralSettingPage.routeLocation),
             //     );
             //   },
             // ),
@@ -100,7 +97,7 @@ class _IndexPageState extends State<IndexPage>
               IconButton(
                 icon: const Icon(Icons.color_lens_outlined),
                 onPressed: () async =>
-                    context.push(GlobalUISettingPage.routeLocation),
+                    context.push(GeneralSettingPage.routeLocation),
               ),
             ],
           ),
@@ -145,7 +142,7 @@ class _IndexPageState extends State<IndexPage>
           children: [
             GestureDetector(
               onTap: () {
-                context.push(GlobalUISettingPage.routeLocation);
+                context.push(GeneralSettingPage.routeLocation);
               },
               child: _buildCircleAvatar(),
             ),
@@ -176,7 +173,7 @@ class _IndexPageState extends State<IndexPage>
             IconButton(
               icon: const Icon(Icons.color_lens_outlined),
               onPressed: () {
-                context.push(GlobalUISettingPage.routeLocation);
+                context.push(GeneralSettingPage.routeLocation);
               },
             ),
           ],

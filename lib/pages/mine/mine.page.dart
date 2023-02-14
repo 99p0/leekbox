@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
+import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -64,7 +66,7 @@ class _MinePageState extends State<MinePage>
           MySetCell(
             title: '设置',
             leftImgPath: 'assets/images/mine/ic_setting.png',
-            clickCallBack: () => {},
+            clickCallBack: () => context.push(SettingPage.routeLocation),
           ),
         ],
       ),

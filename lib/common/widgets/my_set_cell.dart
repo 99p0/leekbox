@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const double _imgWH = 25.0; //左侧图片宽高
-const double _titleSpace = 100.0; //左侧title默认宽
+const double _titleSpace = 160.0; //左侧title默认宽
 const double _cellHeight = 56.0; //输入、选择样式一行的高度
 const double _leftEdge = 15.0; //内部Widget 左边距 15
 const double _rightEdge = 10.0; //内部Widget 左边距 10

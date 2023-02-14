@@ -69,11 +69,13 @@ class MyApp extends ConsumerWidget {
                       colorScheme: lightDynamic ?? lightColorScheme,
                       useMaterial3: true,
                       visualDensity: VisualDensity.adaptivePlatformDensity,
+                      // fontFamily: "PingFangSC",
                     ),
                     darkTheme: ThemeData(
                       colorScheme: darkDynamic ?? darkColorScheme,
                       useMaterial3: true,
                       visualDensity: VisualDensity.adaptivePlatformDensity,
+                      // fontFamily: "PingFangSC",
                     ),
 
                     /// localization

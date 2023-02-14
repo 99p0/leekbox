@@ -41,7 +41,7 @@ dependencies:
   hooks_riverpod: ^2.1.1
   go_router: ^6.0.4
   #  字体
-#  google_fonts: ^4.0.3
+  #  google_fonts: ^4.0.3
   #
   #  package_info_plus: ^3.0.2
   #  connectivity_plus: ^3.0.2
@@ -68,7 +68,7 @@ dependencies:
   sliding_clipped_nav_bar: ^3.1.0+3
   #
   #  scrollable_positioned_list: ^0.3.5
-  #
+  # 引导插件
   # showcaseview: ^2.0.0+1
   #  加载指示器
   #  loading_indicator: ^3.1.0
@@ -101,8 +101,10 @@ dependencies:
   lottie: ^2.2.0
   rive: ^0.10.1
   #  网络请求
-  dio: ^4.0.6
-  dio_cookie_manager: ^2.0.0
+  dio: ^5.0.0
+  dio_cookie_manager: ^2.1.0
+  dio_http2_adapter: ^2.1.0
+  pretty_dio_logger: ^1.3.1
   cookie_jar: ^3.0.1
   #
   oktoast: ^3.3.1
@@ -120,10 +122,10 @@ dependencies:
   # 富文本编辑器
   #  flutter_quill: ^6.0.10
   # 图表库
-#  fl_chart: ^0.66.0
+  #  fl_chart: ^0.66.0
   #  skeletons: ^0.0.3
   #
-  flutter_svg: ^2.0.0+1
+  flutter_svg: ^2.0.1
   # 图片缓存
   cached_network_image: ^3.2.3
   # 图片预览
@@ -169,7 +171,7 @@ dependencies:
 
 
 # 强制升级版本
-dependency_overrides:
+#dependency_overrides:
 #  power_image_ext: ^3.0.0
 
 dev_dependencies:
@@ -256,16 +258,15 @@ flutter:
     - assets/lotties/
 
   fonts:
+    # 电子屏：时间显示 ：紧凑
     - family: Digital
       fonts:
         - asset: assets/fonts/digital-7.ttf
           style: italic
-
+    # 数字： 涉及金额需要使用的字体
     - family: DINPro
       fonts:
         - asset: assets/fonts/DIN-Pro-Regular.otf
           style: normal
-
-
 flutter_intl:
   enabled: true
