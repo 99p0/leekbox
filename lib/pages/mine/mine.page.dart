@@ -6,6 +6,10 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 
+import 'card_package.page.dart';
+import 'moneybags.page.dart';
+import 'vip_intro.page.dart';
+
 ///
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -29,6 +33,13 @@ class _MinePageState extends State<MinePage>
     //         'https://tse3-mm.cn.bing.net/th/id/OIP-C.i1PziVBVsRfRbqQyRhGAeQAAAA?pid=ImgDet&rs=1'),
     //     context);
 
+    // preload(BuildContext context) {
+    //   var configuration = createLocalImageConfiguration(context);
+    //   for (var src in ['图片地址1', '图片地址2', '图片地址13']) {
+    //     NetworkImage(src).resolve(configuration);
+    //   }
+    // }
+
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       child: SingleChildScrollView(
@@ -49,18 +60,18 @@ class _MinePageState extends State<MinePage>
           MySetCell(
             title: '荷包',
             leftImgPath: 'assets/images/mine/ic_moneybags.png',
-            clickCallBack: () => {},
+            clickCallBack: () => context.push(MoneybagsPage.routeLocation),
           ),
           Gaps.vGap4,
           MySetCell(
             title: '会员',
             leftImgPath: 'assets/images/mine/ic_vip_gold.png',
-            clickCallBack: () => {},
+            clickCallBack: () => context.push(VipIntroPage.routeLocation),
           ),
           MySetCell(
             title: '卡包',
             leftImgPath: 'assets/images/mine/ic_cards_wallet.png',
-            clickCallBack: () => {},
+            clickCallBack: () => context.push(CardPackagePage.routeLocation),
           ),
           Gaps.vGap4,
           MySetCell(

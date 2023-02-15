@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class WalletPage extends StatefulWidget {
+class MoneybagsPage extends StatefulWidget {
+  const MoneybagsPage({super.key});
+
+  static String get routeName => 'mine/Moneybags';
+
+  static String get routeLocation => '/$routeName';
+
   @override
-  _WalletPageState createState() => _WalletPageState();
+  _MoneybagsPageState createState() => _MoneybagsPageState();
 }
 
-class _WalletPageState extends State<WalletPage> {
+class _MoneybagsPageState extends State<MoneybagsPage> {
   @override
   Widget build(BuildContext context) {
     // super.build(context);
-    Log.debug('WalletPage build');
+    Log.debug('MoneybagsPage build');
     return Scaffold(
       body: Column(
         children: <Widget>[

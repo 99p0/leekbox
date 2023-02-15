@@ -5,6 +5,9 @@ import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/login/login.dart';
+import 'package:leekbox/pages/mine/card_package.page.dart';
+import 'package:leekbox/pages/mine/moneybags.page.dart';
+import 'package:leekbox/pages/mine/vip_intro.page.dart';
 import 'package:leekbox/pages/notice/notice.page.dart';
 import 'package:leekbox/pages/notice/recent_notice.dart';
 import 'package:leekbox/pages/setting/about.page.dart';
@@ -50,7 +53,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       Log.debug('state.location:: ${state.location}');
       //
       if (noAuthPages.contains(state.location)) {
-        Log.debug('state.location:: ${state.location}');
         return null;
       }
       final isAuth = authNotifier.isAuthenticated;
@@ -83,13 +85,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: RecentNoticePage.routeName,
         builder: (context, state) {
           return const RecentNoticePage();
-        },
-      ),
-      GoRoute(
-        path: SettingPage.routeLocation,
-        name: SettingPage.routeName,
-        builder: (context, state) {
-          return const SettingPage();
         },
       ),
 
@@ -189,6 +184,36 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: AboutPage.routeName,
         builder: (context, state) {
           return const AboutPage();
+        },
+      ),
+      // ********** ********
+      // ********** ********
+      GoRoute(
+        path: MoneybagsPage.routeLocation,
+        name: MoneybagsPage.routeName,
+        builder: (context, state) {
+          return const MoneybagsPage();
+        },
+      ),
+      GoRoute(
+        path: VipIntroPage.routeLocation,
+        name: VipIntroPage.routeName,
+        builder: (context, state) {
+          return const VipIntroPage();
+        },
+      ),
+      GoRoute(
+        path: CardPackagePage.routeLocation,
+        name: CardPackagePage.routeName,
+        builder: (context, state) {
+          return const CardPackagePage();
+        },
+      ),
+      GoRoute(
+        path: SettingPage.routeLocation,
+        name: SettingPage.routeName,
+        builder: (context, state) {
+          return const SettingPage();
         },
       ),
       // ********** ********

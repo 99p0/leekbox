@@ -19,13 +19,15 @@ class MyHomePage extends StatefulWidget {
 
   static String get routeName => 'home';
 
-  static String get routeLocation => '/';
+  static String get routeLocation => '/$routeName';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+class _MyHomePageState extends State<MyHomePage>
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
+  ///
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final bool _colorful = true;
@@ -101,11 +103,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    if (mounted) addWatermark(context);
+    // todo 添加水印
+    // if (mounted) addWatermark(context);
   }
 
-  /// 添加水印
+  /// 水印
   Future<void> addWatermark(BuildContext context) async {
     Log.debug('添加水印 ...');
     String version = '1.10.201';
@@ -117,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    Log.debug('MyHomePage build');
+    super.build(context);
+    Log.debug('MyHomePage build...');
     return WillPopScope(
       onWillPop: () async {
         if (Platform.isAndroid) {
@@ -302,4 +305,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/app_toast.dart';
@@ -289,11 +288,20 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
                   },
                   child: const Text('引导页'),
                 ),
+              ],
+            ),
+            Row(
+              children: [
+                Gaps.hGap10,
                 ElevatedButton(
                   onPressed: () {
                     context.push(DeviceInfoPage.routeLocation);
                   },
                   child: const Text('设备页'),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Material Banner'),
                 ),
               ],
             ),

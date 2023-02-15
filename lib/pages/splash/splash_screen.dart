@@ -10,7 +10,7 @@ class SplashPage extends StatefulWidget {
 
   static String get routeName => 'splash';
 
-  static String get routeLocation => '/$routeName';
+  static String get routeLocation => '/';
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -64,6 +64,8 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     /// 预缓存背景图片
     precacheImage(AssetImage(_bg), context);
+
+    ///
     return Stack(
       alignment: const Alignment(1.0, -1.0), // 右上角对齐
       children: [
