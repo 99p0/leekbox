@@ -96,7 +96,7 @@ dependencies:
   #
   #  flutter_rating_bar: ^4.0.1
   #
-  flutter_scankit: ^1.2.4
+#  flutter_scankit: ^1.2.4
   # 动画
   lottie: ^2.2.0
   rive: ^0.10.1
