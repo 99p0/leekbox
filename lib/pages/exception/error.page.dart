@@ -6,6 +6,10 @@ import 'package:lottie/lottie.dart';
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
 
+  static String get routeName => 'error';
+
+  static String get routeLocation => '/$routeName';
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

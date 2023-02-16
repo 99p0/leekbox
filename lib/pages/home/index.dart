@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:leekbox/pages/exception/connection.exception.page.dart';
 import 'package:leekbox/pages/setting/general.setting.dart';
 import 'package:leekbox_infra/log/log.dart';
 
@@ -81,6 +82,10 @@ class _IndexPageState extends State<IndexPage>
     setState(() {
       _connectionStatus = result;
     });
+
+    if (result == ConnectivityResult.none) {
+      context.go(ConnectionExceptionPage.routeLocation);
+    }
   }
 
   @override

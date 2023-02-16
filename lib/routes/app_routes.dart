@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
-import 'package:leekbox/pages/error.page.dart';
+import 'package:leekbox/pages/exception/connection.exception.page.dart';
+import 'package:leekbox/pages/exception/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/login/login.dart';
 import 'package:leekbox/pages/mine/card_package.page.dart';
@@ -67,6 +68,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       return isAuth ? null : MyHomePage.routeLocation;
     },
     routes: [
+      GoRoute(
+        path: ErrorPage.routeLocation,
+        name: ErrorPage.routeName,
+        builder: (context, state) {
+          return const ErrorPage();
+        },
+      ),
+      GoRoute(
+        path: ConnectionExceptionPage.routeLocation,
+        name: ConnectionExceptionPage.routeName,
+        builder: (context, state) {
+          return const ConnectionExceptionPage();
+        },
+      ),
       GoRoute(
         path: DeviceInfoPage.routeLocation,
         name: DeviceInfoPage.routeName,

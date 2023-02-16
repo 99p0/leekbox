@@ -46,7 +46,7 @@ dependencies:
   package_info_plus: ^3.0.3
   device_info_plus: ^8.1.0
   connectivity_plus: ^3.0.3
-#  network_info_plus: ^3.0.2
+  #  network_info_plus: ^3.0.2
   # 适配屏幕
   flutter_screenutil: ^5.6.1
   #  下拉 刷新
@@ -85,6 +85,8 @@ dependencies:
   version: ^3.0.2
   # 倒计时
   timer_count_down: ^2.2.2
+  #
+  avatar_glow: ^2.0.2
   # 定位
   #  geolocator: ^9.0.2
   # 加密
@@ -106,6 +108,8 @@ dependencies:
   dio_http2_adapter: ^2.1.0
   pretty_dio_logger: ^1.3.1
   cookie_jar: ^3.0.1
+  #
+  app_settings: ^4.2.0
   #
   oktoast: ^3.3.1
   # WeChatSDK 插件
