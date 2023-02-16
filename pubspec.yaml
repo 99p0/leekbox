@@ -3,11 +3,11 @@ description: A new Flutter project for leekbox.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 #  : 大版本号.小版本号.修改版本号.编译版本号
-  #                * release :: 1.0.78.170427.8fe425
+  #                * release :: 1.0.7890.170427.8fe425
   #                * 解析：
   #                *    大版本号 ： 1 （手动）
   #                *    小版本号 ：0 （手动）
-  #                *    修改版本号：78
+  #                *    修改版本号「78+git提交次数」：7890
 
   #                *    编译日期： 170427（自动，年月日）, 153740 (自动，时分秒)
   #                *    提交记录： 8fe425 (自动，git 最后一次提交记录后6位)

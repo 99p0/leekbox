@@ -131,10 +131,10 @@ dependencies {
 // 获取 version name
 def getVersionName(boolean isDebug, String flutterVersionName) {
     String version = flutterVersionName +
-            '.' + getRevisionNumber()
+            getRevisionNumber()
     String today = new Date().format('yyMMdd', TimeZone.getTimeZone("GMT+08:00"))
-    String time = new Date().format('HHmmss', TimeZone.getTimeZone("GMT+08:00"))
     if (isDebug) {
+        String time = new Date().format('HHmmss', TimeZone.getTimeZone("GMT+08:00"))
         return version + ".$today.$time." + getRevisionDescription()
     }
     return version + ".$today." + getRevisionDescription()
