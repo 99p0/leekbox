@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:leekbox/pages/device_info/device_info.dart';
+import 'package:leekbox/pages/developer/dashboard.dart';
+import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/login/login.dart';
@@ -70,7 +71,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: DeviceInfoPage.routeLocation,
         name: DeviceInfoPage.routeName,
         builder: (context, state) {
-          return DeviceInfoPage();
+          return const DeviceInfoPage();
+        },
+      ),
+      GoRoute(
+        path: DashboardPage.routeLocation,
+        name: DashboardPage.routeName,
+        builder: (context, state) {
+          return const DashboardPage();
         },
       ),
       GoRoute(

@@ -107,10 +107,12 @@ android {
             def outputFile = output.outputFile
             if (variant.buildType.name == 'release') {
                 def versionName = getVersionName(false, flutterVersionName)
+                output.versionNameOverride =versionName
                 def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             } else {
                 def versionName = getVersionName(true, flutterVersionName)
+                output.versionNameOverride =versionName
                 def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             }

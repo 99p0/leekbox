@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/app_toast.dart';
-import 'package:leekbox/pages/device_info/device_info.dart';
+import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
 import 'package:leekbox/pages/home/components/statistics_line_chart.dart';
@@ -12,7 +14,6 @@ import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
 class IndexRecommendPage extends StatefulWidget {
@@ -24,54 +25,6 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   @override
   bool get wantKeepAlive => true;
-
-  List<String> items = ["1", "2", "3", "4", "5", "6", "7", "8"];
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
-
-  void _onRefresh() async {
-    // monitor network fetch
-    await Future.delayed(const Duration(milliseconds: 1000));
-    // if failed,use refreshFailed()
-    items = ["1", "2", "3", "4", "5", "6", "7", "8"];
-    _refreshController.refreshCompleted();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  void _onLoading() async {
-    // monitor network fetch
-    await Future.delayed(const Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    var len = items.length;
-    items.addAll([
-      (len + 1).toString(),
-      (len + 2).toString(),
-      (len + 3).toString(),
-      (len + 4).toString(),
-      (len + 5).toString(),
-      (len + 6).toString(),
-      (len + 7).toString(),
-      (len + 8).toString(),
-      (len + 9).toString(),
-      (len + 10).toString(),
-      (len + 11).toString(),
-      (len + 12).toString(),
-      (len + 13).toString(),
-      (len + 14).toString(),
-      (len + 15).toString(),
-      (len + 16).toString(),
-      (len + 17).toString(),
-      (len + 18).toString(),
-      (len + 19).toString(),
-      (len + 20).toString(),
-    ]);
-    if (mounted) {
-      setState(() {});
-    }
-    _refreshController.loadComplete();
-  }
 
   late AnimationController animationController;
   bool multiple = true;
@@ -96,6 +49,7 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
 
   @override
   void dispose() {
+    ///
     animationController?.dispose();
     super.dispose();
   }

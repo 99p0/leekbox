@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
+import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 ///
 class AboutPage extends StatefulWidget {
@@ -18,11 +21,36 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage>
     with AutomaticKeepAliveClientMixin {
   @override
+  void initState() {
+    super.initState();
+
+    _getPackageInfo();
+  }
+
+  String _subStr = '';
+  late String appName, packageName, version, buildNumber;
+
+  ///
+  Future _getPackageInfo() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      setState(() {
+        _subStr = 'appName: ${packageInfo.appName}\n'
+            'packageName: ${packageInfo.packageName}\n'
+            'version: ${packageInfo.version}\n'
+            'buildNumber: ${packageInfo.buildNumber}\n';
+      });
+    } catch (e) {
+      Log.error("获取版本信息异常");
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('AboutPage build...');
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: const MyAppBar(
         title: '关于',
       ),
       body: Container(
@@ -36,12 +64,41 @@ class _AboutPageState extends State<AboutPage>
 
   Widget getBody(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.only(left: 5.0, right: 5.0, top: 65),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Gaps.vGap4,
-          Gaps.vGap4,
+          CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 45,
+            backgroundImage: ImageUtils.getAssetImage('logo_round'),
+          ),
+          Gaps.vGap24,
+          Text(
+            _subStr,
+            style: const TextStyle(
+              fontSize: 8,
+              color: Colors.black54,
+            ),
+          ),
+          Gaps.vGap24,
+          MySetCell(
+            title: '去评分',
+            clickCallBack: () => {},
+          ),
+          MySetCell(
+            title: '版权信息',
+            clickCallBack: () => {},
+          ),
+          MySetCell(
+            title: '服务协议',
+            clickCallBack: () => {},
+          ),
+          MySetCell(
+            title: '检查新版本',
+            clickCallBack: () => {},
+          ),
+          Gaps.vGap24,
         ],
       ),
     );
