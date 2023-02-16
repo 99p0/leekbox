@@ -1,25 +1,25 @@
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
-  localPropertiesFile.withReader('UTF-8') { reader ->
-    localProperties.load(reader)
-  }
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
 }
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-  throw new GradleException(
-          "Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new GradleException(
+            "Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-  flutterVersionCode = '1'
+    flutterVersionCode = '1'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-  flutterVersionName = '1.0'
+    flutterVersionName = '1.0'
 }
 
 apply plugin: 'com.android.application'
@@ -27,22 +27,22 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-  compileSdkVersion 33 // flutter.compileSdkVersion
-  ndkVersion "25.1.8937393" // flutter.ndkVersion
+    compileSdkVersion 33 // flutter.compileSdkVersion
+    ndkVersion "25.1.8937393" // flutter.ndkVersion
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
-  }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 
-  kotlinOptions {
-    jvmTarget = '11'
-  }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-  }
-  // 构架多个不同架构的 apk 包
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    // 构架多个不同架构的 apk 包
 //  splits {
 //    abi {
 //      enable true
@@ -57,47 +57,98 @@ android {
 //    }
 //  }
 
-  defaultConfig {
-    applicationId "com.xnxq.leekbox"
-    minSdkVersion 21 //flutter.minSdkVersion
-    targetSdkVersion 33 // flutter.targetSdkVersion
+    defaultConfig {
+        applicationId "com.xnxq.leekbox"
+        minSdkVersion 21 //flutter.minSdkVersion
+        targetSdkVersion 33 // flutter.targetSdkVersion
 
-    versionCode flutterVersionCode.toInteger()
-    versionName flutterVersionName
-    // 添加多 dex分包支持
-    multiDexEnabled true
-    // 打出的 apk 包含多个架构的 so库 需要下面的配置：
-    //    ndk {
-    //      //选择要添加的对应cpu类型的.so库。
-    //      abiFilters 'armeabi-v7a','arm64-v8a'
-    //      // 还可以添加
-    //      // 'arm64-v8a', 64 bit ARM architecture,it can use v7 version unless you are too much concerned about performance
-    //      // mips,mips64, There are no devices with MIPS
-    //      //  x86_64, No android devices and anyway it can use X86 version
-    //      //  armeabi, very old architecture. Unsupported after Android 4.4
-    //      // 'x86', Intel based devices
-    //    }
-  }
-
-  buildTypes {
-    release {
-      // TODO: Add your own signing config for the release build.
-      // Signing with the debug keys for now, so `flutter run --release` works.
-      signingConfig signingConfigs.debug
-
-      // 代码混淆
-      shrinkResources true
-      minifyEnabled true
-//      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        // 添加多 dex分包支持
+        multiDexEnabled true
+        // 打出的 apk 包含多个架构的 so库 需要下面的配置：
+        //    ndk {
+        //      //选择要添加的对应cpu类型的.so库。
+        //      abiFilters 'armeabi-v7a','arm64-v8a'
+        //      // 还可以添加
+        //      // 'arm64-v8a', 64 bit ARM architecture,it can use v7 version unless you are too much concerned about performance
+        //      // mips,mips64, There are no devices with MIPS
+        //      //  x86_64, No android devices and anyway it can use X86 version
+        //      //  armeabi, very old architecture. Unsupported after Android 4.4
+        //      // 'x86', Intel based devices
+        //    }
     }
-  }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+
+            // 代码混淆
+            shrinkResources true
+            minifyEnabled true
+//      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /** 版本号
+     * debug :: 1.0.78.170427.153740.8fe425
+     * release :: 1.0.78.170427.8fe425
+     * 解析：
+     *    大版本号 ： 1 （手动）
+     *    小版本号 ：0 （手动）
+     *    修改版本号：78 （自动，git 提交次数）
+     *    编译日期： 170427（自动，年月日）, 153740 (自动，时分秒)
+     *    提交记录： 8fe425 (自动，git 最后一次提交记录后6位)
+     */
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (variant.buildType.name == 'release') {
+                def versionName = getVersionName(false, flutterVersionName)
+                def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
+                output.outputFileName = new File(outputFile.parent, apkName).name
+            } else {
+                def versionName = getVersionName(true, flutterVersionName)
+                def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
+                output.outputFileName = new File(outputFile.parent, apkName).name
+            }
+        }
+    }
+
+    // others...
 }
 
 flutter {
-  source '../..'
+    source '../..'
 }
 
 dependencies {
-  //  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+// 获取 version name
+def getVersionName(boolean isDebug, String flutterVersionName) {
+    String version = flutterVersionName +
+            '.' + getRevisionNumber()
+    String today = new Date().format('yyMMdd', TimeZone.getTimeZone("GMT+08:00"))
+    String time = new Date().format('HHmmss', TimeZone.getTimeZone("GMT+08:00"))
+    if (isDebug) {
+        return version + ".$today.$time." + getRevisionDescription()
+    }
+    return version + ".$today." + getRevisionDescription()
+}
+
+// 获取修订版本 git 提交次数
+static def getRevisionNumber() {
+    Process process = "git rev-list --count HEAD".execute()
+    process.waitFor()
+    return process.getText().toInteger()
+}
+
+// 获取修订版本最后一次 git 记录后6位
+static def getRevisionDescription() {
+    String desc = 'git describe --always'.execute().getText().trim()
+    return (desc == null || desc.size() == 0) ? new Date().format("yyMMdd") : desc.substring(desc.size() - 6)
 }

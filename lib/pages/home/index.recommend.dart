@@ -6,6 +6,7 @@ import 'package:leekbox/pages/device_info/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
 import 'package:leekbox/pages/home/components/statistics_line_chart.dart';
+import 'package:leekbox/pages/login/login.dart';
 import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
 import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
@@ -298,6 +299,12 @@ class _IndexRecommendPageState extends State<IndexRecommendPage>
                     context.push(DeviceInfoPage.routeLocation);
                   },
                   child: const Text('设备页'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    context.push(LoginPage.routeLocation);
+                  },
+                  child: const Text('登录页'),
                 ),
                 ElevatedButton(
                   onPressed: () {},

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -50,20 +51,39 @@ class _SplashPageState extends State<SplashPage> {
     if (mounted) context.go(LoginPage.routeLocation);
   }
 
+  final String launcher_def = 'assets/images/ic_launcher.png';
+  String launcher_birthday = 'assets/images/happy_birthday.png';
+
+  // 默认
+  late String launcher = launcher_def;
+
   @override
   void initState() {
     super.initState();
+
+    initLauncher();
 
     /// 在加载后初始化
     startTime();
   }
 
-  final _bg = 'assets/images/happy_birthday.png';
+  /// 更换背景图
+  void initLauncher() {
+    // 今天是否他的生日
+    if (Random().nextBool()) {
+      launcher = launcher_birthday;
+    }
+    // 网络下载 新的图片， 没有的话使用默认的
+    String launcher_birthday_net = '';
+    // 节日性图片
+    String ic_launcher_net = '';
+  }
 
   @override
   Widget build(BuildContext context) {
     /// 预缓存背景图片
-    precacheImage(AssetImage(_bg), context);
+    precacheImage(AssetImage(launcher_def), context);
+    precacheImage(AssetImage(launcher_birthday), context);
 
     ///
     return Stack(
@@ -72,22 +92,27 @@ class _SplashPageState extends State<SplashPage> {
         ConstrainedBox(
           constraints: const BoxConstraints.expand(),
           child: Image.asset(
-            _bg,
+            launcher,
             fit: BoxFit.fill,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 30.0, 10.0, 0.0),
-          child: ElevatedButton(
-            onPressed: () {
-              goHome();
-            },
+          padding: const EdgeInsets.fromLTRB(0.0, 30.0, 25.0, 0.0),
+          child: GestureDetector(
+            onTap: () async => goHome(),
             child: Text(
               "${count}s 跳过",
               style: const TextStyle(color: Colors.white, fontSize: 12.0),
             ),
           ),
-        )
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(0.0, 30.0, 90.0, 0.0),
+          child: Text(
+            "已预加载",
+            style: TextStyle(color: Colors.white, fontSize: 12.0),
+          ),
+        ),
       ],
     );
   }
