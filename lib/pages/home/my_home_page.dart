@@ -12,7 +12,6 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-import 'package:tuple/tuple.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -58,13 +57,10 @@ class _MyHomePageState extends State<MyHomePage>
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
     _pageController = PageController(initialPage: 0);
-    const t = Tuple2<String, int>('a', 10);
-
-    Log.debug(t.item1); // prints 'a'
-    Log.debug(t.item2); // prints '10'
-    final t2 = t.withItem1('c');
-    Log.debug(t.item1); // prints 'c'
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -288,25 +284,4 @@ class _MyHomePageState extends State<MyHomePage>
       ),
     );
   }
-
-  void showModal(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content: const Text('Example Dialog'),
-        actions: <TextButton>[
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Close'),
-          )
-        ],
-      ),
-    );
-  }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox/pages/setting/about.page.dart';
 import 'package:leekbox/pages/setting/general.setting.dart';
+import 'package:leekbox/state/auth.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 import 'account_security.page.dart';
@@ -13,7 +14,7 @@ import 'new_notification.page.dart';
 import 'privacy.page.dart';
 
 ///
-class SettingPage extends StatefulWidget {
+class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
 
   static String get routeName => 'settings';
@@ -21,24 +22,27 @@ class SettingPage extends StatefulWidget {
   static String get routeLocation => '/$routeName';
 
   @override
-  _SettingPageState createState() => _SettingPageState();
-}
-
-class _SettingPageState extends State<SettingPage>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
+  Widget build(BuildContext context, WidgetRef ref) {
     Log.debug('SettingPage build...');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: MyAppBar(
-        title: '设置',
-      ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SingleChildScrollView(
-          child: getBody(context),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('设置'),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+          SliverToBoxAdapter(
+            child: ElevatedButton(
+              onPressed: () async {
+                ref.watch(authNotifierProvider.notifier).logout();
+              },
+              child: const Text('退出'),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -83,7 +87,4 @@ class _SettingPageState extends State<SettingPage>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

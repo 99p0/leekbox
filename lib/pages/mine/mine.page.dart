@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
+import 'package:leekbox/common/widgets/photoview.dart';
 import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 import 'card_package.page.dart';
 import 'moneybags.page.dart';
+import 'user_profile.page.dart';
 import 'vip_intro.page.dart';
 
 ///
@@ -28,22 +31,18 @@ class _MinePageState extends State<MinePage>
     super.build(context);
     Log.debug('MinePage build...');
 
-    // precacheImage(
-    //     const NetworkImage(
-    //         'https://tse3-mm.cn.bing.net/th/id/OIP-C.i1PziVBVsRfRbqQyRhGAeQAAAA?pid=ImgDet&rs=1'),
-    //     context);
-
-    // preload(BuildContext context) {
-    //   var configuration = createLocalImageConfiguration(context);
-    //   for (var src in ['图片地址1', '图片地址2', '图片地址13']) {
-    //     NetworkImage(src).resolve(configuration);
-    //   }
-    // }
-
-    return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: SingleChildScrollView(
-        child: getBody(context),
+    final themeData = Theme.of(context);
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(),
+          SliverToBoxAdapter(
+            child: _buildCard(),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+        ],
       ),
     );
   }
@@ -54,8 +53,6 @@ class _MinePageState extends State<MinePage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Gaps.vGap4,
-          _buildCard(),
           Gaps.vGap4,
           MySetCell(
             title: '荷包',
@@ -86,13 +83,10 @@ class _MinePageState extends State<MinePage>
 
   Widget _buildCard() {
     return Container(
-      constraints: const BoxConstraints(
-        minWidth: double.infinity,
-        minHeight: 210,
-      ),
+      width: double.infinity,
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 25),
-      child: InkWell(
-        onTap: () => {},
+      child: GestureDetector(
+        onTap: () => {context.push(UserProfilePage.routeLocation)},
         child: SizedBox(
           width: double.infinity,
           child: Row(
@@ -101,15 +95,17 @@ class _MinePageState extends State<MinePage>
               Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: _showAvatarView(context,
-                        const AssetImage('assets/images/def_avatar.png')),
+                    onTap: () => {
+                      _showAvatarView(
+                          context, ImageUtils.getAssetImage('def_avatar'))
+                    },
                     child: SizedBox(
                       width: 55.w,
                       height: 55.w,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          'assets/images/def_avatar.png',
+                          ImageUtils.getImgPath('def_avatar'),
                           gaplessPlayback: true,
                         ),
                       ),
@@ -157,7 +153,9 @@ class _MinePageState extends State<MinePage>
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               InkWell(
-                                onTap: () => {},
+                                onTap: () => {
+                                  context.push(UserProfilePage.routeLocation)
+                                },
                                 child: const Icon(
                                   Icons.qr_code,
                                   size: 14,
@@ -166,7 +164,9 @@ class _MinePageState extends State<MinePage>
                               ),
                               Gaps.hGap15,
                               InkWell(
-                                onTap: () => {},
+                                onTap: () => {
+                                  context.push(UserProfilePage.routeLocation)
+                                },
                                 child: const Icon(
                                   Icons.arrow_forward_ios,
                                   size: 14,
@@ -223,11 +223,12 @@ class _MinePageState extends State<MinePage>
   }
 
   _showAvatarView(context, ImageProvider image) {
-    // showDialog(
-    //     barrierColor: Colors.black,
-    //     context: context,
-    //     builder: (context) {
-    //       return PhotoViewPage(imageProvider: image, heroTag: '');
-    //     });
+    showDialog(
+      barrierColor: Colors.black,
+      context: context,
+      builder: (context) {
+        return PhotoViewPage(imageProvider: image, heroTag: '');
+      },
+    );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -18,8 +17,7 @@ class AboutPage extends StatefulWidget {
   _AboutPageState createState() => _AboutPageState();
 }
 
-class _AboutPageState extends State<AboutPage>
-    with AutomaticKeepAliveClientMixin {
+class _AboutPageState extends State<AboutPage> {
   @override
   void initState() {
     super.initState();
@@ -47,17 +45,18 @@ class _AboutPageState extends State<AboutPage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     Log.debug('AboutPage build...');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: const MyAppBar(
-        title: '关于',
-      ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SingleChildScrollView(
-          child: getBody(context),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('关于'),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+        ],
       ),
     );
   }
@@ -103,7 +102,4 @@ class _AboutPageState extends State<AboutPage>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

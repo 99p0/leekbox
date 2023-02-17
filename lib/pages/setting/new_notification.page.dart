@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -21,15 +20,17 @@ class _NewNotificationPageState extends State<NewNotificationPage>
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('NewNotificationPage build...');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: MyAppBar(
-        title: '新消息通知',
-      ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SingleChildScrollView(
-          child: getBody(context),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('新消息通知'),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+        ],
       ),
     );
   }

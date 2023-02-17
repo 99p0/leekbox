@@ -11,7 +11,7 @@ class SplashPage extends StatefulWidget {
 
   static String get routeName => 'splash';
 
-  static String get routeLocation => '/';
+  static String get routeLocation => '/$routeName';
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -53,12 +53,14 @@ class _SplashPageState extends State<SplashPage> {
 
   final String launcher_def = 'assets/images/ic_launcher.png';
   String launcher_birthday = 'assets/images/happy_birthday.png';
+  String launcher_special = 'assets/images/launcher_lc.png';
 
   // 默认
   late String launcher = launcher_def;
 
   @override
   void initState() {
+    _precache();
     super.initState();
 
     initLauncher();
@@ -71,7 +73,7 @@ class _SplashPageState extends State<SplashPage> {
   void initLauncher() {
     // 今天是否他的生日
     if (Random().nextBool()) {
-      launcher = launcher_birthday;
+      launcher = launcher_special;
     }
     // 网络下载 新的图片， 没有的话使用默认的
     String launcher_birthday_net = '';
@@ -79,12 +81,14 @@ class _SplashPageState extends State<SplashPage> {
     String ic_launcher_net = '';
   }
 
-  @override
-  Widget build(BuildContext context) {
+  void _precache() {
     /// 预缓存背景图片
     precacheImage(AssetImage(launcher_def), context);
     precacheImage(AssetImage(launcher_birthday), context);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     ///
     return Stack(
       alignment: const Alignment(1.0, -1.0), // 右上角对齐

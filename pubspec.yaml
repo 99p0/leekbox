@@ -39,7 +39,8 @@ dependencies:
   # 官方推荐：状态管理 + 路由   VS  getx
   flutter_riverpod: ^2.2.0
   hooks_riverpod: ^2.1.1
-  go_router: ^6.0.4
+  riverpod_annotation: ^1.2.1
+  go_router: ^6.0.8
   #  字体
   #  google_fonts: ^4.0.3
   #
@@ -80,6 +81,8 @@ dependencies:
   #  video_player: ^2.4.9
   # 打开链接
   url_launcher: ^6.1.9
+  #
+  #  animated_text_kit: ^4.2.2
   # 版本升级
   r_upgrade: ^0.4.1
   version: ^3.0.2
@@ -186,6 +189,8 @@ dev_dependencies:
   flutter_gen_runner: ^5.2.0
   json_serializable: ^6.6.1
   freezed: ^2.3.2
+  go_router_builder: ^1.1.0
+  riverpod_generator: ^1.2.0
   #
   drift_dev: ^2.5.1
   #  logo 生成插件   flutter pub run flutter_launcher_icons:main

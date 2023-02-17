@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
 
@@ -30,15 +29,17 @@ class _GeneralSettingPageState extends State<GeneralSettingPage> {
     // super.build(context);
 
     Log.debug('GeneralSettingPage build');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: MyAppBar(
-        title: '通用',
-      ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SingleChildScrollView(
-          child: getBody(context),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('通用'),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+        ],
       ),
     );
   }

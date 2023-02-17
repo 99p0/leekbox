@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -21,15 +20,17 @@ class _HelpPageState extends State<HelpPage>
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('HelpPage build...');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: MyAppBar(
-        title: '帮助与反馈',
-      ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SingleChildScrollView(
-          child: getBody(context),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('帮助与反馈'),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
+        ],
       ),
     );
   }

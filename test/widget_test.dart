@@ -8,6 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:leekbox/my_app.dart';
+import 'package:leekbox_infra/log/log.dart';
+import 'package:tuple/tuple.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -25,5 +27,12 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+
+    const t = Tuple2<String, int>('a', 10);
+
+    Log.debug(t.item1); // prints 'a'
+    Log.debug(t.item2); // prints '10'
+    final t2 = t.withItem1('c');
+    Log.debug(t.item1); // prints 'c'
   });
 }

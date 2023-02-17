@@ -19,15 +19,17 @@ class _NoticePageState extends State<NoticePage>
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('NoticePage build');
+    final themeData = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '消息',
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-      ),
-      body: const Center(
-        child: Text('Hello World'),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('消息'),
+          ),
+          SliverToBoxAdapter(
+            child: Container(),
+          ),
+        ],
       ),
     );
   }

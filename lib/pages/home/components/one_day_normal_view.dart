@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/utils/date_util.dart';
@@ -37,7 +36,7 @@ class TimeAndWordView extends StatelessWidget {
                   onTap: () async {},
                   child: Text(
                     '${DateUtil.getNowTimeString()}好~',
-                    style: Theme.of(context).textTheme.headline1?.copyWith(
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
                         ),
@@ -46,7 +45,7 @@ class TimeAndWordView extends StatelessWidget {
                 Gaps.vGap10,
                 Text(
                   words.word,
-                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.normal,
                       ),

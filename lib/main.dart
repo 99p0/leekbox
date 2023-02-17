@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
 
@@ -22,8 +22,6 @@ void main() {
     //   Log.error(exception);
     // }));
 
-    // await SpUtil.getInstance();
-
     // 全屏模式 SystemUiMode.edgeToEdge
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
@@ -32,13 +30,17 @@ void main() {
       DeviceOrientation.portraitUp,
     ]);
 
-    ///
+    /// 开发模式
+    /// DevicePreview(
+    //     enabled: false, //kDebugMode,
+    //     builder: (context) => const MyApp(),
+    //   )
     runApp(
-      ProviderScope(
-        child: DevicePreview(
-          enabled: false, //kDebugMode,
-          builder: (context) => const MyApp(),
-        ),
+      const ProviderScope(
+        observers: [
+          StateLogger(),
+        ],
+        child: MyApp(),
       ),
     );
 

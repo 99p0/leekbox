@@ -27,7 +27,7 @@ class MyApp extends ConsumerWidget {
       ///  是否 置灰： 纪念某个时刻return
       child: ColorFiltered(
         colorFilter: const ColorFilter.mode(
-          Colors.transparent, //Colors.grey
+          Colors.transparent,
           BlendMode.color,
         ),
 
@@ -38,81 +38,72 @@ class MyApp extends ConsumerWidget {
           dismissOtherOnShow: true,
           movingOnWindowChange: false,
           textPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-
-          // textStyle: const TextStyle(fontSize: 19.0, color: Colors.white),
-          // backgroundColor: Colors.grey,
           animationCurve: Curves.easeIn,
           animationBuilder: const Miui10AnimBuilder(),
           animationDuration: const Duration(milliseconds: 200),
 
-          /// 全剧下拉配置
-          child: refreshScaffold(
-            /// 屏幕适配: 填入设计稿中设备的屏幕尺寸,单位dp
-            child: ScreenUtilInit(
-              designSize: const Size(360, 690),
-              minTextAdapt: true,
-              splitScreenMode: true,
-              useInheritedMediaQuery: true,
-              builder: (context, child) {
-                /// 动态主题
-                return DynamicColorBuilder(
-                    builder: (lightDynamic, darkDynamic) {
+          /// ScreenUtil
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            useInheritedMediaQuery: true,
+            builder: (context, child) {
+              /// 动态主题
+              return DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
+                /// app 入口
+                return MaterialApp.router(
+                  /// go_router
+                  routerConfig: router,
+                  // routeInformationParser: router.routeInformationParser,
+                  // routerDelegate: router.routerDelegate,
+                  // routeInformationProvider: router.routeInformationProvider,
+
+                  /// theme use material 3
+                  theme: ThemeData(
+                    colorScheme: lightDynamic ?? lightColorScheme,
+                    useMaterial3: true,
+                  ),
+                  darkTheme: ThemeData(
+                    colorScheme: darkDynamic ?? darkColorScheme,
+                    useMaterial3: true,
+                  ),
+
+                  /// localization
+                  localizationsDelegates: const [
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                    RefreshLocalizations.delegate,
+                    S.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+
                   ///
-                  return MaterialApp.router(
-                    /// go_router
-                    routeInformationParser: router.routeInformationParser,
-                    routerDelegate: router.routerDelegate,
-                    routeInformationProvider: router.routeInformationProvider,
+                  debugShowCheckedModeBanner: true,
 
-                    /// theme use material 3
-                    theme: ThemeData(
-                      colorScheme: lightDynamic ?? lightColorScheme,
-                      useMaterial3: true,
-                      visualDensity: VisualDensity.adaptivePlatformDensity,
-                      // fontFamily: "PingFangSC",
-                    ),
-                    darkTheme: ThemeData(
-                      colorScheme: darkDynamic ?? darkColorScheme,
-                      useMaterial3: true,
-                      visualDensity: VisualDensity.adaptivePlatformDensity,
-                      // fontFamily: "PingFangSC",
-                    ),
+                  ///
+                  title: '',
 
-                    /// localization
-                    localizationsDelegates: const [
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                      RefreshLocalizations.delegate,
-                      S.delegate,
-                    ],
-                    supportedLocales: S.delegate.supportedLocales,
+                  ///
+                  builder: (BuildContext context, Widget? child) {
+                    Log.debug('root builder...');
+                    // 保证文字大小不受手机系统设置影响 防止UI变形
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(
+                        textScaleFactor: 1.0,
+                      ),
+                      child: GestureDetector(
+                        onTap: () => _hideKeyboard(context),
+                        child: child,
+                      ),
+                    );
+                  },
 
-                    debugShowCheckedModeBanner: false,
-                    checkerboardOffscreenLayers: false,
-                    checkerboardRasterCacheImages: false,
-                    showPerformanceOverlay: false,
-                    title: 'LEEKBOX',
-
-                    ///
-                    builder: (BuildContext context, Widget? child) {
-                      Log.debug('root builder...');
-                      // hideKeyboard(context);
-                      // 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
-                      return MediaQuery(
-                        data: MediaQuery.of(context).copyWith(
-                          textScaleFactor: 1.0,
-                        ),
-                        child: GestureDetector(
-                          onTap: () => hideKeyboard(context),
-                          child: child,
-                        ),
-                      );
-                    },
-                  );
-                });
-              },
-            ),
+                  /// others settings
+                );
+              });
+            },
           ),
         ),
       ),
@@ -120,7 +111,7 @@ class MyApp extends ConsumerWidget {
   }
 
   /// 下拉刷新全局配置
-  Widget refreshScaffold({required Widget child}) => RefreshConfiguration(
+  Widget _refreshScaffold({required Widget child}) => RefreshConfiguration(
         // 配置默认头部指示器,假如你每个页面的头部指示器都一样的话,你需要设置这个
         headerBuilder: () => const WaterDropHeader(),
         // 配置默认底部指示器
@@ -146,7 +137,7 @@ class MyApp extends ConsumerWidget {
       );
 
   ///
-  void hideKeyboard(BuildContext context) {
+  void _hideKeyboard(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
       FocusManager.instance.primaryFocus?.unfocus();

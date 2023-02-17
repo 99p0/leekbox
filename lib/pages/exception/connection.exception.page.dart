@@ -2,7 +2,7 @@ import 'package:app_settings/app_settings.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 
@@ -28,22 +28,19 @@ class ConnectionExceptionPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
-                child: GestureDetector(
-                  onTap: () => context.push('/'),
-                  child: AvatarGlow(
-                    glowColor: Colors.blue,
-                    endRadius: 110.0,
-                    child: Material(
-                      // Replace this child with your own
-                      elevation: 8.0,
-                      shape: const CircleBorder(),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[100],
-                        radius: 55.0,
-                        child: Image.asset(
-                          'assets/images/no_network.png',
-                          // height: 290,
-                        ),
+                child: AvatarGlow(
+                  glowColor: Colors.blue,
+                  endRadius: 90.0,
+                  child: Material(
+                    // Replace this child with your own
+                    elevation: 8.0,
+                    shape: const CircleBorder(),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.grey[100],
+                      radius: 45.0,
+                      child: Image.asset(
+                        ImageUtils.getImgPath('no_network'),
+                        // height: 290,
                       ),
                     ),
                   ),
