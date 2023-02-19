@@ -18,6 +18,22 @@ class TongjiPage extends StatefulWidget {
 class _TongjiPageState extends State<TongjiPage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   @override
+  void initState() {
+    super.initState();
+    Log.debug('TongjiPage initState...');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   bool get wantKeepAlive => true;
 
   @override
@@ -30,6 +46,8 @@ class _TongjiPageState extends State<TongjiPage>
         slivers: [
           const SliverAppBar(
             title: Text('消息'),
+            automaticallyImplyLeading: false,
+            centerTitle: false,
           ),
           SliverToBoxAdapter(
             child: Column(

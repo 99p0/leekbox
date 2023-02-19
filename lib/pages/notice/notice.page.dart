@@ -16,6 +16,22 @@ class NoticePage extends StatefulWidget {
 class _NoticePageState extends State<NoticePage>
     with AutomaticKeepAliveClientMixin {
   @override
+  void initState() {
+    super.initState();
+    Log.debug('NoticePage initState...');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('NoticePage build');
@@ -25,6 +41,8 @@ class _NoticePageState extends State<NoticePage>
         slivers: [
           const SliverAppBar(
             title: Text('消息'),
+            automaticallyImplyLeading: false,
+            centerTitle: false,
           ),
           SliverToBoxAdapter(
             child: Container(),

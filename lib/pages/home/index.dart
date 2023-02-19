@@ -44,6 +44,7 @@ class _IndexPageState extends State<IndexPage>
     animationController?.forward(); //
 
     super.initState();
+    Log.debug('IndexPage initState...');
 
     ///
     initConnectivity();
@@ -90,12 +91,8 @@ class _IndexPageState extends State<IndexPage>
 
   @override
   void dispose() {
-    ///
     _connectivitySubscription.cancel();
-
-    ///
     animationController?.dispose();
-
     super.dispose();
   }
 
@@ -221,7 +218,7 @@ class _IndexPageState extends State<IndexPage>
                                     '三小时前',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline1
+                                        .headlineSmall
                                         ?.copyWith(fontSize: 10.0),
                                   ),
                                 ],
@@ -243,6 +240,8 @@ class _IndexPageState extends State<IndexPage>
     "Disruptor是LMAX开发的一个高性能队列",
     "回来后咱看看这几套吧，如果还没有卖的话",
   ];
+
+  bool showBarrier = false;
 
   @override
   Widget build(BuildContext context) {
@@ -291,6 +290,31 @@ class _IndexPageState extends State<IndexPage>
           SliverToBoxAdapter(
             child: getBody(context),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                width: 300,
+                height: 300,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: (() async {
+                          setState(() {
+                            showBarrier = true;
+                          });
+                          await Future.delayed(Duration(seconds: 5));
+                          setState(() {
+                            showBarrier = false;
+                          });
+                        }),
+                        child: Text('显示 barrier')),
+                    if (showBarrier)
+                      ModalBarrier(
+                        color: Colors.black38,
+                      ),
+                  ],
+                )),
+          ),
 
           /// 底线
           SliverFixedExtentList(
@@ -319,10 +343,8 @@ class _IndexPageState extends State<IndexPage>
 
   Widget _buildSliverAppBar() {
     return const SliverAppBar(
-      automaticallyImplyLeading: true,
-      //标题是否居中
+      automaticallyImplyLeading: false,
       centerTitle: false,
-      //标题间距
       title: Text("因律社群"),
       // expandedHeight: 190,
       floating: false,
@@ -374,6 +396,12 @@ class _IndexPageState extends State<IndexPage>
                 GoRouter.of(context).push(LoginPage.routeLocation);
               },
               child: const Text('登录页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showToast('$_connectionStatus');
+              },
+              child: Text('$_connectionStatus'),
             ),
           ],
         ),

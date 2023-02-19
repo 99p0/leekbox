@@ -118,8 +118,8 @@ class LoginPage extends ConsumerWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        AndroidBackDesktop.backToDesktop(); //设置为返回不退出app
-        return false; //一定要return false
+        AndroidBackDesktop.backToDesktop();
+        return false;
       },
       child: Scaffold(
         appBar: PreferredSize(
@@ -138,19 +138,28 @@ class LoginPage extends ConsumerWidget {
             Gaps.vGap100,
             logoImageArea,
             Gaps.vGap200,
+            Gaps.vGap100,
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               height: 50,
               child: buildBtn(
-                  "支付宝授权登录",
-                  Theme.of(context).primaryColor,
-                  Colors.white,
-                  Colors.white,
-                  Theme.of(context).primaryColor,
-                  () {}),
+                "支付宝授权登录",
+                Theme.of(context).primaryColor,
+                Colors.white,
+                Colors.white,
+                Theme.of(context).primaryColor,
+                () async {
+                  ref.watch(authNotifierProvider.notifier).login(
+                        "myEmail",
+                        "myPassword",
+                      );
+                  // 如果有location的话，跳转过去
+                  if (from != null) context.go(from!);
+                },
+              ),
             ),
-            Gaps.vGap50,
-            thirdLoginArea,
+
+            // thirdLoginArea,
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,

@@ -60,12 +60,9 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    _precache();
     super.initState();
 
     initLauncher();
-
-    /// 在加载后初始化
     startTime();
   }
 
@@ -89,6 +86,8 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    _precache();
+
     ///
     return Stack(
       alignment: const Alignment(1.0, -1.0), // 右上角对齐

@@ -27,6 +27,22 @@ class _MinePageState extends State<MinePage>
   bool get wantKeepAlive => true;
 
   @override
+  void initState() {
+    super.initState();
+    Log.debug('MinePage initState...');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('MinePage build...');
@@ -35,7 +51,10 @@ class _MinePageState extends State<MinePage>
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(),
+          const SliverAppBar(
+            automaticallyImplyLeading: false,
+            centerTitle: false,
+          ),
           SliverToBoxAdapter(
             child: _buildCard(),
           ),

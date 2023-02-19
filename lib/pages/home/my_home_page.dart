@@ -10,6 +10,7 @@ import 'package:leekbox/pages/notice/notice.page.dart';
 import 'package:leekbox/pages/tongji/tongji.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
@@ -26,9 +27,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
-  ///
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   final bool _colorful = true;
 
   /// 当前的索引值
@@ -55,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
+    Log.debug('MyHomePage initState...');
+    //
     WidgetsBinding.instance?.addObserver(this);
     _pageController = PageController(initialPage: 0);
   }
@@ -76,17 +76,17 @@ class _MyHomePageState extends State<MyHomePage>
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.inactive:
-        //  应用程序处于闲置状态并且没有收到用户的输入事件。
-        //注意这个状态，在切换到后台时候会触发，所以流程应该是先冻结窗口，然后停止UI
+        // 应用程序处于闲置状态并且没有收到用户的输入事件。
+        // 注意这个状态，在切换到后台时候会触发，所以流程应该是先冻结窗口，然后停止UI
         Log.debug('>AppLifecycleState.inactive');
         break;
       case AppLifecycleState.paused:
-//      应用程序处于不可见状态
+        // 应用程序处于不可见状态
         Log.debug('>AppLifecycleState.paused');
         break;
       case AppLifecycleState.resumed:
-        //    进入应用时候不会触发该状态
-        //  应用程序处于可见状态，并且可以响应用户的输入事件。它相当于 Android 中Activity的onResume。
+        // 进入应用时候不会触发该状态
+        // 应用程序处于可见状态，并且可以响应用户的输入事件。它相当于 Android 中Activity的onResume。
         Log.debug('>AppLifecycleState.resumed');
         break;
       case AppLifecycleState.detached:
@@ -99,14 +99,16 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // todo 添加水印
-    // if (mounted) addWatermark(context);
+    //  添加水印
+    if (mounted) addWatermark(context);
   }
 
   /// 水印
   Future<void> addWatermark(BuildContext context) async {
     Log.debug('添加水印 ...');
-    String version = '1.10.201';
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    String version = packageInfo.version;
     // 防止 widget 尚未加载完成
     Future<void>.delayed(const Duration(milliseconds: 500), () {
       WatermarkController.theOne.addWatermark(context, 'LEEKBOX V$version');
@@ -128,41 +130,8 @@ class _MyHomePageState extends State<MyHomePage>
         // Important: to remove background of bottom navigation (making the bar transparent doesn't help)
         extendBody: true,
         backgroundColor: Colors.transparent,
-        key: _scaffoldKey,
-        // appBar: _currentIndex == 0
-        //     ? AppBar(
-        //         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        //         leadingWidth: 42.w,
-        //         leading: GestureDetector(
-        //           onTap: () => _scaffoldKey.currentState?.openDrawer(),
-        //           child: Padding(
-        //             padding: const EdgeInsets.only(left: 15.0),
-        //             child: _buildCircleAvatar(),
-        //           ),
-        //         ),
-        //         actions: <Widget>[
-        //           TextButton(
-        //             child: const Text('Colorful?'),
-        //             onPressed: () {
-        //               setState(() {
-        //                 _colorful = !_colorful;
-        //               });
-        //             },
-        //           ),
-        //           IconButton(
-        //             icon: const Icon(Icons.color_lens_outlined),
-        //             onPressed: () {
-        //               _scaffoldKey.currentState?.openEndDrawer();
-        //             },
-        //           ),
-        //         ],
-        //       )
-        //     : null,
-        // drawer: const MyDrawer(),
-        // endDrawer: const MyEndDrawer(),
-        // drawerEdgeDragWidth: 0.0,// 去除滑动打开
         body: PageView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(), //禁止页面左右滑动切换
           controller: _pageController,
           children: _pages,
           onPageChanged: (index) {

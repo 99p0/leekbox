@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:leekbox/common/models/user_role.dart';
 import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/exception/connection.exception.page.dart';
-import 'package:leekbox/pages/exception/error.page.dart';
 import 'package:leekbox/pages/home/my_home_page.dart';
 import 'package:leekbox/pages/home/not_login_homepage.dart';
 import 'package:leekbox/pages/login/login.dart';
@@ -33,7 +31,6 @@ import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
 
 import '../state/auth.dart';
-import '../state/permissions.dart';
 
 /// This notifier is meant to implement the [Listenable] our [GoRouter] needs.
 ///
@@ -78,6 +75,9 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
   /// Redirects the user when our authentication changes
   String? redirect(BuildContext context, GoRouterState state) {
     if (this.state.isLoading) return null;
+    //
+    if (noAuthPages.contains(state.location)) return null;
+
     // 是否登录页
     final isLoggingIn = state.location == LoginPage.routeLocation;
 
@@ -107,21 +107,8 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
         ),
         GoRoute(
           path: MyHomePage.routeLocation,
+          name: MyHomePage.routeName,
           builder: (context, state) => const MyHomePage(),
-          redirect: (context, state) async {
-            if (state.location == MyHomePage.routeLocation) return null;
-
-            final roleListener = ProviderScope.containerOf(context).listen(
-              permissionsProvider.select((value) => value.valueOrNull),
-              (previous, next) {},
-            );
-
-            final userRole = roleListener.read();
-            final redirectTo = userRole?.redirectBasedOn(state.location);
-
-            roleListener.close();
-            return redirectTo;
-          },
         ),
 
         ///
@@ -130,11 +117,8 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: UserProfilePage.routeName,
           builder: (context, state) => const UserProfilePage(),
         ),
-        GoRoute(
-          path: ErrorPage.routeLocation,
-          name: ErrorPage.routeName,
-          builder: (context, state) => const ErrorPage(),
-        ),
+
+        ///
         GoRoute(
           path: ConnectionExceptionPage.routeLocation,
           name: ConnectionExceptionPage.routeName,
@@ -161,8 +145,7 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           builder: (context, state) => const RecentNoticePage(),
         ),
 
-        // ********** ********
-        // 多语言
+        /// 多语言
         GoRoute(
           path: LanguagesPage.routeLocation,
           name: LanguagesPage.routeName,
@@ -198,9 +181,8 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: StorageManagePage.routeName,
           builder: (context, state) => const StorageManagePage(),
         ),
-        // ********** ********
-        // ********** ********
-        // 账户与安全
+
+        /// 账户与安全
         GoRoute(
           path: AccountAndSecurityPage.routeLocation,
           name: AccountAndSecurityPage.routeName,
@@ -235,8 +217,8 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: AboutPage.routeName,
           builder: (context, state) => const AboutPage(),
         ),
-        // ********** ********
-        // ********** ********
+
+        ///
         GoRoute(
           path: MoneybagsPage.routeLocation,
           name: MoneybagsPage.routeName,
@@ -257,15 +239,14 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: SettingPage.routeName,
           builder: (context, state) => const SettingPage(),
         ),
-        // ********** ********
 
+        /// 隐私页
         GoRoute(
           path: PrivacyPolicyPage.routeLocation,
           name: PrivacyPolicyPage.routeName,
           builder: (context, state) => const PrivacyPolicyPage(),
         ),
-
-        //
+        // 介绍页面
         GoRoute(
           path: IntroScreen.routeLocation,
           name: IntroScreen.routeName,
@@ -307,17 +288,17 @@ final routerNotifierProvider =
 });
 
 /// A simple extension to determine wherever should we redirect our users
-extension RedirecttionBasedOnRole on UserRole {
-  String? redirectBasedOn(String location) {
-    switch (this) {
-      case UserRole.user:
-        return null;
-      case UserRole.guest:
-      case UserRole.none:
-        if (location != NotLoggedInHomePage.routeLocation) {
-          return NotLoggedInHomePage.routeLocation;
-        }
-        return null;
-    }
-  }
-}
+// extension RedirecttionBasedOnRole on UserRole {
+//   String? redirectBasedOn(String location) {
+//     switch (this) {
+//       case UserRole.user:
+//         return null;
+//       case UserRole.guest:
+//       case UserRole.none:
+//         if (location != NotLoggedInHomePage.routeLocation) {
+//           return NotLoggedInHomePage.routeLocation;
+//         }
+//         return null;
+//     }
+//   }
+// }

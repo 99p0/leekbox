@@ -40,7 +40,7 @@ class ErrorPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => context.go('/'),
-                  child: Icon(
+                  child: const Icon(
                     Icons.info_outlined,
                     size: 18,
                     color: Colors.grey,

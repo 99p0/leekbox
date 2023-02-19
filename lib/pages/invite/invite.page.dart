@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:rive/rive.dart';
 
 ///
 class InvitePage extends StatefulWidget {
@@ -10,7 +11,23 @@ class InvitePage extends StatefulWidget {
 }
 
 class _InvitePageState extends State<InvitePage>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    super.initState();
+    Log.debug('InvitePage initState...');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -19,11 +36,23 @@ class _InvitePageState extends State<InvitePage>
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
             title: Text('邀请'),
+            automaticallyImplyLeading: false,
+            centerTitle: false,
           ),
-          SliverToBoxAdapter(
-            child: Container(),
+          SliverFixedExtentList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => Container(
+                      color: Colors.transparent,
+                      alignment: Alignment.center,
+                      child: RiveAnimation.asset(
+                        'assets/rives/raster_graphics.riv',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                childCount: 1),
+            itemExtent: 460.0,
           ),
         ],
       ),

@@ -36,7 +36,7 @@ class CustomWatermarkView extends StatelessWidget {
               style: TextStyle(
                 // const Color(0xFF383838).withOpacity(0.2)
                 color: const Color(0x08000000).withOpacity(0.1),
-                fontSize: 12.5,
+                fontSize: 10,
                 fontWeight: FontWeight.normal,
                 decoration: TextDecoration.none,
               ),
