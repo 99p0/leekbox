@@ -241,8 +241,6 @@ class _IndexPageState extends State<IndexPage>
     "回来后咱看看这几套吧，如果还没有卖的话",
   ];
 
-  bool showBarrier = false;
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -289,31 +287,6 @@ class _IndexPageState extends State<IndexPage>
           ),
           SliverToBoxAdapter(
             child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-                width: 300,
-                height: 300,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    ElevatedButton(
-                        onPressed: (() async {
-                          setState(() {
-                            showBarrier = true;
-                          });
-                          await Future.delayed(Duration(seconds: 5));
-                          setState(() {
-                            showBarrier = false;
-                          });
-                        }),
-                        child: Text('显示 barrier')),
-                    if (showBarrier)
-                      ModalBarrier(
-                        color: Colors.black38,
-                      ),
-                  ],
-                )),
           ),
 
           /// 底线

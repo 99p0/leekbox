@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
@@ -11,8 +13,9 @@ import 'package:leekbox_infra/log/log.dart';
 
 void main() {
   runZonedGuarded(() async {
-    ///
-    WidgetsFlutterBinding.ensureInitialized();
+    /// use 'flutter_native_splash' packages build Splash view
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
     /// 咸鱼 PowerImage图片库
     // PowerImageBinding();
@@ -30,17 +33,17 @@ void main() {
       DeviceOrientation.portraitUp,
     ]);
 
-    /// 开发模式
-    /// DevicePreview(
-    //     enabled: false, //kDebugMode,
-    //     builder: (context) => const MyApp(),
-    //   )
+    ///
     runApp(
-      const ProviderScope(
-        observers: [
+      ProviderScope(
+        observers: const [
           StateLogger(),
         ],
-        child: MyApp(),
+        // 开发模式
+        child: DevicePreview(
+          enabled: false, //kDebugMode,
+          builder: (context) => const MyApp(),
+        ),
       ),
     );
 
@@ -68,5 +71,3 @@ void main() {
     Log.error('stack:: $stack');
   });
 }
-
-void initServices() async {}

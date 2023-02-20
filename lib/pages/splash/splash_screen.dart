@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/pages/login/login.dart';
 import 'package:leekbox_infra/log/log.dart';
@@ -61,7 +62,20 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    Log.debug('SplashPage initState...');
+    initialization();
+  }
 
+  void initialization() async {
+    debugPrint('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('go!');
+    FlutterNativeSplash.remove();
+    Log.debug('FlutterNativeSplash.remove...');
     initLauncher();
     startTime();
   }
@@ -86,6 +100,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    Log.debug('SplashPage build...');
     _precache();
 
     ///

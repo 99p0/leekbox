@@ -38,6 +38,17 @@ samples, guidance on mobile development, and a full API reference.
 
      flutter packages pub run build_runner build
 
+**flutter_native_splash**
+
+    # If you have a flavor called production you would do this:
+    flutter pub run flutter_native_splash:create --flavor production
+
+    # For a flavor with a name staging you would provide it's name like so:
+    flutter pub run flutter_native_splash:create --flavor staging
+
+    # And if you have a local version for devs you could do that:
+    flutter pub run flutter_native_splash:create --flavor development
+
 
 
 **brewhome**
