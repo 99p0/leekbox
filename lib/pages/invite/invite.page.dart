@@ -6,6 +6,10 @@ import 'package:rive/rive.dart';
 class InvitePage extends StatefulWidget {
   const InvitePage({super.key});
 
+  static String get routeName => 'invite';
+
+  static String get routeLocation => '/$routeName';
+
   @override
   _InvitePageState createState() => _InvitePageState();
 }

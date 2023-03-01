@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
 
   /// step2 引导页（app简介说明）
 
-  late Timer _timer;
+  Timer? _timer;
   int count = 3;
 
   startTime() async {
@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
     callback(v) {
       Log.debug('count:: $count');
       count--;
-      if (count == 0) {
+      if (count == 1) {
         goHome();
       } else {
         if (mounted) setState(() {});
@@ -52,13 +52,6 @@ class _SplashPageState extends State<SplashPage> {
     if (mounted) context.go(LoginPage.routeLocation);
   }
 
-  final String launcher_def = 'assets/images/ic_launcher.png';
-  String launcher_birthday = 'assets/images/happy_birthday.png';
-  String launcher_special = 'assets/images/launcher_lc.png';
-
-  // 默认
-  late String launcher = launcher_def;
-
   @override
   void initState() {
     super.initState();
@@ -72,29 +65,52 @@ class _SplashPageState extends State<SplashPage> {
     debugPrint('ready in 2...');
     await Future.delayed(const Duration(seconds: 1));
     debugPrint('ready in 1...');
-    await Future.delayed(const Duration(seconds: 1));
-    debugPrint('go!');
-    FlutterNativeSplash.remove();
-    Log.debug('FlutterNativeSplash.remove...');
     initLauncher();
-    startTime();
   }
 
+  ///
+  final String launcher_def = 'assets/images/ic_launcher.png';
+  String launcher_birthday = 'assets/images/happy_birthday.png';
+  String launcher_special = 'assets/images/launcher_lc.png';
+
+  // 默认
+  late String launcher = launcher_def;
+
   /// 更换背景图
-  void initLauncher() {
-    // 今天是否他的生日
-    if (Random().nextBool()) {
-      launcher = launcher_special;
-    }
+  void initLauncher() async {
     // 网络下载 新的图片， 没有的话使用默认的
     String launcher_birthday_net = '';
     // 节日性图片
     String ic_launcher_net = '';
+    // 今天是否生日
+    if (false) {
+      setState(() {
+        launcher = launcher_birthday;
+      });
+
+      startTime();
+      FlutterNativeSplash.remove();
+      Log.debug('FlutterNativeSplash.remove...');
+    } else {
+      // 今天是否特殊日期
+      if (Random().nextBool()) {
+        setState(() {
+          launcher = launcher_special;
+        });
+        startTime();
+        FlutterNativeSplash.remove();
+        Log.debug('FlutterNativeSplash.remove...');
+      } else {
+        FlutterNativeSplash.remove();
+        Log.debug('FlutterNativeSplash.remove...goHome');
+        goHome();
+      }
+    }
   }
 
   void _precache() {
     /// 预缓存背景图片
-    precacheImage(AssetImage(launcher_def), context);
+    precacheImage(AssetImage(launcher_special), context);
     precacheImage(AssetImage(launcher_birthday), context);
   }
 

@@ -80,7 +80,7 @@ class MyApp extends ConsumerWidget {
                   supportedLocales: S.delegate.supportedLocales,
 
                   ///
-                  debugShowCheckedModeBanner: true,
+                  debugShowCheckedModeBanner: false,
 
                   ///
                   title: '',

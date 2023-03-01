@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/app_toast.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
@@ -15,6 +17,7 @@ import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
 import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:nil/nil.dart';
 import 'package:oktoast/oktoast.dart';
 
 ///
@@ -74,6 +77,8 @@ class _IndexPageState extends State<IndexPage>
   }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    bool hasConnection = await InternetConnectionChecker().hasConnection;
+    Log.debug('hasConnection:: $hasConnection');
     setState(() {
       _connectionStatus = result;
     });
@@ -151,7 +156,7 @@ class _IndexPageState extends State<IndexPage>
       future: getRecentNewsData(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (!snapshot.hasData) {
-          return const SizedBox();
+          return const Nil();
         } else {
           return GestureDetector(
             onTap: () {
@@ -188,44 +193,37 @@ class _IndexPageState extends State<IndexPage>
                   ),
                   SizedBox(
                     height: 60,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                        right: 26,
-                        top: 2,
-                      ),
-                      child: ListView.builder(
-                          itemCount: litemsTop2.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 3.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Gaps.hGap5,
-                                  Expanded(
-                                    child: Text(
-                                      litemsTop2[index],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall
-                                          ?.copyWith(fontSize: 12.0),
-                                    ),
-                                  ),
-                                  Text(
-                                    '三小时前',
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        itemCount: litemsTop2.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    litemsTop2[index],
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headlineSmall
-                                        ?.copyWith(fontSize: 10.0),
+                                        .bodySmall
+                                        ?.copyWith(fontSize: 12.0),
                                   ),
-                                ],
-                              ),
-                            );
-                          }),
-                    ),
+                                ),
+                                Text(
+                                  '三小时前',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(fontSize: 10.0),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                   ),
                 ],
               ),
@@ -250,13 +248,9 @@ class _IndexPageState extends State<IndexPage>
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          // appbar
+          /// appbar
           _buildSliverAppBar(),
 
-          /// 间距
-          // const SliverPadding(
-          //   padding: EdgeInsets.only(top: 5),
-          // ),
           /// 问候语
           SliverToBoxAdapter(
             child: _buildGreetings(context),
@@ -288,21 +282,24 @@ class _IndexPageState extends State<IndexPage>
           SliverToBoxAdapter(
             child: getBody(context),
           ),
+          SliverToBoxAdapter(
+            child: getBody(context),
+          ),
 
           /// 底线
           SliverFixedExtentList(
             delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(
-                      color: Colors.transparent,
-                      alignment: Alignment.center,
-                      child: Text(
-                        '-------- 我是有底线的 --------',
-                        style: themeData.textTheme.bodySmall
-                            ?.copyWith(color: Colors.black26),
-                      ),
-                    ),
-                childCount: 1),
-            itemExtent: 60.0,
+              (context, index) => Container(
+                alignment: Alignment.center,
+                child: Text(
+                  '-------- 我是有底线的 --------',
+                  style: themeData.textTheme.labelSmall
+                      ?.copyWith(color: Colors.black26),
+                ),
+              ),
+              childCount: 1,
+            ),
+            itemExtent: 50.0,
           ),
 
           /// 间距
@@ -315,15 +312,34 @@ class _IndexPageState extends State<IndexPage>
   }
 
   Widget _buildSliverAppBar() {
-    return const SliverAppBar(
+    return SliverAppBar(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      // leading: Builder(builder: (context) {
+      //   return PreferredSize(
+      //     preferredSize: const Size(double.infinity, 120),
+      //     child: _buildGreetings(context),
+      //   );
+      // }),
+      // leadingWidth: double.infinity,
+      title: Text(
+        '因律社群',
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontSize: 14.sp,
+            ),
+      ),
+      centerTitle: true,
       automaticallyImplyLeading: false,
-      centerTitle: false,
-      title: Text("因律社群"),
-      // expandedHeight: 190,
-      floating: false,
-      pinned: true,
-      snap: false,
+      floating: true,
+      // pinned: true,
+      snap: true,
       // forceElevated: true,
+      // stretch: true,
+      // expandedHeight: 200.0,
+      actions: [],
+      // bottom: PreferredSize(
+      //   preferredSize: const Size(double.infinity, 80),
+      //   child: _buildGreetings(context),
+      // ),
     );
   }
 
@@ -332,51 +348,43 @@ class _IndexPageState extends State<IndexPage>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
-          children: [
-            Gaps.hGap10,
-            ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(PrivacyPolicyPage.routeLocation);
-              },
-              child: const Text('隐私页'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(SplashPage.routeLocation);
-              },
-              child: const Text('启动页'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(IntroScreen.routeLocation);
-              },
-              child: const Text('引导页'),
-            ),
-          ],
+        Gaps.hGap10,
+        ElevatedButton(
+          onPressed: () {
+            GoRouter.of(context).push(PrivacyPolicyPage.routeLocation);
+          },
+          child: const Text('隐私页'),
         ),
-        Row(
-          children: [
-            Gaps.hGap10,
-            ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(DeviceInfoPage.routeLocation);
-              },
-              child: const Text('设备页'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(LoginPage.routeLocation);
-              },
-              child: const Text('登录页'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                showToast('$_connectionStatus');
-              },
-              child: Text('$_connectionStatus'),
-            ),
-          ],
+        ElevatedButton(
+          onPressed: () {
+            GoRouter.of(context).push(SplashPage.routeLocation);
+          },
+          child: const Text('启动页'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            GoRouter.of(context).push(IntroScreen.routeLocation);
+          },
+          child: const Text('引导页'),
+        ),
+        Gaps.hGap10,
+        ElevatedButton(
+          onPressed: () {
+            GoRouter.of(context).push(DeviceInfoPage.routeLocation);
+          },
+          child: const Text('设备页'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            GoRouter.of(context).push(LoginPage.routeLocation);
+          },
+          child: const Text('登录页'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            showToast('$_connectionStatus');
+          },
+          child: Text('$_connectionStatus'),
         ),
       ],
     );

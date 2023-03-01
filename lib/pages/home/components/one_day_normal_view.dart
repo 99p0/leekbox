@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:leekbox/common/utils/date_util.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 
 import 'lol_words.dart';
 
-///当前时间提示 and 美丽的句子
+/// 当前时间提示 and 美丽的句子
 class TimeAndWordView extends StatelessWidget {
   final AnimationController animationController;
   final Animation<Offset> animation;
@@ -37,17 +36,17 @@ class TimeAndWordView extends StatelessWidget {
                   child: Text(
                     '${DateUtil.getNowTimeString()}好~',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
+                        // fontWeight: FontWeight.bold,
+                        // fontSize: 18.sp,
                         ),
                   ),
                 ),
                 Gaps.vGap10,
                 Text(
                   words.word,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.normal,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      // fontSize: 13.sp,
+                      // fontWeight: FontWeight.normal,
                       ),
                 ),
                 // Gaps.vGap8,

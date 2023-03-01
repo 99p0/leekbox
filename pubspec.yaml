@@ -14,6 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.5
+  phosphor_flutter: ^1.4.0
   mockito: ^5.3.2
   animations: ^2.0.7
   nil: ^1.1.1
@@ -31,29 +32,33 @@ dependencies:
   #  sign_in_with_apple: ^4.2.0
   #  local_auth: ^2.1.2
   # 存储
-  shared_preferences: ^2.0.17
+  shared_preferences: ^2.0.18
   #
   flutter_native_splash: ^2.2.18
   #  动态主题
   dynamic_color: ^1.6.2
   # 文件读写
-  path_provider: ^2.0.12
+  path_provider: ^2.0.13
   # 官方推荐：状态管理 + 路由   VS  getx
-  flutter_riverpod: ^2.2.0
-  hooks_riverpod: ^2.1.1
-  riverpod_annotation: ^1.2.1
-  go_router: ^6.0.9
+  flutter_riverpod: ^2.3.0
+  hooks_riverpod: ^2.3.0
+  riverpod_annotation: ^2.0.0
+  go_router: ^6.2.0
   #  字体
   #  google_fonts: ^4.0.3
   #
   package_info_plus: ^3.0.3
   device_info_plus: ^8.1.0
+  #  网络检查
   connectivity_plus: ^3.0.3
+  internet_connection_checker: ^1.0.0+1
   #  network_info_plus: ^3.0.2
   # 适配屏幕
   flutter_screenutil: ^5.6.1
   #  下拉 刷新
   pull_to_refresh: ^2.0.0
+  #  取色
+  palette_generator: ^0.3.3+2
   # 权限
   permission_handler: ^10.1.0
   # card 角标 https://github.com/kalaganov/corner_decoration
@@ -82,7 +87,7 @@ dependencies:
   #  chewie: ^1.3.6
   #  video_player: ^2.4.9
   # 打开链接
-  url_launcher: ^6.1.9
+  url_launcher: ^6.1.10
   #
   #  animated_text_kit: ^4.2.2
   # 版本升级
@@ -108,8 +113,8 @@ dependencies:
   lottie: ^2.2.0
   rive: ^0.10.1
   #  网络请求
-  dio: ^5.0.0
-  dio_cookie_manager: ^2.1.0
+  dio: ^5.0.1
+  dio_cookie_manager: ^2.1.1
   dio_http2_adapter: ^2.1.0
   pretty_dio_logger: ^1.3.1
   cookie_jar: ^3.0.1
@@ -134,7 +139,7 @@ dependencies:
   #  fl_chart: ^0.66.0
   #  skeletons: ^0.0.3
   #
-  flutter_svg: ^2.0.1
+  flutter_svg: ^2.0.2
   # 图片缓存
   cached_network_image: ^3.2.3
   # 图片预览
@@ -152,7 +157,7 @@ dependencies:
   # 不同分辨率的手机上查看UI效果
   device_preview: ^1.1.0
   #
-  webview_flutter: ^4.0.2
+  webview_flutter: ^4.0.5
 
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
@@ -171,6 +176,15 @@ dependencies:
   #    path: packages/tflite_flutter_plugin
   #  tflite_flutter_helper:
   #    path: packages/tflite_flutter_helper
+  #  更该项目名：pub global run rename --bundleId com.myDomain.myApp or pub global run rename --appname "MyApp"
+  #  rename: ^2.1.1
+  #
+  swipe_to: ^1.0.2
+  #
+  hidable: ^1.0.3
+  #
+  isar: ^3.0.5
+  isar_flutter_libs: ^3.0.5
   #  项目分包处理
   leekbox_infra:
     path: packages/leekbox_infra
@@ -190,9 +204,17 @@ dev_dependencies:
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.2.0
   json_serializable: ^6.6.1
+  # 数据模型generator
   freezed: ^2.3.2
-  go_router_builder: ^1.1.0
-  riverpod_generator: ^1.2.0
+  # 路由generator
+  go_router_builder: ^1.1.3
+  #  状态管理generator
+  riverpod_generator: ^2.0.0
+  # 国际化generator
+  intl_utils: ^2.8.2
+  #  缓存generator
+  isar_generator: ^3.0.5
+
   #
   drift_dev: ^2.5.1
   #  logo 生成插件   flutter pub run flutter_launcher_icons:main
