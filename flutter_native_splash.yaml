@@ -19,7 +19,7 @@ flutter_native_splash:
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
-  image: assets/images/logo_lockup_flutter_vertical.png
+  image: assets/images/splash/logo_lockup_flutter_vertical.png
 
   # The branding property allows you to specify an image used as branding in the splash screen.
   # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
@@ -37,7 +37,7 @@ flutter_native_splash:
   # set.
   color_dark: "#e1f5fe"
   #background_image_dark: "assets/images/dark-background.png"
-  image_dark: assets/images/logo_lockup_flutter_vertical_wht.png
+  image_dark: assets/images/splash/logo_lockup_flutter_vertical_wht.png
   #branding_dark: assets/images/dart_dark.png
 
   # Android 12 handles the splash screen differently than previous versions.  Please visit
@@ -51,13 +51,13 @@ flutter_native_splash:
     # 640 pixels in diameter.
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
-    image: assets/images/android12splash.png
+    image: assets/images/splash/android12splash.png
 
     # Splash screen background color.
     color: "#FEFBFF"
 
     # App icon background color.
-#    icon_background_color: "#eeeeee"
+    icon_background_color: "#FEFBFF"
 
     # The branding property allows you to specify an image used as branding in the splash screen.
     #branding: assets/images/dart.png
@@ -66,14 +66,14 @@ flutter_native_splash:
     # apply when the device is in dark mode. If they are not specified, the app will use the
     # parameters from above.
     color_dark: "#1B1B1F"
-    image_dark: assets/images/android12splash-invert.png
-#    icon_background_color_dark: "#111111"
+    image_dark: assets/images/splash/android12splash-invert.png
+    icon_background_color_dark: "#1B1B1F"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
-  #android: false
-  #ios: false
-  #web: false
+  android: true
+  ios: true
+  web: true
 
   # Platform specific images can be specified with the following parameters, which will override
   # the respective parameter.  You may specify all, selected, or none of these parameters:
@@ -107,16 +107,16 @@ flutter_native_splash:
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
   # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
   # fill_vertical, left, right, start, or top.
-  #android_gravity: center
+  android_gravity: center
   #
   # ios_content_mode can be one of the following iOS UIView.ContentMode (see
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
   # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
   # bottomLeft, or bottomRight.
-  #ios_content_mode: center
+  ios_content_mode: center
   #
   # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
-  #web_image_mode: center
+  web_image_mode: center
 
   # The screen orientation can be set in Android with the android_screen_orientation parameter.
   # Valid parameters can be found here:
@@ -134,6 +134,6 @@ flutter_native_splash:
   # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s)
   # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
   # do not remove any spaces:
-  #info_plist_files:
-  #  - 'ios/Runner/Info-Debug.plist'
+  info_plist_files:
+    - 'ios/Runner/Info.plist'
   #  - 'ios/Runner/Info-Release.plist'

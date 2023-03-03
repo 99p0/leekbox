@@ -3,7 +3,7 @@ description: A new Flutter project for leekbox.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.3.18+121
+version: 1.3.25+128
 
 environment:
   sdk: '>=2.19.1 <3.0.0'
@@ -157,7 +157,7 @@ dependencies:
   # 不同分辨率的手机上查看UI效果
   device_preview: ^1.1.0
   #
-  webview_flutter: ^4.0.5
+  webview_flutter: ^4.0.6
 
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
@@ -201,39 +201,25 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  #
   build_runner: ^2.3.3
-  flutter_gen_runner: ^5.2.0
   json_serializable: ^6.6.1
+  #
+  flutter_gen_runner: ^5.2.0
   # 数据模型generator
   freezed: ^2.3.2
   # 路由generator
-  go_router_builder: ^1.1.3
+  go_router_builder: ^1.1.4
   #  状态管理generator
   riverpod_generator: ^2.0.0
   # 国际化generator
   intl_utils: ^2.8.2
   #  缓存generator
   isar_generator: ^3.0.5
-
   #
   drift_dev: ^2.5.1
-  #  logo 生成插件   flutter pub run flutter_launcher_icons:main
-#  flutter_launcher_icons: ^0.11.0
-
-flutter_icons:
-  android: false
-  ios: true
-  image_path: "assets/images/icon.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
-  web:
-    generate: true
-    image_path: "assets/images/icon.png"
-    background_color: "#hexcode"
-    theme_color: "#hexcode"
-  windows:
-    generate: true
-    image_path: "assets/images/icon.png"
-    icon_size: 48 # min:48, max:256, default: 48
+  #  logo 生成插件   flutter pub run flutter_launcher_icons
+  flutter_launcher_icons: ^0.12.0
 
 # flutter packages pub run build_runner build
 flutter_gen:
@@ -281,6 +267,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/splash/
     - assets/images/mine/
     - assets/images/design_course/
     - assets/images/intro/
@@ -301,5 +288,6 @@ flutter:
       fonts:
         - asset: assets/fonts/DIN-Pro-Regular.otf
           style: normal
+#
 flutter_intl:
   enabled: true

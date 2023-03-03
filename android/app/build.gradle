@@ -43,23 +43,22 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     // 构架多个不同架构的 apk 包
-//  splits {
-//    abi {
-//      enable true
-//      // 所以使用reset()清空所有的ABI，再使用include指定我们想要生成的架构armeabi-v7a、arm-v8a
-//      reset()
-//      // 逗号分隔列表的形式指定 Gradle 应针对哪些 ABI 生成 APK。只与 reset() 结合使用，以指定确切的 ABI 列表。
-//      include "arm64-v8a", "armeabi-v7a"
-//      // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
-//      universalApk false
-//      // 设置所有不要支持的abi类型
-//      exclude "x86"
-//    }
-//  }
+    splits {
+        abi {
+            enable true
+            // 所以使用reset()清空所有的ABI，再使用include指定我们想要生成的架构armeabi-v7a、arm-v8a
+            reset()
+            // 逗号分隔列表的形式指定 Gradle 应针对哪些 ABI 生成 APK。只与 reset() 结合使用，以指定确切的 ABI 列表。
+            include "arm64-v8a", "armeabi-v7a", "armeabi", "x86_64"
+            // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
+            universalApk false
+            // 设置所有不要支持的abi类型 exclude "x86"
+        }
+    }
 
     defaultConfig {
         applicationId "com.xnxq.leekbox"
-        minSdkVersion 21 //flutter.minSdkVersion
+        minSdkVersion 22 //flutter.minSdkVersion
         targetSdkVersion 33 // flutter.targetSdkVersion
 
         versionCode flutterVersionCode.toInteger()
@@ -78,7 +77,19 @@ android {
         //      // 'x86', Intel based devices
         //    }
     }
+    //
+    signingConfigs {
+        release {
+            keyAlias 'xxxxx'
+            keyPassword 'xxxxx'
+            storeFile file('../keystore.jks')
+            storePassword 'xxxxx'
 
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    //
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -107,12 +118,12 @@ android {
             def outputFile = output.outputFile
             if (variant.buildType.name == 'release') {
                 def versionName = getVersionName(false, flutterVersionName)
-                output.versionNameOverride =versionName
+                output.versionNameOverride = versionName
                 def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             } else {
                 def versionName = getVersionName(true, flutterVersionName)
-                output.versionNameOverride =versionName
+                output.versionNameOverride = versionName
                 def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             }
