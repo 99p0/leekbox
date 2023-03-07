@@ -51,14 +51,25 @@ android {
     // 构架多个不同架构的 apk 包
     splits {
         abi {
+//            def isReleaseBuild = false
+//            gradle.startParameter.taskNames.find {
+//                // Enable split for release builds in different build flavors
+//                // (assemblePaidRelease, assembleFreeRelease, etc.).
+//                if (it ==~ /:app:assemble.*Release/) {
+//                    isReleaseBuild = true
+//                    return true // break
+//                }
+//
+//                return false // continue
+//            }
+            // Enables building multiple APKs per ABI.
             enable true
+            // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
+            universalApk false
             // 所以使用reset()清空所有的ABI，再使用include指定我们想要生成的架构armeabi-v7a、arm-v8a
             reset()
             // 逗号分隔列表的形式指定 Gradle 应针对哪些 ABI 生成 APK。只与 reset() 结合使用，以指定确切的 ABI 列表。
-            include "arm64-v8a", "armeabi-v7a", "armeabi", "x86_64"
-            // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
-            universalApk false
-            // 设置所有不要支持的abi类型 exclude "x86"
+            include 'armeabi-v7a', 'arm64-v8a'
         }
     }
 
@@ -72,16 +83,17 @@ android {
         // 添加多 dex分包支持
         multiDexEnabled true
         // 打出的 apk 包含多个架构的 so库 需要下面的配置：
-        //    ndk {
-        //      //选择要添加的对应cpu类型的.so库。
-        //      abiFilters 'armeabi-v7a','arm64-v8a'
-        //      // 还可以添加
-        //      // 'arm64-v8a', 64 bit ARM architecture,it can use v7 version unless you are too much concerned about performance
-        //      // mips,mips64, There are no devices with MIPS
-        //      //  x86_64, No android devices and anyway it can use X86 version
-        //      //  armeabi, very old architecture. Unsupported after Android 4.4
-        //      // 'x86', Intel based devices
-        //    }
+//        ndk {
+        //选择要添加的对应cpu类型的.so库。
+//            setAbiFilters(['armeabi-v7a', 'arm64-v8a'])
+
+        // 还可以添加
+        // 'arm64-v8a', 64 bit ARM architecture,it can use v7 version unless you are too much concerned about performance
+        // mips,mips64, There are no devices with MIPS
+        //  x86_64, No android devices and anyway it can use X86 version
+        //  armeabi, very old architecture. Unsupported after Android 4.4
+        // 'x86', Intel based devices
+//        }
     }
     //
     signingConfigs {
@@ -103,8 +115,8 @@ android {
 
             shrinkResources true
             minifyEnabled true
-            zipAlignEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            zipAlignEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -120,16 +132,25 @@ android {
      */
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
+            project.ext { appName = "leekbox" }
+
             def outputFile = output.outputFile
+            def type = variant.buildType.name
+            def channel = variant.flavorName
+            def abi = ""
+            if (output.getFilters() != null && output.getFilters().size() > 0) {
+                abi = "-" + output.getFilters().get(0).getIdentifier()
+            }
+
             if (variant.buildType.name == 'release') {
                 def versionName = getVersionName(false, flutterVersionName)
                 output.versionNameOverride = versionName
-                def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
+                def apkName = "${appName}-${type}-v${versionName}_${abi}_${channel}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             } else {
                 def versionName = getVersionName(true, flutterVersionName)
                 output.versionNameOverride = versionName
-                def apkName = "leekbox-${variant.buildType.name}-v${versionName}.apk"
+                def apkName = "${appName}-${type}-v${versionName}_${abi}_${channel}.apk"
                 output.outputFileName = new File(outputFile.parent, apkName).name
             }
         }
