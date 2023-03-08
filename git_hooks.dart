@@ -12,14 +12,18 @@ void main(List<String> arguments) {
 Future<bool> commitMsg() async {
   String commitMsg = Utils.getCommitEditMsg();
   // 规范提交日志
-  if (commitMsg.startsWith('Feat:') ||
-      commitMsg.startsWith('Fix:') ||
-      commitMsg.startsWith('Refactor:') ||
-      commitMsg.startsWith('Style:') ||
-      commitMsg.startsWith('Docs:') ||
-      commitMsg.startsWith('Test:') ||
-      commitMsg.startsWith('Chore:') ||
-      commitMsg.startsWith('Merge')) {
+  if (commitMsg.startsWith('feat:') || // feat: 新功能（feature）
+      commitMsg.startsWith('fix:') || //fix: 修补bug
+      commitMsg.startsWith('perf:') || //perf: 性能优化
+      commitMsg.startsWith('refactor:') || //refactor: 重构（即不是新增功能，也不是修改bug的代码变动）
+      commitMsg.startsWith('style:') || //style: 格式（不影响代码运行的变动）
+      commitMsg.startsWith('docs:') || //docs: 文档（documentation）
+      commitMsg.startsWith('test:') || //test：测试
+      commitMsg.startsWith('revert:') || //revert: 撤销，版本回退
+      commitMsg.startsWith('ci:') || //ci: 持续集成相关文件修改
+      commitMsg.startsWith('chore:') || //chore: 构建过程或辅助工具的变动
+      commitMsg.startsWith('build:') || //build: 打包
+      commitMsg.startsWith('merge:')) {
     return true;
   } else {
     print('请在提交文案添加前缀');
@@ -40,13 +44,14 @@ Future<bool> preCommit() async {
   bool increaseBuildNum = false;
 
   // 自动增加build号时机
-  if (commitMsg.startsWith("Merge")) {
+  if (commitMsg.startsWith("merge")) {
     increaseBuildNum = false;
   } else {
     if (branch.startsWith('v')) {
       increaseBuildNum = true;
     } else {
-      if (commitMsg.startsWith("Feat") || commitMsg.startsWith("Fix")) {
+      // 修复，增加新功能
+      if (commitMsg.startsWith("feat") || commitMsg.startsWith("fix")) {
         increaseBuildNum = true;
       } else {
         increaseBuildNum = false;
