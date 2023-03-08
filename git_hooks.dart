@@ -44,19 +44,14 @@ Future<bool> preCommit() async {
   bool increaseBuildNum = false;
 
   // 自动增加build号时机
-  if (commitMsg.startsWith("merge")) {
-    increaseBuildNum = false;
+
+  // 修复，增加新功能
+  if (commitMsg.startsWith("feat") ||
+      commitMsg.startsWith("fix") ||
+      commitMsg.startsWith("build")) {
+    increaseBuildNum = true;
   } else {
-    if (branch.startsWith('v')) {
-      increaseBuildNum = true;
-    } else {
-      // 修复，增加新功能
-      if (commitMsg.startsWith("feat") || commitMsg.startsWith("fix")) {
-        increaseBuildNum = true;
-      } else {
-        increaseBuildNum = false;
-      }
-    }
+    increaseBuildNum = false;
   }
   print('increaseBuildNum:: $increaseBuildNum');
   if (increaseBuildNum) {
