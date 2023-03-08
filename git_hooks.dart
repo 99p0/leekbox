@@ -53,13 +53,15 @@ Future<bool> preCommit() async {
       }
     }
   }
+  print('increaseBuildNum:: $increaseBuildNum');
   if (increaseBuildNum) {
     try {
       /// 执行增加build 号
       var result = await shell.run('sh increase_build_num.sh');
-      print('$result');
+      print('increaseBuildNum build result:: $result');
       return true;
     } catch (e) {
+      print('increaseBuildNum error :: $e');
       return false;
     }
   } else {
