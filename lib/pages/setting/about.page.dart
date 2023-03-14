@@ -70,7 +70,7 @@ class _AboutPageState extends State<AboutPage> {
           CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 45,
-            backgroundImage: ImageUtils.getAssetImage('logo_round'),
+            backgroundImage: ImageUtils.getAssetImage('ic_logo'),
           ),
           Gaps.vGap24,
           Text(

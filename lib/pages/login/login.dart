@@ -29,7 +29,7 @@ class LoginPage extends ConsumerWidget {
       // 设置图片为圆形
       child: ClipOval(
         child: Image.asset(
-          ImageUtils.getImgPath('logo_round'),
+          ImageUtils.getImgPath('ic_logo'),
           height: 110,
           width: 110,
           fit: BoxFit.cover,

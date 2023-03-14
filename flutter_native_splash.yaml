@@ -1,3 +1,4 @@
+# flutter pub run flutter_native_splash:create --path=path/to/my/file.yaml
 flutter_native_splash:
 
   # This package generates native code to customize Flutter's default white native splash screen
@@ -11,7 +12,7 @@ flutter_native_splash:
   # of your splash screen to a solid color.  Use background_image to set the background of your
   # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
   # size of the app. Only one parameter can be used, color and background_image cannot both be set.
-  color: "#e1f5fe"
+  color: "#FFFFFF"
   #background_image: "assets/images/background.png"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
@@ -35,9 +36,9 @@ flutter_native_splash:
   # parameters from above. If the image_dark parameter is specified, color_dark or
   # background_image_dark must be specified.  color_dark and background_image_dark cannot both be
   # set.
-  color_dark: "#e1f5fe"
+  color_dark: "#1B1B1F"
   #background_image_dark: "assets/images/dark-background.png"
-  image_dark: assets/images/splash/logo_lockup_flutter_vertical_wht.png
+  image_dark: assets/images/splash/logo_lockup_flutter_vertical.png
   #branding_dark: assets/images/dart_dark.png
 
   # Android 12 handles the splash screen differently than previous versions.  Please visit
@@ -51,13 +52,9 @@ flutter_native_splash:
     # 640 pixels in diameter.
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
-    image: assets/images/splash/android12splash.png
-
-    # Splash screen background color.
-    color: "#FEFBFF"
-
-    # App icon background color.
-    icon_background_color: "#FEFBFF"
+#    image: assets/images/splash/android12splash.png
+    color: "#FFFFFF"
+#    icon_background_color: "#FFFFFF"
 
     # The branding property allows you to specify an image used as branding in the splash screen.
     #branding: assets/images/dart.png
@@ -65,9 +62,9 @@ flutter_native_splash:
     # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
     # apply when the device is in dark mode. If they are not specified, the app will use the
     # parameters from above.
+#    image_dark: assets/images/splash/android12splash.png
     color_dark: "#1B1B1F"
-    image_dark: assets/images/splash/android12splash-invert.png
-    icon_background_color_dark: "#1B1B1F"
+#    icon_background_color_dark: "#1B1B1F"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
