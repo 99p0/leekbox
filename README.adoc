@@ -51,7 +51,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-**brewhome**
+==== brewhome
 ```
 git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services
 git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
@@ -61,7 +61,7 @@ git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebr
 
 
 
-**Git: 单个文件超过100M > https://git-lfs.com/ **
+==== Git: 单个文件超过100M > https://git-lfs.com/
 ```
 # 1.安装Git命令行扩展。只需要设置一次Git LFS
 $ git lfs install
@@ -74,3 +74,40 @@ $ git add file.psd
 $ git commit -m "Add design file"
 $ git push origin master
 ```
+
+== 支持图标： PlantUML
+[plantuml, formart=svg]
+....
+@startuml
+participant Participant [
+    =Title
+    ----
+    ""打算""
+]
+
+participant Bob
+
+Participant -> Bob
+@enduml
+....
+==== 数据块
+
+[ditaa]
+....
++-------------+
+| Asciidoctor |-------+
+|   diagram   |       |
++-------------+       | PNG out
+^                 |
+| ditaa in        |
+|                 v
++--------+   +--------+----+    /---------------\
+|        | --+ Asciidoctor +--> |               |
+|  Text  |   +-------------+    |   Beautiful   |
+|Document|   |   !magic!   |    |    Output     |
+|     {d}|   |             |    |               |
++---+----+   +-------------+    \---------------/
+    :                                   ^
+|          Lots of work             |
++-----------------------------------+
+....
