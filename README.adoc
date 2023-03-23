@@ -1,25 +1,24 @@
-# leekbox 韭菜合子
+= leekbox 韭菜合子
+:author: yangr
+:email: uncle.yang@outlook.com
+:revnumber: v1.0
+:revdate: 2023-03-18
+:sectanchors: true
+:toc: left
+:toc-title: 目录
+:toclevels: 3
 
- 采用拟物风格设计开发 打卡 微信绿，支付宝蓝，ofo黄，小红书.
+{author}写作,更多请联系 <{email}>
 
-## Getting Started
+== Getting Started
 
-This project is a starting point for a Flutter application.
+    xuexixiao
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-**代码混淆**
+=== 代码混淆
 
     https://github.com/flutter/flutter/wiki/Obfuscating-Dart-Code
 
-**大小分析工具 **
+=== 大小分析工具
 
     flutter build apk --analyze-size --target-platform android-arm64
     flutter build appbundle --analyze-size
@@ -29,16 +28,16 @@ samples, guidance on mobile development, and a full API reference.
     flutter build windows --analyze-size
 
 
-**拆分打包：针对不同的CPU进行打包**
+=== 拆分打包：针对不同的CPU进行打包
 
     flutter build apk --split-per-abi
     flutter build apk --obfuscate --split-debug-info debuginfo   --target-platform android-arm64 --split-per-abi
 
-**Use FlutterGen**
+=== Use FlutterGen
 
      flutter packages pub run build_runner build
 
-**flutter_native_splash**
+=== flutter_native_splash
 
     # If you have a flavor called production you would do this:
     flutter pub run flutter_native_splash:create --flavor production
@@ -51,18 +50,22 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-==== brewhome
-```
+=== brewhome
+
+[source]
+----
 git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services
 git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
 git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
-```
+----
 
 
 
 
-==== Git: 单个文件超过100M > https://git-lfs.com/
-```
+=== Git: 单个文件超过100M > https://git-lfs.com/
+
+[source]
+----
 # 1.安装Git命令行扩展。只需要设置一次Git LFS
 $ git lfs install
 # 2.选择您希望Git LFS管理的文件类型
@@ -73,9 +76,9 @@ $ git add .gitattributes
 $ git add file.psd
 $ git commit -m "Add design file"
 $ git push origin master
-```
+----
 
-== 支持图标： PlantUML
+=== 支持图标： PlantUML
 [plantuml, formart=svg]
 ....
 @startuml
@@ -90,7 +93,8 @@ participant Bob
 Participant -> Bob
 @enduml
 ....
-==== 数据块
+
+=== 数据块
 
 [ditaa]
 ....

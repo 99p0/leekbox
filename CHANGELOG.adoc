@@ -1,15 +1,27 @@
-## 5.3.3-dev
+= CHANGELOG
+:author: yangr
+:email: uncle.yang@outlook.com
+:revnumber: v1.0
+:revdate: 2023-03-18
+:sectanchors: true
+:toc: left
+:toc-title: 目录
+:toclevels: 2
+
+{author}写作,更多请联系 <{email}>
+
+== 5.3.3-dev
 
 * Require analyzer 5.2.0.
 * Fix nice mocks generation in mixed mode (generated code is pre null-safety,
 while mocked class is null-safe).
 * Require Dart >= 2.17.0.
 
-## 5.3.2
+== 5.3.2
 
 * Support analyzer 5.0.0.
 
-## 5.3.1
+== 5.3.1
 
 * Fix analyzer and code_builder dependencies.
 * Reference `@GenerateNiceMocks` in documentation.

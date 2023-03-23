@@ -32,18 +32,18 @@ dependencies:
   #  sign_in_with_apple: ^4.2.0
   #  local_auth: ^2.1.2
   # 存储
-  shared_preferences: ^2.0.18
+  shared_preferences: ^2.0.20
   #
   flutter_native_splash: ^2.2.19
   #  动态主题
   dynamic_color: ^1.6.2
   # 文件读写
-  path_provider: ^2.0.13
+  path_provider: ^2.0.14
   # 官方推荐：状态管理 + 路由   VS  getx
   flutter_riverpod: ^2.3.2
   hooks_riverpod: ^2.3.2
   riverpod_annotation: ^2.0.2
-  go_router: ^6.2.0
+  go_router: ^6.4.0
   #  字体
   #  google_fonts: ^4.0.3
   #
@@ -57,7 +57,7 @@ dependencies:
   flutter_screenutil: ^5.7.0
   #  下拉 刷新
   pull_to_refresh: ^2.0.0
-  #  取色
+  # 取色
   palette_generator: ^0.3.3+2
   # 权限
   permission_handler: ^10.1.0
@@ -71,6 +71,7 @@ dependencies:
   #  pinput: ^2.2.12
   # 瀑布流
   waterfall_flow: ^3.0.2
+  shimmer: ^2.0.0
   # bottom_bar
   salomon_bottom_bar: ^3.3.1
   sliding_clipped_nav_bar: ^3.1.0+3
@@ -95,6 +96,8 @@ dependencies:
   version: ^3.0.2
   # 倒计时
   timer_count_down: ^2.2.2
+#
+  scrolls_to_top: ^2.1.0
   #
   avatar_glow: ^2.0.2
   # 定位
@@ -110,11 +113,11 @@ dependencies:
   #
   #  flutter_scankit: ^1.2.4
   # 动画
-  lottie: ^2.2.0
+  lottie: ^2.3.0
   rive: ^0.10.3
   #  网络请求
-  dio: ^5.0.2
-  dio_cookie_manager: ^2.1.2
+  dio: ^5.0.3
+  dio_cookie_manager: ^2.1.3
   dio_http2_adapter: ^2.1.0
   pretty_dio_logger: ^1.3.1
   cookie_jar: ^3.0.1
@@ -130,7 +133,7 @@ dependencies:
   #  video_compress: ^3.1.0
   #  flutter_image_compress: ^1.1.3
   # 数据存储 基于sqlite3 封装
-  drift: ^2.5.0
+  drift: ^2.6.0
   # 查看本地存储的sqlite数据
   #  db_viewer: ^1.0.3
   # 富文本编辑器
@@ -139,7 +142,7 @@ dependencies:
   #  fl_chart: ^0.66.0
   #  skeletons: ^0.0.3
   #
-  flutter_svg: ^2.0.3
+  flutter_svg: ^2.0.4
   # 图片缓存
   cached_network_image: ^3.2.3
   # 图片预览
@@ -157,7 +160,7 @@ dependencies:
   # 不同分辨率的手机上查看UI效果
   device_preview: ^1.1.0
   #
-  webview_flutter: ^4.0.6
+  webview_flutter: ^4.0.7
 
   # 本地通知
   #  flutter_local_notifications: ^12.0.2
@@ -212,7 +215,7 @@ dev_dependencies:
   # 数据模型generator
   freezed: ^2.3.2
   # 路由generator
-  go_router_builder: ^1.1.6
+  go_router_builder: ^1.1.7
   # 状态管理generator
   riverpod_generator: ^2.1.4
   # 国际化generator
@@ -220,7 +223,7 @@ dev_dependencies:
   # 缓存generator
   isar_generator: ^3.0.5
   #
-  drift_dev: ^2.5.1
+  drift_dev: ^2.6.0
   # logo 生成插件   flutter pub run flutter_launcher_icons
   flutter_launcher_icons: ^0.12.0
 

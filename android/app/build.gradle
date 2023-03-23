@@ -51,19 +51,9 @@ android {
     // 构架多个不同架构的 apk 包
     splits {
         abi {
-//            def isReleaseBuild = false
-//            gradle.startParameter.taskNames.find {
-//                // Enable split for release builds in different build flavors
-//                // (assemblePaidRelease, assembleFreeRelease, etc.).
-//                if (it ==~ /:app:assemble.*Release/) {
-//                    isReleaseBuild = true
-//                    return true // break
-//                }
-//
-//                return false // continue
-//            }
+            boolean isReleaseTask = gradle.startParameter.taskNames.any { it.contains("Release") }
             // Enables building multiple APKs per ABI.
-            enable true
+            enable isReleaseTask
             // 是否生成通用的apk，也就是包含所有ABI的apk。如果设为 true，那么除了按 ABI 生成的 APK 之外，Gradle 还会生成一个通用 APK。
             universalApk false
             // 所以使用reset()清空所有的ABI，再使用include指定我们想要生成的架构armeabi-v7a、arm-v8a
@@ -140,6 +130,8 @@ android {
             if (output.getFilters() != null && output.getFilters().size() > 0) {
                 abi = "-" + output.getFilters().get(0).getIdentifier()
             }
+//            def abi = output.getFilter(com.android.build.OutputFile.ABI)
+//            if (abi == null) abi = "all"
 
             if (variant.buildType.name == 'release') {
                 def versionName = getVersionName(false, flutterVersionName)

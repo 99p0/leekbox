@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/demo/app_toast.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
@@ -19,6 +20,8 @@ import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:nil/nil.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
+import 'package:shimmer/shimmer.dart';
 
 ///
 class IndexPage extends StatefulWidget {
@@ -239,74 +242,123 @@ class _IndexPageState extends State<IndexPage>
     "回来后咱看看这几套吧，如果还没有卖的话",
   ];
 
+  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
+    //TODO: Your code
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('IndexPage build...');
     final themeData = Theme.of(context);
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          /// appbar
-          _buildSliverAppBar(),
+    return ScrollsToTop(
+      onScrollsToTop: _onScrollsToTop,
+      child: Scaffold(
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            /// appbar
+            _buildSliverAppBar(),
 
-          /// 问候语
-          SliverToBoxAdapter(
-            child: _buildGreetings(context),
-          ),
-
-          /// 近期收益曲线
-          SliverToBoxAdapter(
-            child: _buildRecentYieldCurve(context),
-          ),
-
-          /// 最近消息
-          SliverToBoxAdapter(
-            child: _buildRecentNews(context),
-          ),
-
-          /// 推荐组合，瀑布流的形式
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-          SliverToBoxAdapter(
-            child: getBody(context),
-          ),
-
-          /// 底线
-          SliverFixedExtentList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => Container(
-                alignment: Alignment.center,
-                child: Text(
-                  '-------- 我是有底线的 --------',
-                  style: themeData.textTheme.labelSmall
-                      ?.copyWith(color: Colors.black26),
-                ),
-              ),
-              childCount: 1,
+            /// 问候语
+            SliverToBoxAdapter(
+              child: _buildGreetings(context),
             ),
-            itemExtent: 50.0,
-          ),
 
-          /// 间距
-          const SliverPadding(
-            padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
-          ),
-        ],
+            /// 近期收益曲线
+            SliverToBoxAdapter(
+              child: _buildRecentYieldCurve(context),
+            ),
+
+            /// 最近消息
+            SliverToBoxAdapter(
+              child: _buildRecentNews(context),
+            ),
+
+            /// 推荐组合，瀑布流的形式
+            SliverToBoxAdapter(
+              child: getBody(context),
+            ),
+
+            ///
+            SliverFixedExtentList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Shimmer.fromColors(
+                      baseColor: themeData.focusColor,
+                      highlightColor: themeData.hoverColor,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        child: ColoredBox(
+                          color: themeData.focusColor,
+                          child: const SizedBox(
+                            width: 210.0,
+                            height: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gaps.line,
+                    Shimmer.fromColors(
+                      baseColor: themeData.focusColor,
+                      highlightColor: themeData.hoverColor,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        child: ColoredBox(
+                          color: themeData.focusColor,
+                          child: const SizedBox(
+                            width: 140.0,
+                            height: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gaps.line,
+                    Shimmer.fromColors(
+                      baseColor: themeData.focusColor,
+                      highlightColor: themeData.hoverColor,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        child: ColoredBox(
+                          color: themeData.focusColor,
+                          child: const SizedBox(
+                            width: 70.0,
+                            height: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                childCount: 21,
+              ),
+              itemExtent: 150.0,
+            ),
+
+            /// 底线
+            SliverFixedExtentList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '-------- 我是有底线的 --------',
+                    style: themeData.textTheme.labelSmall
+                        ?.copyWith(color: Colors.black26),
+                  ),
+                ),
+                childCount: 1,
+              ),
+              itemExtent: 50.0,
+            ),
+
+            /// 间距
+            const SliverPadding(
+              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -329,9 +381,9 @@ class _IndexPageState extends State<IndexPage>
       ),
       centerTitle: true,
       automaticallyImplyLeading: false,
-      floating: true,
-      // pinned: true,
-      snap: true,
+      floating: false,
+      pinned: true,
+      snap: false,
       // forceElevated: true,
       // stretch: true,
       // expandedHeight: 200.0,
@@ -385,6 +437,96 @@ class _IndexPageState extends State<IndexPage>
             showToast('$_connectionStatus');
           },
           child: Text('$_connectionStatus'),
+        ),
+      ],
+    );
+  }
+}
+
+class DynamicWithComment extends StatefulWidget {
+  const DynamicWithComment({Key? key}) : super(key: key);
+
+  @override
+  State<DynamicWithComment> createState() => _DynamicWithCommentState();
+}
+
+class _DynamicWithCommentState extends State<DynamicWithComment> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      onExpansionChanged: (expanded) {
+        setState(() {
+          _expanded = expanded;
+        });
+      },
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(ImageUtils.getImgPath('dps'), width: 20.0),
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  '这是标题',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  '这是说明文字',
+                  style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      initiallyExpanded: _expanded,
+      // 展开后的 title 组件的 text 颜色（未指定颜色时）
+      // textColor: Colors.red,
+      // 展开后背景色
+      // backgroundColor: Colors.blue[50],
+      //收起状态背景色
+      // collapsedBackgroundColor: Colors.grey[50],
+      trailing: Icon(
+          _expanded
+              ? Icons.keyboard_arrow_up_outlined
+              : Icons.keyboard_arrow_down_outlined,
+          color: Colors.grey),
+      expandedAlignment: Alignment.centerLeft,
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      childrenPadding: EdgeInsets.zero,
+      children: [
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 0.0),
+          padding: const EdgeInsets.all(5.0),
+          // color: Colors.grey[400],
+          child: const Text('xx1: 评论'),
+        ),
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 0.0),
+          padding: const EdgeInsets.all(5.0),
+          // color: Colors.grey[400],
+          alignment: Alignment.centerRight,
+          child: const Text('xx2: 评论'),
+        ),
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
+          padding: const EdgeInsets.all(5.0),
+          // color: Colors.grey[400],
+          child: const Text('xx3: 评论'),
         ),
       ],
     );
