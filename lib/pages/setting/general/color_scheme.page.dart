@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:oktoast/oktoast.dart';
 
 ///
 class ColorSchemePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ColorSchemePageState extends State<ColorSchemePage>
     super.build(context);
     Log.debug('ColorSchemePage build...');
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: const MyAppBar(
         title: '深色模式',
       ),
       body: Container(

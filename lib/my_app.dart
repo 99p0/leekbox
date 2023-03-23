@@ -3,109 +3,75 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:leekbox/generated/l10n.dart';
 import 'package:leekbox/routes/app_routes.dart';
 import 'package:leekbox/theme/color_schemes.g.dart';
-import 'package:leekbox_infra/log/log.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import 'pages/miui10_anim.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //
+    ///
     final router = ref.watch(routerProvider);
 
-    ///  是否 禁用
-    return IgnorePointer(
-      ignoring: false,
+    /// 动态主题 + go_router + SmartDialog
+    final baseApp = DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
+      return MaterialApp.router(
+        /// go_router
+        routerConfig: router,
 
-      ///  是否 置灰： 纪念某个时刻return
-      child: ColorFiltered(
-        colorFilter: const ColorFilter.mode(
-          Colors.transparent,
-          BlendMode.color,
+        /// theme use material 3
+        theme: ThemeData(
+          colorScheme: lightDynamic ?? lightColorScheme,
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: darkDynamic ?? darkColorScheme,
+          useMaterial3: true,
         ),
 
-        /// Toast 配置
-        child: OKToast(
-          position: ToastPosition.bottom,
-          radius: 20,
-          dismissOtherOnShow: true,
-          movingOnWindowChange: false,
-          textPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          animationCurve: Curves.easeIn,
-          animationBuilder: const Miui10AnimBuilder(),
-          animationDuration: const Duration(milliseconds: 200),
+        /// localization
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          RefreshLocalizations.delegate,
+          S.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
 
-          /// ScreenUtil
-          child: ScreenUtilInit(
-            designSize: const Size(360, 690),
-            minTextAdapt: true,
-            splitScreenMode: true,
-            useInheritedMediaQuery: true,
-            builder: (context, child) {
-              /// 动态主题
-              return DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
-                /// app 入口
-                return MaterialApp.router(
-                  /// go_router
-                  routerConfig: router,
-                  // routeInformationParser: router.routeInformationParser,
-                  // routerDelegate: router.routerDelegate,
-                  // routeInformationProvider: router.routeInformationProvider,
+        ///
+        title: '',
+        debugShowCheckedModeBanner: false,
 
-                  /// theme use material 3
-                  theme: ThemeData(
-                    colorScheme: lightDynamic ?? lightColorScheme,
-                    useMaterial3: true,
-                  ),
-                  darkTheme: ThemeData(
-                    colorScheme: darkDynamic ?? darkColorScheme,
-                    useMaterial3: true,
-                  ),
-
-                  /// localization
-                  localizationsDelegates: const [
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    RefreshLocalizations.delegate,
-                    S.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-
-                  ///
-                  debugShowCheckedModeBanner: false,
-
-                  ///
-                  title: '',
-
-                  ///
-                  builder: (BuildContext context, Widget? child) {
-                    Log.debug('root builder...');
-                    // 保证文字大小不受手机系统设置影响 防止UI变形
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(
-                        textScaleFactor: 1.0,
-                      ),
-                      child: GestureDetector(
-                        onTap: () => _hideKeyboard(context),
-                        child: child,
-                      ),
-                    );
-                  },
-
-                  /// others settings
-                );
-              });
-            },
+        ///
+        builder: FlutterSmartDialog.init(
+          builder: (_, Widget? child) => ScrollConfiguration(
+            behavior: const AppScrollBehavior(),
+            child: child!,
           ),
         ),
+
+        /// others settings
+      );
+    });
+
+    ///  是否置灰：纪念某个时刻
+    return ColorFiltered(
+      colorFilter: const ColorFilter.mode(Colors.transparent, BlendMode.color),
+
+      ///  配置ScreenUtil
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        useInheritedMediaQuery: true,
+        builder: (context, child) {
+          return baseApp;
+        },
       ),
     );
   }
@@ -143,4 +109,13 @@ class MyApp extends ConsumerWidget {
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
+}
+
+///
+class AppScrollBehavior extends ScrollBehavior {
+  const AppScrollBehavior();
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) =>
+      const BouncingScrollPhysics();
 }

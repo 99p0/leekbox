@@ -5,16 +5,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class ImageUtils {
-  static ImageProvider getAssetImage(String name, {String format: 'png'}) {
+  static ImageProvider getAssetImage(String name, {String format = 'png'}) {
     return AssetImage(getImgPath(name, format: format));
   }
 
-  static String getImgPath(String name, {String format: 'png'}) {
+  static String getImgPath(String name, {String format = 'png'}) {
     return 'assets/images/$name.$format';
   }
 
   static ImageProvider getImageProvider(String imageUrl,
-      {String holderImg: "none"}) {
+      {String holderImg = "none"}) {
     if (imageUrl.isEmpty) {
       return AssetImage(getImgPath(holderImg));
     }

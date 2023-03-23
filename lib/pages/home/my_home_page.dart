@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:hidable/hidable.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';
@@ -30,7 +29,6 @@ class _MyHomePageState extends State<MyHomePage>
     with AutomaticKeepAliveClientMixin {
   //WidgetsBindingObserver
   final bool _colorful = true;
-  final bool _hideAutoNavBar = true;
 
   /// 当前的索引值
   int _currentIndex = 0;
@@ -178,11 +176,8 @@ class _MyHomePageState extends State<MyHomePage>
             });
           },
         ),
-        bottomNavigationBar: Hidable(
-          controller: _scrollController,
-          wOpacity: _hideAutoNavBar,
-          child: _buildBottomNavigationBar(themeData),
-        ),
+
+        bottomNavigationBar: _buildBottomNavigationBar(themeData),
       ),
     );
   }

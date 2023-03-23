@@ -12,7 +12,7 @@
 // import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 // import 'package:leekbox/pages/splash/splash_screen.dart';
 // import 'package:leekbox_infra/log/log.dart';
-// import 'package:oktoast/oktoast.dart';
+// import 'package:leekbox/common/utils/utils.dart';
 //
 // ///
 // class IndexRecommendPage extends StatefulWidget {

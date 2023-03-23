@@ -3,10 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  battery_plus
   connectivity_plus
   dynamic_color
   isar_flutter_libs
-  leekbox_infra
+  local_auth_windows
+  pasteboard
   permission_handler_windows
   rive_common
   url_launcher_windows

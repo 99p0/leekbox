@@ -5,7 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   isar_flutter_libs
-  leekbox_infra
+  pasteboard
   url_launcher_linux
 )
 

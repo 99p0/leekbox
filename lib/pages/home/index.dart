@@ -6,9 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:leekbox/common/utils/image_utils.dart';
+import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/pages/demo/app_toast.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
@@ -19,9 +18,8 @@ import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:nil/nil.dart';
-import 'package:oktoast/oktoast.dart';
+import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:scrolls_to_top/scrolls_to_top.dart';
-import 'package:shimmer/shimmer.dart';
 
 ///
 class IndexPage extends StatefulWidget {
@@ -140,15 +138,7 @@ class _IndexPageState extends State<IndexPage>
       ),
       title: '近期收益曲线',
       onTap: () {
-        showToastWidget(
-          context: context,
-          CorrectToast(
-            child: Text(
-              '近期收益曲线',
-              style: Theme.of(context).textTheme.headline1,
-            ),
-          ),
-        );
+        showToast('近期收益曲线');
       },
     );
   }
@@ -283,58 +273,57 @@ class _IndexPageState extends State<IndexPage>
             ///
             SliverFixedExtentList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Shimmer.fromColors(
-                      baseColor: themeData.focusColor,
-                      highlightColor: themeData.hoverColor,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        child: ColoredBox(
-                          color: themeData.focusColor,
-                          child: const SizedBox(
-                            width: 210.0,
-                            height: 20.0,
+                (context, index) => Container(
+                  foregroundDecoration: RotatedCornerDecoration.withColor(
+                    badgeCornerRadius: const Radius.circular(8),
+                    color: Colors.blue,
+                    badgeSize: Size(38.w, 38.w),
+                    spanBaselineShift: 2,
+                    // isEmoji: true,
+                    textSpan: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '👑\n',
+                          style: TextStyle(
+                            fontSize: 9.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.redAccent,
                           ),
                         ),
-                      ),
-                    ),
-                    Gaps.line,
-                    Shimmer.fromColors(
-                      baseColor: themeData.focusColor,
-                      highlightColor: themeData.hoverColor,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        child: ColoredBox(
-                          color: themeData.focusColor,
-                          child: const SizedBox(
-                            width: 140.0,
-                            height: 20.0,
+                        TextSpan(
+                          text: 'VIP专属',
+                          style: TextStyle(
+                            fontSize: 5.sp,
+                            fontStyle: FontStyle.italic,
+                            letterSpacing: 3.5,
+                            color: Colors.yellow,
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  decoration: RotatedCornerDecoration.withColor(
+                    badgePosition: BadgePosition.topStart,
+                    badgeCornerRadius: const Radius.circular(8),
+                    color: Colors.red,
+                    badgeSize: Size(32.w, 32.w),
+                    textSpan: TextSpan(
+                      text: 'OMG',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 8.sp,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold,
+                        shadows: const [
+                          BoxShadow(color: Colors.yellowAccent, blurRadius: 8),
+                        ],
                       ),
                     ),
-                    Gaps.line,
-                    Shimmer.fromColors(
-                      baseColor: themeData.focusColor,
-                      highlightColor: themeData.hoverColor,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        child: ColoredBox(
-                          color: themeData.focusColor,
-                          child: const SizedBox(
-                            width: 70.0,
-                            height: 20.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 childCount: 21,
               ),
-              itemExtent: 150.0,
+              itemExtent: 120.0.h,
             ),
 
             /// 底线
@@ -387,7 +376,7 @@ class _IndexPageState extends State<IndexPage>
       // forceElevated: true,
       // stretch: true,
       // expandedHeight: 200.0,
-      actions: [],
+      actions: const [],
       // bottom: PreferredSize(
       //   preferredSize: const Size(double.infinity, 80),
       //   child: _buildGreetings(context),

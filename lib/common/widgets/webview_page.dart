@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nil/nil.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for Android features.
@@ -473,7 +472,7 @@ class NavigationControls extends StatelessWidget {
             if (await webViewController.canGoBack()) {
               await webViewController.goBack();
             } else {
-              showToast('No back history item');
+              // showToast('No back history item');
               return;
             }
           },
@@ -487,7 +486,7 @@ class NavigationControls extends StatelessWidget {
               // ScaffoldMessenger.of(context).showSnackBar(
               //   const SnackBar(content: Text('No forward history item')),
               // );
-              showToast('No forward history item');
+              // showToast('No forward history item');
               return;
             }
           },
