@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
@@ -6,7 +7,7 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class ThemesPage extends StatefulWidget {
+class ThemesPage extends ConsumerStatefulWidget {
   const ThemesPage({super.key});
 
   static String get routeName => 'settings/Themes';
@@ -17,7 +18,7 @@ class ThemesPage extends StatefulWidget {
   _ThemesPageState createState() => _ThemesPageState();
 }
 
-class _ThemesPageState extends State<ThemesPage>
+class _ThemesPageState extends ConsumerState<ThemesPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

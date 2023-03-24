@@ -10,6 +10,7 @@ import 'package:leekbox/common/global.dart';
 import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:window_manager/window_manager.dart';
 
 void main() {
   runZonedGuarded(() async {
@@ -24,6 +25,21 @@ void main() {
     //     errorCallback: (PowerImageLoadException exception) {
     //   Log.error(exception);
     // }));
+
+    /// window
+    await windowManager.ensureInitialized();
+
+    WindowOptions windowOptions = const WindowOptions(
+      size: Size(800, 600),
+      center: true,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    );
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
 
     /// 全屏模式 SystemUiMode.edgeToEdge
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);

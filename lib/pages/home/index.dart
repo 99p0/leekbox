@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -22,14 +23,14 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:scrolls_to_top/scrolls_to_top.dart';
 
 ///
-class IndexPage extends StatefulWidget {
+class IndexPage extends ConsumerStatefulWidget {
   const IndexPage({super.key});
 
   @override
   _IndexPageState createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage>
+class _IndexPageState extends ConsumerState<IndexPage>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   @override
   bool get wantKeepAlive => true;

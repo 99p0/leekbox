@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class MoneybagsPage extends StatefulWidget {
+class MoneybagsPage extends ConsumerStatefulWidget {
   const MoneybagsPage({super.key});
 
   static String get routeName => 'mine/Moneybags';
@@ -13,7 +14,7 @@ class MoneybagsPage extends StatefulWidget {
   _MoneybagsPageState createState() => _MoneybagsPageState();
 }
 
-class _MoneybagsPageState extends State<MoneybagsPage> {
+class _MoneybagsPageState extends ConsumerState<MoneybagsPage> {
   @override
   Widget build(BuildContext context) {
     // super.build(context);

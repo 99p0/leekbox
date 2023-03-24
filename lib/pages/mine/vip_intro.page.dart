@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class VipIntroPage extends StatefulWidget {
+class VipIntroPage extends ConsumerStatefulWidget {
   const VipIntroPage({super.key});
 
   static String get routeName => 'mine/VipIntro';
@@ -15,7 +16,7 @@ class VipIntroPage extends StatefulWidget {
   _VipIntroPageState createState() => _VipIntroPageState();
 }
 
-class _VipIntroPageState extends State<VipIntroPage>
+class _VipIntroPageState extends ConsumerState<VipIntroPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

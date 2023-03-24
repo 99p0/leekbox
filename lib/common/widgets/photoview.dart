@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
-/// ...
+/// 示例如下：
 // showDialog(
 //     barrierColor: Colors.black,
 //     context: context,
@@ -39,29 +39,19 @@ class PhotoViewPage extends StatelessWidget {
         constraints: BoxConstraints.expand(
           height: MediaQuery.of(context).size.height,
         ),
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: 0,
-              child: PhotoView(
-                imageProvider: imageProvider,
-                loadingBuilder: loadingChild,
-                backgroundDecoration: backgroundDecoration,
-                minScale: minScale,
-                maxScale: maxScale,
-                heroAttributes: PhotoViewHeroAttributes(tag: heroTag),
-                enableRotation: true, //是否允许旋转
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                // print('context:$context');
-              },
-            )
-          ],
+        child: GestureDetector(
+          onTapDown: (_) {
+            Navigator.pop(context);
+          },
+          child: PhotoView(
+            imageProvider: imageProvider,
+            loadingBuilder: loadingChild,
+            backgroundDecoration: backgroundDecoration,
+            minScale: minScale,
+            maxScale: maxScale,
+            heroAttributes: PhotoViewHeroAttributes(tag: heroTag),
+            enableRotation: false, //是否允许旋转
+          ),
         ),
       ),
     );

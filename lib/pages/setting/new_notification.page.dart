@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class NewNotificationPage extends StatefulWidget {
+class NewNotificationPage extends ConsumerStatefulWidget {
   const NewNotificationPage({super.key});
 
   static String get routeName => 'settings/NewNotification';
@@ -14,7 +15,7 @@ class NewNotificationPage extends StatefulWidget {
   _NewNotificationPageState createState() => _NewNotificationPageState();
 }
 
-class _NewNotificationPageState extends State<NewNotificationPage>
+class _NewNotificationPageState extends ConsumerState<NewNotificationPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

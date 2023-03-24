@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/image_utils.dart';
@@ -14,14 +15,14 @@ import 'user_profile.page.dart';
 import 'vip_intro.page.dart';
 
 ///
-class MinePage extends StatefulWidget {
+class MinePage extends ConsumerStatefulWidget {
   const MinePage({super.key});
 
   @override
   _MinePageState createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage>
+class _MinePageState extends ConsumerState<MinePage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;

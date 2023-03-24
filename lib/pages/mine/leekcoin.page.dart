@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class LeekCoinPage extends StatefulWidget {
+class LeekCoinPage extends ConsumerStatefulWidget {
   @override
   _LeekCoinPageState createState() => _LeekCoinPageState();
 }
 
-class _LeekCoinPageState extends State<LeekCoinPage> {
+class _LeekCoinPageState extends ConsumerState<LeekCoinPage> {
   @override
   Widget build(BuildContext context) {
     // super.build(context);

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../demo/all_icons.dart';
 
 /// 页面
-class NoticePage extends StatefulWidget {
+class NoticePage extends ConsumerStatefulWidget {
   const NoticePage({super.key});
 
   static String get routeName => 'notice';
@@ -16,7 +17,7 @@ class NoticePage extends StatefulWidget {
   _NoticePageState createState() => _NoticePageState();
 }
 
-class _NoticePageState extends State<NoticePage>
+class _NoticePageState extends ConsumerState<NoticePage>
     with AutomaticKeepAliveClientMixin {
   dynamic _icons;
   late List<String> _iconsNames;

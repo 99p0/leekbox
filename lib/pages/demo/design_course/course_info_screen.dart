@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'design_course_app_theme.dart';
 
 class CourseInfoScreen extends StatefulWidget {
@@ -56,7 +57,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 1.2,
-                  child: Image.asset('assets/images/design_course/webInterFace.png'),
+                  child: Image.asset(
+                      'assets/images/design_course/webInterFace.png'),
                 ),
               ],
             ),

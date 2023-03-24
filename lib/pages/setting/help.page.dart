@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class HelpPage extends StatefulWidget {
+class HelpPage extends ConsumerStatefulWidget {
   const HelpPage({super.key});
 
   static String get routeName => 'settings/Help';
@@ -14,7 +15,7 @@ class HelpPage extends StatefulWidget {
   _HelpPageState createState() => _HelpPageState();
 }
 
-class _HelpPageState extends State<HelpPage>
+class _HelpPageState extends ConsumerState<HelpPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

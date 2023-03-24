@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/pages/home/components/statistics_circle_chart.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
@@ -8,14 +9,14 @@ import 'package:leekbox/pages/tongji/statistics_header_content.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class TongjiPage extends StatefulWidget {
+class TongjiPage extends ConsumerStatefulWidget {
   const TongjiPage({super.key});
 
   @override
   _TongjiPageState createState() => _TongjiPageState();
 }
 
-class _TongjiPageState extends State<TongjiPage>
+class _TongjiPageState extends ConsumerState<TongjiPage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   @override
   void initState() {

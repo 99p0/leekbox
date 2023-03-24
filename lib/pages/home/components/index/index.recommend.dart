@@ -15,12 +15,12 @@
 // import 'package:leekbox/common/utils/utils.dart';
 //
 // ///
-// class IndexRecommendPage extends StatefulWidget {
+// class IndexRecommendPage extends ConsumerStatefulWidget {
 //   @override
 //   _IndexRecommendPageState createState() => _IndexRecommendPageState();
 // }
 //
-// class _IndexRecommendPageState extends State<IndexRecommendPage>
+// class _IndexRecommendPageState extends ConsumerState<IndexRecommendPage>
 //     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
 //   @override
 //   bool get wantKeepAlive => true;

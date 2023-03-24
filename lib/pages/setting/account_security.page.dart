@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class AccountAndSecurityPage extends StatefulWidget {
+class AccountAndSecurityPage extends ConsumerStatefulWidget {
   const AccountAndSecurityPage({super.key});
 
   static String get routeName => 'settings/AccountAndSecurity';
@@ -14,7 +15,7 @@ class AccountAndSecurityPage extends StatefulWidget {
   _AccountAndSecurityPageState createState() => _AccountAndSecurityPageState();
 }
 
-class _AccountAndSecurityPageState extends State<AccountAndSecurityPage>
+class _AccountAndSecurityPageState extends ConsumerState<AccountAndSecurityPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

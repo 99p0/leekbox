@@ -25,6 +25,8 @@ dependencies:
   json_annotation: ^4.8.0
   #
   freezed_annotation: ^2.2.0
+  #
+  window_manager: ^0.3.1
   #  动态主题
   dynamic_color: ^1.6.2
   # 文件读写
@@ -33,7 +35,7 @@ dependencies:
   flutter_riverpod: ^2.3.2
   hooks_riverpod: ^2.3.2
   riverpod_annotation: ^2.0.2
-  go_router: ^6.4.0
+  go_router: ^6.5.0
   #
   package_info_plus: ^3.0.3
   device_info_plus: ^8.1.0
@@ -47,13 +49,13 @@ dependencies:
   # 动画
   animations: ^2.0.7
   #  supercharged: ^2.1.1
-  simple_animations: ^5.0.0+3
+  #  simple_animations: ^5.0.0+3
   # 闪屏
   flutter_native_splash: ^2.2.19
   # 下拉 刷新
   pull_to_refresh: ^2.0.0
   # 取色
-#  palette_generator: ^0.3.3+2
+  #  palette_generator: ^0.3.3+2
   # 权限
   permission_handler: ^10.1.0
   # card 角标
@@ -68,11 +70,12 @@ dependencies:
   waterfall_flow: ^3.0.2
   shimmer: ^2.0.0
   # 媒体选择
-  #  wechat_assets_picker: ^8.2.0
-  #  wechat_camera_picker: ^3.6.5
+#  photo_manager: ^2.6.0
+#  wechat_assets_picker: ^8.2.0
+#  wechat_camera_picker: ^3.6.5
   # 视频播放
-  #  chewie: ^1.3.6
-  #  video_player: ^2.4.9
+  chewie: ^1.4.0
+  video_player: ^2.4.9
   # 打开链接
   url_launcher: ^6.1.10
   # 版本升级
@@ -129,7 +132,7 @@ dependencies:
   #  blurhash_dart: ^1.2.1
   # 图片库： https://github.com/alibaba/power_image
   #  power_image: ^0.1.0-pre.2
-  #  image_picker: ^0.8.6
+  image_picker: ^0.8.7
   #  image: ^3.2.2
   # 新拟物
   # flutter_neumorphic: ^3.2.0
@@ -143,6 +146,8 @@ dependencies:
   wakelock: ^0.6.2
   #
   local_auth: ^2.1.2
+  # 高刷
+  flutter_displaymode: ^0.5.0
   #  flutter_smart_dialog: ^4.7.1
   #  tensorflow
   #  tflite_flutter: ^0.9.0
@@ -230,13 +235,6 @@ flutter_gen:
     enabled: true
     outputs:
       class_name: MyFontFamily
-
-  colors:
-    enabled: true
-    outputs:
-      class_name: MyColor
-    inputs:
-      - assets/color/colors.xml
 
 flutter:
   uses-material-design: true

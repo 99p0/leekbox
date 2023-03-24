@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class PrivacyPage extends StatefulWidget {
+class PrivacyPage extends ConsumerStatefulWidget {
   const PrivacyPage({super.key});
 
   static String get routeName => 'settings/Privacy';
@@ -14,7 +15,7 @@ class PrivacyPage extends StatefulWidget {
   _PrivacyPageState createState() => _PrivacyPageState();
 }
 
-class _PrivacyPageState extends State<PrivacyPage>
+class _PrivacyPageState extends ConsumerState<PrivacyPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@
 // typedef OnMySliverAppBarScroll = void Function(double shrinkOffset);
 //
 // ///Sliver App bar
-// class MySliverAppBar extends StatefulWidget {
+// class MySliverAppBar extends ConsumerStatefulWidget {
 //   const MySliverAppBar({
 //     this.backgroundColor,
 //     this.expandedHeight,
@@ -31,7 +31,7 @@
 //   _MySliverAppBarState createState() => _MySliverAppBarState();
 // }
 //
-// class _MySliverAppBarState extends State<MySliverAppBar> {
+// class _MySliverAppBarState extends ConsumerState<MySliverAppBar> {
 //   @override
 //   Widget build(BuildContext context) {
 //     final double topPadding = MediaQuery.of(context).padding.top;

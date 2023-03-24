@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:rive/rive.dart';
 
 ///
-class InvitePage extends StatefulWidget {
+class InvitePage extends ConsumerStatefulWidget {
   const InvitePage({super.key});
 
   static String get routeName => 'invite';
@@ -14,7 +15,7 @@ class InvitePage extends StatefulWidget {
   _InvitePageState createState() => _InvitePageState();
 }
 
-class _InvitePageState extends State<InvitePage>
+class _InvitePageState extends ConsumerState<InvitePage>
     with AutomaticKeepAliveClientMixin {
   @override
   void initState() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
@@ -12,7 +13,7 @@ import 'general/storage_manage.page.dart';
 import 'general/themes.page.dart';
 
 ///
-class GeneralSettingPage extends StatefulWidget {
+class GeneralSettingPage extends ConsumerStatefulWidget {
   const GeneralSettingPage({super.key});
 
   static String get routeName => 'settings/global_UI';
@@ -23,7 +24,7 @@ class GeneralSettingPage extends StatefulWidget {
   _GeneralSettingPageState createState() => _GeneralSettingPageState();
 }
 
-class _GeneralSettingPageState extends State<GeneralSettingPage> {
+class _GeneralSettingPageState extends ConsumerState<GeneralSettingPage> {
   @override
   Widget build(BuildContext context) {
     // super.build(context);

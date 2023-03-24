@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/pages/login/login.dart';
 import 'package:leekbox_infra/log/log.dart';
@@ -11,7 +12,7 @@ import 'components/splash_view.dart';
 import 'components/top_back_skip_view.dart';
 import 'components/welcome_view.dart';
 
-class IntroScreen extends StatefulWidget {
+class IntroScreen extends ConsumerStatefulWidget {
   static String get routeName => 'intro';
 
   static String get routeLocation => '/$routeName';
@@ -22,7 +23,7 @@ class IntroScreen extends StatefulWidget {
   _IntroScreenState createState() => _IntroScreenState();
 }
 
-class _IntroScreenState extends State<IntroScreen>
+class _IntroScreenState extends ConsumerState<IntroScreen>
     with TickerProviderStateMixin {
   AnimationController? _animationController;
 

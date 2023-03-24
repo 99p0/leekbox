@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class StorageManagePage extends StatefulWidget {
+class StorageManagePage extends ConsumerStatefulWidget {
   const StorageManagePage({super.key});
 
   static String get routeName => 'settings/StorageManage';
@@ -15,7 +16,7 @@ class StorageManagePage extends StatefulWidget {
   _StorageManagePageState createState() => _StorageManagePageState();
 }
 
-class _StorageManagePageState extends State<StorageManagePage>
+class _StorageManagePageState extends ConsumerState<StorageManagePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

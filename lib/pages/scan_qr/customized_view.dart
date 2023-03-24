@@ -3,14 +3,14 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_scankit/scan_kit_widget.dart';
 //
-// class CustomizedView extends StatefulWidget {
+// class CustomizedView extends ConsumerStatefulWidget {
 //   @override
 //   _CustomizedViewState createState() => _CustomizedViewState();
 // }
 //
 // const boxSize = 200.0;
 //
-// class _CustomizedViewState extends State<CustomizedView> {
+// class _CustomizedViewState extends ConsumerState<CustomizedView> {
 //   late ScanKitController _controller;
 //
 //   final screenWidth = window.physicalSize.width;

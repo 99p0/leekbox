@@ -34,7 +34,8 @@ class _NavbarButtonState extends State<NavbarButton>
       duration: Duration(milliseconds: duration),
       vsync: this,
     );
-    Tween<double>(begin: 0, end: 1).animate(_iconAnimController)
+    Tween<double>(begin: 0, end: 1)
+        .animate(_iconAnimController)
         //Listen for tween updates, and rebuild the widget tree on each tick
         .addListener(() {
       setState(() {});

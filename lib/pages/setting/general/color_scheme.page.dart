@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
@@ -6,7 +7,7 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class ColorSchemePage extends StatefulWidget {
+class ColorSchemePage extends ConsumerStatefulWidget {
   const ColorSchemePage({super.key});
 
   static String get routeName => 'settings/ColorScheme';
@@ -17,7 +18,7 @@ class ColorSchemePage extends StatefulWidget {
   _ColorSchemePageState createState() => _ColorSchemePageState();
 }
 
-class _ColorSchemePageState extends State<ColorSchemePage>
+class _ColorSchemePageState extends ConsumerState<ColorSchemePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

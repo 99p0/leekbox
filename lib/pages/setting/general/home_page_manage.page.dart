@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class HomePageManagePage extends StatefulWidget {
+class HomePageManagePage extends ConsumerStatefulWidget {
   const HomePageManagePage({super.key});
 
   static String get routeName => 'settings/HomePageManage';
@@ -15,7 +16,7 @@ class HomePageManagePage extends StatefulWidget {
   _HomePageManagePageState createState() => _HomePageManagePageState();
 }
 
-class _HomePageManagePageState extends State<HomePageManagePage>
+class _HomePageManagePageState extends ConsumerState<HomePageManagePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

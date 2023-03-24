@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
@@ -6,7 +7,7 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class FontsPage extends StatefulWidget {
+class FontsPage extends ConsumerStatefulWidget {
   const FontsPage({super.key});
 
   static String get routeName => 'settings/Fonts';
@@ -17,7 +18,7 @@ class FontsPage extends StatefulWidget {
   _FontsPageState createState() => _FontsPageState();
 }
 
-class _FontsPageState extends State<FontsPage>
+class _FontsPageState extends ConsumerState<FontsPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

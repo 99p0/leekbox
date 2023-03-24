@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
-class CardPackagePage extends StatefulWidget {
+class CardPackagePage extends ConsumerStatefulWidget {
   const CardPackagePage({super.key});
 
   static String get routeName => 'mine/CardPackage';
@@ -15,7 +16,7 @@ class CardPackagePage extends StatefulWidget {
   _CardPackagePageState createState() => _CardPackagePageState();
 }
 
-class _CardPackagePageState extends State<CardPackagePage>
+class _CardPackagePageState extends ConsumerState<CardPackagePage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

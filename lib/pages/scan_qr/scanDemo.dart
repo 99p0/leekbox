@@ -13,12 +13,12 @@
 //
 // const _permissionGroup = const [PermissionGroup.Camera, PermissionGroup.Photos];
 //
-// class ScanDemo extends StatefulWidget {
+// class ScanDemo extends ConsumerStatefulWidget {
 //   @override
 //   _ScanDemoState createState() => _ScanDemoState();
 // }
 //
-// class _ScanDemoState extends State<ScanDemo> {
+// class _ScanDemoState extends ConsumerState<ScanDemo> {
 //   late bool isCustom;
 //   late FlutterScankit scanKit;
 //

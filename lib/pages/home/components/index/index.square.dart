@@ -4,12 +4,12 @@
 // import 'package:pull_to_refresh/pull_to_refresh.dart';
 //
 // ///
-// class IndexSquarePage extends StatefulWidget {
+// class IndexSquarePage extends ConsumerStatefulWidget {
 //   @override
 //   _IndexSquarePageState createState() => _IndexSquarePageState();
 // }
 //
-// class _IndexSquarePageState extends State<IndexSquarePage>
+// class _IndexSquarePageState extends ConsumerState<IndexSquarePage>
 //     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
 //   @override
 //   bool get wantKeepAlive => true;

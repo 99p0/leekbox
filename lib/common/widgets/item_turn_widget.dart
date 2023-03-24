@@ -29,9 +29,7 @@ class ItemTurnWidget extends StatefulWidget {
   });
 
   @override
-  _ItemTurnWidgetState createState() {
-    return _ItemTurnWidgetState();
-  }
+  _ItemTurnWidgetState createState() => _ItemTurnWidgetState();
 }
 
 class _ItemTurnWidgetState extends State<ItemTurnWidget> {

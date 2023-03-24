@@ -2,12 +2,12 @@
 // import 'package:leekbox_infra/log/log.dart';
 //
 // ///
-// class IndexSecondFloorPage extends StatefulWidget {
+// class IndexSecondFloorPage extends ConsumerStatefulWidget {
 //   @override
 //   _IndexSecondFloorPageState createState() => _IndexSecondFloorPageState();
 // }
 //
-// class _IndexSecondFloorPageState extends State<IndexSecondFloorPage> {
+// class _IndexSecondFloorPageState extends ConsumerState<IndexSecondFloorPage> {
 //   @override
 //   Widget build(BuildContext context) {
 //     // super.build(context);

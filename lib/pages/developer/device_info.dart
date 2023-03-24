@@ -4,9 +4,10 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
 
-class DeviceInfoPage extends StatefulWidget {
+class DeviceInfoPage extends ConsumerStatefulWidget {
   const DeviceInfoPage({super.key});
 
   static String get routeName => 'developer/device_info';
@@ -17,7 +18,7 @@ class DeviceInfoPage extends StatefulWidget {
   _DeviceInfoPageState createState() => _DeviceInfoPageState();
 }
 
-class _DeviceInfoPageState extends State<DeviceInfoPage>
+class _DeviceInfoPageState extends ConsumerState<DeviceInfoPage>
     with SingleTickerProviderStateMixin {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};

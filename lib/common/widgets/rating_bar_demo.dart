@@ -1,14 +1,14 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 //
-// class RatingBarDemo extends StatefulWidget {
+// class RatingBarDemo extends ConsumerStatefulWidget {
 //   const RatingBarDemo({Key? key}) : super(key: key);
 //
 //   @override
 //   State<RatingBarDemo> createState() => _RatingBarDemoState();
 // }
 //
-// class _RatingBarDemoState extends State<RatingBarDemo> {
+// class _RatingBarDemoState extends ConsumerState<RatingBarDemo> {
 //   final _initialRating = 5.0;
 //   double _rating = 5.0;
 //
@@ -54,14 +54,14 @@
 //   }
 // }
 //
-// class RatingBuilderDemo extends StatefulWidget {
+// class RatingBuilderDemo extends ConsumerStatefulWidget {
 //   const RatingBuilderDemo({Key? key}) : super(key: key);
 //
 //   @override
 //   State<RatingBuilderDemo> createState() => _RatingBuilderDemoState();
 // }
 //
-// class _RatingBuilderDemoState extends State<RatingBuilderDemo> {
+// class _RatingBuilderDemoState extends ConsumerState<RatingBuilderDemo> {
 //   final _initialRating = 5.0;
 //   double _rating = 5.0;
 //
@@ -138,14 +138,14 @@
 //   }
 // }
 //
-// class RatingIndicatorDemo extends StatefulWidget {
+// class RatingIndicatorDemo extends ConsumerStatefulWidget {
 //   const RatingIndicatorDemo({Key? key}) : super(key: key);
 //
 //   @override
 //   State<RatingIndicatorDemo> createState() => _RatingIndicatorDemoState();
 // }
 //
-// class _RatingIndicatorDemoState extends State<RatingIndicatorDemo> {
+// class _RatingIndicatorDemoState extends ConsumerState<RatingIndicatorDemo> {
 //   final maxRating = 5.0;
 //   double _rating = 5.0;
 //

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 ///
-class UserProfilePage extends StatefulWidget {
+class UserProfilePage extends ConsumerStatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
 
   static String get routeName => 'mine/user_profile';
@@ -10,10 +11,10 @@ class UserProfilePage extends StatefulWidget {
   static String get routeLocation => '/$routeName';
 
   @override
-  State<UserProfilePage> createState() => _UserProfilePageState();
+  _UserProfilePageState createState() => _UserProfilePageState();
 }
 
-class _UserProfilePageState extends State<UserProfilePage> {
+class _UserProfilePageState extends ConsumerState<UserProfilePage> {
   static const _expandedHeight = 40.0;
 
   @override
