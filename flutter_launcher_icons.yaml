@@ -7,8 +7,8 @@ flutter_icons:
   web:
     generate: true
     image_path: "assets/images/ic_logo.png"
-    background_color: "#hexcode"
-    theme_color: "#hexcode"
+    background_color: "#005BC1"
+    theme_color: "#005BC1"
   windows:
     generate: true
     image_path: "assets/images/ic_logo.png"

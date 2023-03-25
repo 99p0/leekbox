@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -11,6 +12,15 @@ import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:window_manager/window_manager.dart';
+
+bool get isDesktop {
+  if (kIsWeb) return false;
+  return [
+    TargetPlatform.windows,
+    TargetPlatform.linux,
+    TargetPlatform.macOS,
+  ].contains(defaultTargetPlatform);
+}
 
 void main() {
   runZonedGuarded(() async {
@@ -26,28 +36,32 @@ void main() {
     //   Log.error(exception);
     // }));
 
-    /// window
-    await windowManager.ensureInitialized();
+    // setPathUrlStrategy();
 
-    WindowOptions windowOptions = const WindowOptions(
-      size: Size(800, 600),
-      center: true,
-      backgroundColor: Colors.transparent,
-      skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.hidden,
-    );
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
-    });
+    /// desktop
+    if (isDesktop) {
+      await windowManager.ensureInitialized();
+
+      WindowOptions windowOptions = const WindowOptions(
+        size: Size(1200, 800),
+        center: true,
+        backgroundColor: Colors.transparent,
+        skipTaskbar: false,
+        titleBarStyle: TitleBarStyle.hidden,
+      );
+      windowManager.waitUntilReadyToShow(windowOptions, () async {
+        await windowManager.show();
+        await windowManager.focus();
+      });
+    }
 
     /// 全屏模式 SystemUiMode.edgeToEdge
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     /// 竖屏模式：just now
-    await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-      DeviceOrientation.portraitUp,
-    ]);
+    // await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    //   DeviceOrientation.portraitUp,
+    // ]);
 
     /// 初始化完成后 加载UI
     Global.init().then((e) => runApp(

@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:leekbox/common/widgets/app_scroll_behavior.dart';
 import 'package:leekbox/generated/l10n.dart';
 import 'package:leekbox/routes/app_routes.dart';
 import 'package:leekbox/theme/color_schemes.g.dart';
@@ -49,11 +50,24 @@ class MyApp extends ConsumerWidget {
 
         ///
         builder: FlutterSmartDialog.init(
-          builder: (_, Widget? child) => ScrollConfiguration(
-            behavior: const AppScrollBehavior(),
-            child: child!,
-          ),
+          builder: (context, widget) {
+            return MediaQuery(
+              /// Setting font does not change with system font size
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+
+              /// app scroll
+              child: ScrollConfiguration(
+                behavior: AppScrollBehavior(),
+                child: widget!,
+              ),
+            );
+          },
         ),
+
+        // builder: (_, Widget? child) => ScrollConfiguration(
+        //     behavior:  AppScrollBehavior(),
+        //     child: child!,
+        //   ),
 
         /// others settings
       );
@@ -67,6 +81,7 @@ class MyApp extends ConsumerWidget {
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
         minTextAdapt: true,
+        // 分屏
         splitScreenMode: true,
         useInheritedMediaQuery: true,
         builder: (context, child) {
@@ -109,13 +124,4 @@ class MyApp extends ConsumerWidget {
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
-}
-
-///
-class AppScrollBehavior extends ScrollBehavior {
-  const AppScrollBehavior();
-
-  @override
-  ScrollPhysics getScrollPhysics(BuildContext context) =>
-      const BouncingScrollPhysics();
 }

@@ -18,15 +18,21 @@ dependencies:
   phosphor_flutter: ^1.4.0
   nil: ^1.1.1
   tuple: ^2.0.1
-  #  protobuf: ^2.1.0
+  #protobuf: ^2.1.0
   uuid: ^3.0.7
   equatable: ^2.0.5
+#
+  built_collection: ^5.1.1
   built_value: ^8.4.4
   json_annotation: ^4.8.0
   #
   freezed_annotation: ^2.2.0
   #
   window_manager: ^0.3.1
+  #  window_size:
+  #    git:
+  #      url: git://github.com/google/flutter-desktop-embedding.git
+  #      path: plugins/window_size
   #  动态主题
   dynamic_color: ^1.6.2
   # 文件读写
@@ -70,12 +76,12 @@ dependencies:
   waterfall_flow: ^3.0.2
   shimmer: ^2.0.0
   # 媒体选择
-#  photo_manager: ^2.6.0
-#  wechat_assets_picker: ^8.2.0
-#  wechat_camera_picker: ^3.6.5
+  #  photo_manager: ^2.6.0
+  #  wechat_assets_picker: ^8.2.0
+  #  wechat_camera_picker: ^3.6.5
   # 视频播放
   chewie: ^1.4.0
-  video_player: ^2.4.9
+  video_player: ^2.6.0
   # 打开链接
   url_launcher: ^6.1.10
   # 版本升级
@@ -148,7 +154,6 @@ dependencies:
   local_auth: ^2.1.2
   # 高刷
   flutter_displaymode: ^0.5.0
-  #  flutter_smart_dialog: ^4.7.1
   #  tensorflow
   #  tflite_flutter: ^0.9.0
   #  tflite_flutter_helper: ^0.3.1
@@ -184,6 +189,7 @@ dev_dependencies:
   #
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
+  built_value_generator: ^8.4.4
   #
   flutter_gen_runner: ^5.2.0
   # 数据模型generator
@@ -200,6 +206,8 @@ dev_dependencies:
   drift_dev: ^2.6.0
   # logo 生成插件   flutter pub run flutter_launcher_icons
   flutter_launcher_icons: ^0.12.0
+  # 打包 windows
+  msix: ^3.9.1
 
 
 
@@ -241,9 +249,11 @@ flutter:
 
   assets:
     - assets/
+    - assets/videos/
     - assets/images/
     - assets/images/splash/
     - assets/images/mine/
+    - assets/images/login/
     - assets/images/design_course/
     - assets/images/intro/
     - assets/fonts/
@@ -266,3 +276,8 @@ flutter:
 #
 flutter_intl:
   enabled: true
+
+# window 打包 config
+msix_config:
+  display_name: Leekbox
+  msix_version: 1.0.0.0

@@ -1,16 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:go_router/go_router.dart';
-import 'package:leekbox/common/utils/android_back_desktop.dart';
-import 'package:leekbox/common/utils/image_utils.dart';
-import 'package:leekbox/common/utils/toast_utils.dart';
+import 'package:leekbox/common/utils/hex_color.dart';
+import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
-import 'package:leekbox/pages/login/widgets/bottom_wave_clipper.dart';
+import 'package:leekbox/common/widgets/my_button.2.dart';
 import 'package:leekbox/state/auth.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:nil/nil.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:video_player/video_player.dart';
 
-class LoginPage extends ConsumerWidget {
+class LoginPage extends ConsumerStatefulWidget {
   final String? from;
 
   const LoginPage({this.from, Key? key}) : super(key: key);
@@ -20,161 +25,211 @@ class LoginPage extends ConsumerWidget {
   static String get routeLocation => '/$routeName';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Log.debug('LoginPage build...');
+  _LoginPageState createState() => _LoginPageState();
+}
 
-    /// logo 图片区域
-    Widget logoImageArea = Container(
-      alignment: Alignment.topCenter,
-      // 设置图片为圆形
-      child: ClipOval(
-        child: Image.asset(
-          ImageUtils.getImgPath('ic_logo'),
-          height: 110,
-          width: 110,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+class _LoginPageState extends ConsumerState<LoginPage> {
+  // 声明视频控制器
+  late VideoPlayerController _videoPlayerController;
 
-    /// 第三方登录区域
-    Widget thirdLoginArea = Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 60,
-                height: 1.0,
-                color: Colors.grey.shade400,
-              ),
-              const Text('第三方登录'),
-              Container(
-                width: 60,
-                height: 1.0,
-                color: Colors.grey.shade400,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 18,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              IconButton(
-                color: Colors.green[200],
-                icon: const Icon(Icons.wallet),
-                iconSize: 40.0,
-                onPressed: () {
-                  ref.watch(authNotifierProvider.notifier).login(
-                        "myEmail",
-                        "myPassword",
-                      );
-                  // 如果有location的话，跳转过去
-                  if (from != null) context.go(from!);
-                },
-              ),
-              IconButton(
-                color: Colors.green[200],
-                icon: const Icon(Icons.facebook),
-                iconSize: 40.0,
-                onPressed: () {
-                  showToast('暂未接入');
-                },
-              ),
-              IconButton(
-                color: Colors.green[200],
-                icon: const Icon(Icons.terrain),
-                iconSize: 40.0,
-                onPressed: () {
-                  showToast('暂未接入');
-                },
-              )
-            ],
-          )
-        ],
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    // 初始化视频
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/videos/login_bg.mp4')
+          ..initialize().then((_) {
+            setState(() {});
+            _videoPlayerController.play();
+            _videoPlayerController.setLooping(true);
+          });
 
-    /// button widget
-    Widget buildBtn(String text, Color splashColor, Color highlightColor,
-        Color fillColor, Color textColor, void Function() function) {
-      return ElevatedButton(
-        onPressed: function,
-        child: Text(
-          text,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: textColor,
-            fontSize: 18,
+    //
+    // initFluwx();
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    super.dispose();
+  }
+
+  Widget buildBg() => Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          // color: Colors.red,
+          image: DecorationImage(
+            image: ImageUtils.getAssetImage('login/bg_1'),
+            fit: BoxFit.fitWidth,
           ),
         ),
       );
-    }
 
-    return WillPopScope(
-      onWillPop: () async {
-        AndroidBackDesktop.backToDesktop();
-        return false;
-      },
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(10),
-          child: AppBar(
-            flexibleSpace: Container(
-              color: Theme.of(context).primaryColor,
-            ),
-            systemOverlayStyle: SystemUiOverlayStyle.light,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Transform.scale(
+            // scale: _videoPlayerController.value.aspectRatio / MediaQuery.of(context).size.aspectRatio * 1.1,
+            scale: _videoPlayerController.value.aspectRatio,
+            child: _videoPlayerController.value.isInitialized
+                ? AspectRatio(
+                    aspectRatio: _videoPlayerController.value.aspectRatio,
+                    child: VideoPlayer(_videoPlayerController),
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: ImageUtils.getAssetImage('login/bg_1'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
           ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Gaps.vGap100,
-            logoImageArea,
-            Gaps.vGap200,
-            Gaps.vGap100,
-            Container(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 50,
-              child: buildBtn(
-                "支付宝授权登录",
-                Theme.of(context).primaryColor,
-                Colors.white,
-                Colors.white,
-                Theme.of(context).primaryColor,
-                () async {
-                  ref.watch(authNotifierProvider.notifier).login(
-                        "myEmail",
-                        "myPassword",
-                      );
-                  // 如果有location的话，跳转过去
-                  if (from != null) context.go(from!);
-                },
-              ),
+          // 头部欢迎语
+          Positioned(
+            width: MediaQuery.of(context).size.width,
+            top: 80.0.h,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  '欢迎萌新驾到',
+                  style: TextStyle(
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+              ],
             ),
-
-            // thirdLoginArea,
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ClipPath(
-                  clipper: BottomWaveClipper(),
-                  child: Container(
-                    color: Colors.white,
-                    height: 300,
+          ),
+          // 登录按钮
+          Positioned(
+            width: MediaQuery.of(context).size.width,
+            bottom: 16.0.h,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 280.w,
+                  child: MyButton2(
+                    text: '手机号登录',
+                    onPressed: _mobileAuth,
                   ),
                 ),
-              ),
+                Gaps.vGap10,
+                const Center(
+                  child: Text(
+                    'OR',
+                    style: TextStyle(color: Colors.black12, fontSize: 13.0),
+                  ),
+                ),
+                Gaps.vGap10,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    thirdLoginIcon(
+                      PhosphorIcons.twitterLogo,
+                      HexColor('#1AAD19'),
+                      _weChatAuth,
+                    ),
+                    Gaps.hGap32,
+                    thirdLoginIcon(
+                      PhosphorIcons.appleLogo,
+                      HexColor('#027AFF'),
+                      _alipayAuth,
+                    ),
+                    Gaps.hGap10,
+                  ],
+                ),
+                const SizedBox(height: 60.0),
+                Text(
+                  "我已阅读并同意《服务协议》及《隐私政策》",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12.0.sp,
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
+        ],
+      ),
+      floatingActionButton: _videoPlayerController.value.isInitialized
+          ? FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _videoPlayerController.value.isPlaying
+                      ? _videoPlayerController.pause()
+                      : _videoPlayerController.play();
+                });
+              },
+              child: Icon(
+                _videoPlayerController.value.isPlaying
+                    ? Icons.pause
+                    : Icons.play_arrow,
+              ),
+            )
+          : nil,
+    );
+  }
+
+  ///
+  Widget thirdLoginIcon(
+      IconData? icon, Color? color, GestureTapCallback? onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Material(
+        //背景色
+        color: Colors.black12,
+        shape: const CircleBorder(
+          side: BorderSide(
+            color: Colors.transparent,
+            width: 0.0,
+          ),
+        ),
+        child: Container(
+          // color: Colors.teal,
+          padding: const EdgeInsets.all(10.0),
+          child: Icon(
+            icon,
+            color: color,
+            size: 32.0,
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> initFluwx() async {
+    Log.debug('init Fluwx...');
+    await fluwx.registerWxApi(
+      appId: 'wx461d03aca7072c02', //查看微信开放平台
+      universalLink: 'https://your.univerallink.com/link/', //查看微信开放平台
+    );
+  }
+
+  Future<void> _mobileAuth() async {
+    showToast('手机号登录');
+    // 一键登录， 手机号 +
+  }
+
+  Future<void> _weChatAuth() async {
+    showToast('请安装 微信 后使用该功能');
+  }
+
+  Future<void> _alipayAuth() async {
+    showToast('支付宝登录');
+    ref.watch(authNotifierProvider.notifier).login(
+          "myEmail",
+          "myPassword",
+        );
+    // 如果有location的话，跳转过去
+    if (widget.from != null) context.go(widget.from!);
   }
 }
