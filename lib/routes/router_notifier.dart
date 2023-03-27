@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:leekbox/pages/activity/activities.page.dart';
+import 'package:leekbox/pages/activity/activity_detail.page.dart';
 import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/exception/connection.exception.page.dart';
@@ -251,6 +253,19 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           path: IntroScreen.routeLocation,
           name: IntroScreen.routeName,
           builder: (context, state) => const IntroScreen(),
+        ),
+
+        /// 打卡活动列表
+        GoRoute(
+          path: ActivityListPage.routeLocation,
+          name: ActivityListPage.routeName,
+          builder: (context, state) => const ActivityListPage(),
+        ),
+        // 活动详情
+        GoRoute(
+          path: ActivityDetailPage.routeLocation,
+          name: ActivityDetailPage.routeName,
+          builder: (context, state) => const ActivityDetailPage(),
         ),
 
         /// 未登录的页面使用

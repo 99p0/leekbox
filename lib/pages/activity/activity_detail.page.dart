@@ -4,6 +4,12 @@ import 'package:leekbox_infra/log/log.dart';
 
 ///
 class ActivityDetailPage extends ConsumerStatefulWidget {
+  const ActivityDetailPage({super.key});
+
+  static String get routeName => 'activity/detail';
+
+  static String get routeLocation => '/$routeName';
+
   @override
   _ActivityDetailPageState createState() => _ActivityDetailPageState();
 }

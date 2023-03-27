@@ -8,4 +8,70 @@
 :toc-title: 目录
 :toclevels: 3
 
+
+
+=== 代码混淆
+
+    https://github.com/flutter/flutter/wiki/Obfuscating-Dart-Code
+
+=== 大小分析工具
+
+    flutter build apk --analyze-size --target-platform android-arm64
+    flutter build appbundle --analyze-size
+    flutter build ios --analyze-size
+    flutter build linux --analyze-size
+    flutter build macos --analyze-size
+    flutter build windows --analyze-size
+
+
+=== 拆分打包：针对不同的CPU进行打包
+
+    flutter build apk --split-per-abi
+    flutter build apk --obfuscate --split-debug-info debuginfo   --target-platform android-arm64 --split-per-abi
+
+=== Use FlutterGen
+
+     flutter packages pub run build_runner build
+
+=== flutter_native_splash
+
+    # If you have a flavor called production you would do this:
+    flutter pub run flutter_native_splash:create --flavor production
+
+    # For a flavor with a name staging you would provide it's name like so:
+    flutter pub run flutter_native_splash:create --flavor staging
+
+    # And if you have a local version for devs you could do that:
+    flutter pub run flutter_native_splash:create --flavor development
+
+
+
+=== brewhome
+
+[source]
+----
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-services
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+git config --global --add safe.directory /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+----
+
+
+
+
+=== Git: 单个文件超过100M > https://git-lfs.com/
+
+[source]
+----
+# 1.安装Git命令行扩展。只需要设置一次Git LFS
+$ git lfs install
+# 2.选择您希望Git LFS管理的文件类型
+$ git lfs track "*.psd"
+# 确保跟踪.gitattributes
+$ git add .gitattributes
+# 3.Just commit and push to GitHub as you normally would.
+$ git add file.psd
+$ git commit -m "Add design file"
+$ git push origin master
+----
+
 {author}写作,更多请联系 <{email}>

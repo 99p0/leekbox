@@ -63,6 +63,13 @@ void main() {
     //   DeviceOrientation.portraitUp,
     // ]);
 
+    /// License
+    LicenseRegistry.addLicense(() async* {
+      // Google fonts Licensing Fonts
+      final license = await rootBundle.loadString('google_fonts/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
+
     /// 初始化完成后 加载UI
     Global.init().then((e) => runApp(
           ProviderScope(
@@ -87,13 +94,6 @@ void main() {
 
     // 在输入频率与显示刷新率不匹配情况下提供平滑的滚动效果 :: 后遗症：这个方法会带来巨大的输入延迟，而且可能看起来不对劲
     // GestureBinding.instance.resamplingEnabled = true;
-
-    /// License
-    // LicenseRegistry.addLicense(() async* {
-    //   // Google fonts Licensing Fonts
-    //   final license = await rootBundle.loadString('google_fonts/OFL.txt');
-    //   yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-    // });
 
     /// do others
   }, (Object obj, StackTrace stack) {

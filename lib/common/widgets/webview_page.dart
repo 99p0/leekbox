@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nil/nil.dart';
 import 'package:path_provider/path_provider.dart';
@@ -114,10 +113,9 @@ Page resource error:
         leadingWidth: 0,
         title: Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .titleSmall
-              ?.copyWith(fontSize: 15.0.sp),
+          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontSize: 15.0,
+              ),
         ),
         actions: <Widget>[
           // NavigationControls(webViewController: _controller),

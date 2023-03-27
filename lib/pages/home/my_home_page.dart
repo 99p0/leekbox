@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';
@@ -14,7 +15,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
 
   static String get routeName => 'home';
@@ -22,12 +23,12 @@ class MyHomePage extends StatefulWidget {
   static String get routeLocation => '/$routeName';
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
+class _MyHomePageState extends ConsumerState<MyHomePage>
     with AutomaticKeepAliveClientMixin {
-  //WidgetsBindingObserver
+  // WidgetsBindingObserver
   final bool _colorful = true;
 
   /// 当前的索引值
@@ -121,29 +122,24 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
-  final ScrollController _scrollController = ScrollController();
-
   Widget _buildBottomNavigationBar(themeData) {
+    var borderRadius = const BorderRadius.only(
+      topRight: Radius.circular(30),
+      topLeft: Radius.circular(30),
+    );
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: themeData.scaffoldBackgroundColor,
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
+        borderRadius: borderRadius,
         boxShadow: [
           BoxShadow(
-            color: Colors.black38.withOpacity(0.2),
+            color: Colors.grey.withOpacity(0.2),
             spreadRadius: 0,
             blurRadius: 8.0,
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
-        ),
+        borderRadius: borderRadius,
         child: _buildItemsStyle1(),
       ),
     );

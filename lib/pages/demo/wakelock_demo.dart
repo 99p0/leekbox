@@ -8,7 +8,6 @@ import 'package:wakelock/wakelock.dart';
 /// callback functions and a [FutureBuilder].
 class WakelockExampleApp extends ConsumerStatefulWidget {
   /// Creates the [WakelockExampleApp] widget.
-  const WakelockExampleApp({required Key key}) : super(key: key);
 
   @override
   _WakelockExampleAppState createState() => _WakelockExampleAppState();

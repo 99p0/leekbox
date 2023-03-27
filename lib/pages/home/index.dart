@@ -9,6 +9,12 @@ import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
+import 'package:leekbox/pages/activity/activities.page.dart';
+import 'package:leekbox/pages/activity/activity_detail.page.dart';
+import 'package:leekbox/pages/demo/icon_flip_nav_bar/demo.dart';
+import 'package:leekbox/pages/demo/txt_nav_bar/bottom_9_page.dart';
+import 'package:leekbox/pages/demo/wakelock_demo.dart';
+import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/home/components/one_day_normal_view.dart';
 import 'package:leekbox/pages/home/components/statistics_item.dart';
@@ -281,12 +287,12 @@ class _IndexPageState extends ConsumerState<IndexPage>
                     badgeSize: Size(38.w, 38.w),
                     spanBaselineShift: 2,
                     // isEmoji: true,
-                    textSpan: TextSpan(
+                    textSpan: const TextSpan(
                       children: [
                         TextSpan(
                           text: '👑\n',
                           style: TextStyle(
-                            fontSize: 9.sp,
+                            fontSize: 9,
                             fontWeight: FontWeight.bold,
                             color: Colors.redAccent,
                           ),
@@ -294,7 +300,7 @@ class _IndexPageState extends ConsumerState<IndexPage>
                         TextSpan(
                           text: 'VIP专属',
                           style: TextStyle(
-                            fontSize: 5.sp,
+                            fontSize: 5,
                             fontStyle: FontStyle.italic,
                             letterSpacing: 3.5,
                             color: Colors.yellow,
@@ -308,14 +314,14 @@ class _IndexPageState extends ConsumerState<IndexPage>
                     badgeCornerRadius: const Radius.circular(8),
                     color: Colors.red,
                     badgeSize: Size(32.w, 32.w),
-                    textSpan: TextSpan(
+                    textSpan: const TextSpan(
                       text: 'OMG',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 8.sp,
+                        fontSize: 8,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
-                        shadows: const [
+                        shadows: [
                           BoxShadow(color: Colors.yellowAccent, blurRadius: 8),
                         ],
                       ),
@@ -366,7 +372,7 @@ class _IndexPageState extends ConsumerState<IndexPage>
       title: Text(
         '因律社群',
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontSize: 14.sp,
+              fontSize: 14,
             ),
       ),
       centerTitle: true,
@@ -390,43 +396,112 @@ class _IndexPageState extends ConsumerState<IndexPage>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Gaps.hGap10,
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).push(PrivacyPolicyPage.routeLocation);
-          },
-          child: const Text('隐私页'),
+        Row(
+          children: [
+            Text('网络状态::$_connectionStatus'),
+          ],
         ),
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).push(SplashPage.routeLocation);
-          },
-          child: const Text('启动页'),
+        Gaps.vGap24,
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(PrivacyPolicyPage.routeLocation);
+              },
+              child: const Text('隐私页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(SplashPage.routeLocation);
+              },
+              child: const Text('启动页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(IntroScreen.routeLocation);
+              },
+              child: const Text('引导页'),
+            ),
+          ],
         ),
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).push(IntroScreen.routeLocation);
-          },
-          child: const Text('引导页'),
+        Gaps.vGap24,
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(DeviceInfoPage.routeLocation);
+              },
+              child: const Text('设备页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(LoginPage.routeLocation);
+              },
+              child: const Text('登录页'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(DashboardPage.routeLocation);
+              },
+              child: const Text('仪表盘'),
+            ),
+          ],
         ),
-        Gaps.hGap10,
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).push(DeviceInfoPage.routeLocation);
-          },
-          child: const Text('设备页'),
+        Gaps.vGap24,
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(ActivityListPage.routeLocation);
+              },
+              child: const Text('活动列表'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(ActivityDetailPage.routeLocation);
+              },
+              child: const Text('活动详情'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(DashboardPage.routeLocation);
+              },
+              child: const Text('仪表盘'),
+            ),
+          ],
         ),
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).push(LoginPage.routeLocation);
-          },
-          child: const Text('登录页'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            showToast('$_connectionStatus');
-          },
-          child: Text('$_connectionStatus'),
+        Gaps.vGap24,
+        Text('Demo如下：', style: Theme.of(context).textTheme.titleMedium),
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WakelockExampleApp()),
+                );
+              },
+              child: const Text('Wakelock'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BubbleTabBarDemo()),
+                );
+              },
+              child: const Text('icon_flip_nav_bar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Bottom9Page()),
+                );
+              },
+              child: const Text('txt_nav_bar'),
+            ),
+          ],
         ),
       ],
     );

@@ -7,7 +7,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:leekbox/common/widgets/app_scroll_behavior.dart';
 import 'package:leekbox/generated/l10n.dart';
 import 'package:leekbox/routes/app_routes.dart';
-import 'package:leekbox/theme/color_schemes.g.dart';
+import 'package:leekbox/theme/app_theme.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MyApp extends ConsumerWidget {
@@ -25,14 +25,8 @@ class MyApp extends ConsumerWidget {
         routerConfig: router,
 
         /// theme use material 3
-        theme: ThemeData(
-          colorScheme: lightDynamic ?? lightColorScheme,
-          useMaterial3: true,
-        ),
-        darkTheme: ThemeData(
-          colorScheme: darkDynamic ?? darkColorScheme,
-          useMaterial3: true,
-        ),
+        theme: AppTheme.buildLightTheme(lightDynamic),
+        darkTheme: AppTheme.buildDarkTheme(darkDynamic),
 
         /// localization
         localizationsDelegates: const [
@@ -63,11 +57,6 @@ class MyApp extends ConsumerWidget {
             );
           },
         ),
-
-        // builder: (_, Widget? child) => ScrollConfiguration(
-        //     behavior:  AppScrollBehavior(),
-        //     child: child!,
-        //   ),
 
         /// others settings
       );

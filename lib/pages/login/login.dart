@@ -72,8 +72,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         fit: StackFit.expand,
         children: <Widget>[
           Transform.scale(
-            // scale: _videoPlayerController.value.aspectRatio / MediaQuery.of(context).size.aspectRatio * 1.1,
-            scale: _videoPlayerController.value.aspectRatio,
+            scale: _videoPlayerController.value.aspectRatio /
+                MediaQuery.of(context).size.aspectRatio *
+                1.1,
+            // scale: _videoPlayerController.value.aspectRatio,
             child: _videoPlayerController.value.isInitialized
                 ? AspectRatio(
                     aspectRatio: _videoPlayerController.value.aspectRatio,
@@ -152,7 +154,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   "我已阅读并同意《服务协议》及《隐私政策》",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 12.0.sp,
+                    fontSize: 12.0,
                   ),
                 ),
               ],

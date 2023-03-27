@@ -21,7 +21,7 @@ class NavBar extends StatelessWidget {
     //For each item in our list of data, create a NavBtn widget
     List<Widget> buttonWidgets = items.map((data) {
       //Create a button, and add the onTap listener
-      return NavbarButton(data, data == selectedItem, onTap: () {
+      return NavbarButton(data, (data == selectedItem), onTap: () {
         //Get the index for the clicked data
         var index = items.indexOf(data);
         //Notify any listeners that we've been tapped, we rely on a parent widget to change our selectedIndex and redraw

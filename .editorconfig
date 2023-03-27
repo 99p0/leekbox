@@ -1,0 +1,11 @@
+# Value "true" marks the top configuration file in the project
+root = true
+
+# The following settings match to AsciiDoc content by its filename
+[{*.ad,*.adoc,*.asciidoc,.asciidoctorconfig}]
+# Ensure that content is UTF-8 encoded
+charset = utf-8
+# No line should contain trailing whitespace
+trim_trailing_whitespace = true
+# Ensure a newline at the end of each file
+insert_final_newline = true

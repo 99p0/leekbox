@@ -30,7 +30,7 @@ class MyButton2 extends StatelessWidget {
           style: ButtonStyle(
             //定义文本的样式 这里设置的颜色是不起作用的
             textStyle: MaterialStateProperty.all(TextStyle(
-              fontSize: 14.sp,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             )),
             //

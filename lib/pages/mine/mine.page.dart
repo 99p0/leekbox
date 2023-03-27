@@ -145,7 +145,7 @@ class _MinePageState extends ConsumerState<MinePage>
                         Text(
                           '润歌',
                           style: TextStyle(
-                            fontSize: 16.0.sp,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -164,7 +164,7 @@ class _MinePageState extends ConsumerState<MinePage>
                           '账号：666666',
                           style: TextStyle(
                             color: const Color(0xFF828282),
-                            fontSize: 11.0.sp,
+                            fontSize: 11.0,
                           ),
                         ),
                         Expanded(
@@ -211,7 +211,7 @@ class _MinePageState extends ConsumerState<MinePage>
                           '河北 沧州',
                           style: TextStyle(
                             color: const Color(0xFF828282),
-                            fontSize: 10.0.sp,
+                            fontSize: 10.0,
                           ),
                         ),
                         Gaps.hGap15,
@@ -219,7 +219,7 @@ class _MinePageState extends ConsumerState<MinePage>
                           'IP属地:',
                           style: TextStyle(
                             color: const Color(0xFF828282),
-                            fontSize: 10.0.sp,
+                            fontSize: 10.0,
                           ),
                         ),
                         Gaps.hGap5,
@@ -227,7 +227,7 @@ class _MinePageState extends ConsumerState<MinePage>
                           '中国 北京 北京市',
                           style: TextStyle(
                             color: const Color(0xFF828282),
-                            fontSize: 10.0.sp,
+                            fontSize: 10.0,
                           ),
                         ),
                       ],

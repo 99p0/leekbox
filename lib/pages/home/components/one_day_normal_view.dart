@@ -37,7 +37,7 @@ class TimeAndWordView extends StatelessWidget {
                     '${DateUtil.getNowTimeString()}好~',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         // fontWeight: FontWeight.bold,
-                        // fontSize: 18.sp,
+                        // fontSize: 18,
                         ),
                   ),
                 ),
@@ -45,7 +45,7 @@ class TimeAndWordView extends StatelessWidget {
                 Text(
                   words.word,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      // fontSize: 13.sp,
+                      // fontSize: 13,
                       // fontWeight: FontWeight.normal,
                       ),
                 ),
@@ -54,7 +54,7 @@ class TimeAndWordView extends StatelessWidget {
                 //   words.wordEnglish,
                 //   style: GoogleFonts.lato(
                 //     textStyle: Theme.of(context).textTheme.headline1,
-                //     fontSize: 13.sp,
+                //     fontSize: 13,
                 //     fontWeight: FontWeight.normal,
                 //     fontStyle: FontStyle.italic,
                 //   ),

@@ -49,7 +49,7 @@ class ConnectionExceptionPage extends StatelessWidget {
               Text(
                 '您的设备未启用移动网络或无线局域网',
                 style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                      fontSize: 14.sp,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -73,7 +73,7 @@ class ConnectionExceptionPage extends StatelessWidget {
               Text(
                 '如果您已接入无线局域网',
                 style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                      fontSize: 13.sp,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
               ),
