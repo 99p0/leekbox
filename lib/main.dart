@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:leekbox/common/global.dart';
 import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 import 'package:window_manager/window_manager.dart';
 
 bool get isDesktop {
@@ -22,11 +25,23 @@ bool get isDesktop {
   ].contains(defaultTargetPlatform);
 }
 
+Future<void> _configureLocalTimeZone() async {
+  if (kIsWeb || Platform.isLinux) {
+    return;
+  }
+  tz.initializeTimeZones();
+  final String timeZoneName = await FlutterTimezone.getLocalTimezone();
+  tz.setLocalLocation(tz.getLocation(timeZoneName!));
+}
+
 void main() {
   runZonedGuarded(() async {
     /// use 'flutter_native_splash' packages build Splash view
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+    ///
+    await _configureLocalTimeZone();
 
     /// 咸鱼 PowerImage图片库
     // PowerImageBinding();

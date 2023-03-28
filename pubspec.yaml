@@ -147,6 +147,8 @@ dependencies:
   webview_flutter: ^4.0.7
   # 本地通知
   flutter_local_notifications: ^13.0.0
+  # flutter_local_notifications 依赖
+  flutter_timezone: ^1.0.4
   #
   #  table_calendar: ^3.0.7
   #
