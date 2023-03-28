@@ -125,7 +125,7 @@ class _MinePageState extends ConsumerState<MinePage>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          ImageUtils.getImgPath('def_avatar'),
+                          ImageUtils.getImgPath('_/def_avatar'),
                           gaplessPlayback: true,
                         ),
                       ),

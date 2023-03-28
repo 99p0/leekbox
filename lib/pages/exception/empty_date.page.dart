@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leekbox/common/utils/utils.dart';
 
 class EmptyDateWidget extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class EmptyDateWidget extends StatelessWidget {
           SizedBox(
             width: 120.0,
             height: 120.0,
-            child: Image.asset('assets/images/no_data.png'),
+            child: Image.asset(ImageUtils.getImgPath('_/def_avatar')),
           ),
           Text(
             '暂时未获取到数据',

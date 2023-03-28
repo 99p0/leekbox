@@ -222,8 +222,7 @@ flutter_gen:
   #
   integrations:
     flutter_svg: true
-    flare_flutter: true
-    rive: true
+    rive: false
     lottie: true
 
   assets:
@@ -240,7 +239,9 @@ flutter_gen:
       # Assets.images.chip (default style)
       style: dot-delimiter
     exclude:
-      - assets/flare/
+      - assets/tflites/
+      - assets/rives/
+      - assets/lotties/
 
   fonts:
     enabled: true

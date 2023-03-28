@@ -1,0 +1,11 @@
+== 关于项目
+
+:author: yangr
+:email: uncle.yang@outlook.com
+:revnumber: v1.0
+:revdate: 2023-03-18
+:sectanchors: true
+:toc: left
+:toc-title: 目录
+:toclevels: 3
+:description: {author}写作,更多请联系 <{email}>

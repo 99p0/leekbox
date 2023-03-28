@@ -1,4 +1,6 @@
-= CHANGELOG
+== 最近更新
+
+:encoding: utf-8
 :author: yangr
 :email: uncle.yang@outlook.com
 :revnumber: v1.0
@@ -7,12 +9,23 @@
 :toc: left
 :toc-title: 目录
 :toclevels: 2
+:description: {author}写作,更多请联系 <{email}>
 
-{author}写作,更多请联系 <{email}>
+=== 1.0.3-dev
+====
+* [x] Require analyzer 5.2.0.
+* [x] Require Dart >= 2.17.0.
+====
 
-== 1.0.3-dev
+=== 1.0.1-dev
+====
+* [x] 新增：应用管理；
+* [x] 系统UI部分更新；
+* [x] 部分功能优化等；
+* [x] 各模块UI细节调优；
+* [x] 修复一些已知问题；
 
-* Require analyzer 5.2.0.
-* Fix nice mocks generation in mixed mode (generated code is pre null-safety,
-while mocked class is null-safe).
-* Require Dart >= 2.17.0.
+====
+
+https://www.yuque.com/leekbox/help/pcmd0o[点击查看历史版本更新日志]
+

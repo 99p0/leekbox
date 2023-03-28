@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/utils/hex_color.dart';
+import 'package:leekbox/common/utils/utils.dart';
 
 import 'category_list_view.dart';
 import 'course_info_screen.dart';
@@ -296,7 +297,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
           Container(
             width: 60,
             height: 60,
-            child: Image.asset('assets/images/design_course/userImage.png'),
+            child:
+                Image.asset(ImageUtils.getImgPath('design_course/userImage')),
           )
         ],
       ),

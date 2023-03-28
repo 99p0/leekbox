@@ -4,7 +4,10 @@
 :revnumber: v1.0
 :revdate: 2023-03-18
 :sectanchors: true
-:source-highlighter: rouge
+// :sectnums:
+:sectlinks:
+:sectnumlevels: 4
+:source-highlighter: coderay
 :toc: left
 :toc-title: 目录
 :toclevels: 4
@@ -26,14 +29,19 @@ https://xxx[[帮助手册——`LEEKBOX` 需要付费吗？]]
 
 ---
 
-== 捐赠支持
-
-=== 来一碗 *_臭豆腐_*
 
 
-如果您觉得我们的开源项目 `LEEKBOX` 对您有帮助，那就请项目开发者们来一碗 *_臭豆腐_* 吧！目前我们接受来自于__**微信**__、__**支付宝**__或者__**数字人民币**__的捐赠，请在捐赠时备注自己的昵称或附言。
+//
+// include::FAQ.adoc[FAQ]
 
-您的捐赠将用于支付该项目的一些费用支出，并激励开发者们以便更好的推动项目的发展，同时欢迎捐赠**公网服务器**用于提高在线演示系统体验。
+//
+include::CHANGELOG.adoc[CHANGELOG]
 
+//
+include::ABOUT_US.adoc[ABOUT]
 
-image:assets/images/ic_logo.png["alt text"]
+//
+include::CONTACT.adoc[CONTACT]
+
+//
+include::DONATE.adoc[CONTACT]

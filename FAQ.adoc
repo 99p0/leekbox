@@ -1,4 +1,5 @@
-= FAQ
+== 常见问题
+
 :author: yangr
 :email: uncle.yang@outlook.com
 :revnumber: v1.0

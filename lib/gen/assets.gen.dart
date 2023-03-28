@@ -3,127 +3,38 @@
 ///  FlutterGen
 /// *****************************************************
 
-import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
 class $AssetsFontsGen {
   const $AssetsFontsGen();
 
+  /// File path: assets/fonts/DIN-Pro-Regular.otf
+  String get dINProRegular => 'assets/fonts/DIN-Pro-Regular.otf';
+
   /// File path: assets/fonts/digital-7.ttf
   String get digital7 => 'assets/fonts/digital-7.ttf';
 
+  /// File path: assets/fonts/iconfont.ttf
+  String get iconfont => 'assets/fonts/iconfont.ttf';
+
   /// List of all assets
-  List<String> get values => [digital7];
+  List<String> get values => [dINProRegular, digital7, iconfont];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/chart_fg.png
-  AssetGenImage get chartFg =>
-      const AssetGenImage('assets/images/chart_fg.png');
-
-  /// File path: assets/images/def_avatar.png
-  AssetGenImage get defAvatar =>
-      const AssetGenImage('assets/images/def_avatar.png');
-
   $AssetsImagesDesignCourseGen get designCourse =>
       const $AssetsImagesDesignCourseGen();
-
-  /// File path: assets/images/dps.png
-  AssetGenImage get dps => const AssetGenImage('assets/images/dps.png');
-
-  /// File path: assets/images/fitness-svgrepo-com.svg
-  SvgGenImage get fitnessSvgrepoCom =>
-      const SvgGenImage('assets/images/fitness-svgrepo-com.svg');
-
-  /// File path: assets/images/happy_birthday.png
-  AssetGenImage get happyBirthday =>
-      const AssetGenImage('assets/images/happy_birthday.png');
-
-  /// File path: assets/images/ic_right_arrow_grey.webp
-  AssetGenImage get icRightArrowGrey =>
-      const AssetGenImage('assets/images/ic_right_arrow_grey.webp');
-
-  /// File path: assets/images/ic_small_code.png
-  AssetGenImage get icSmallCode =>
-      const AssetGenImage('assets/images/ic_small_code.png');
-
-  /// File path: assets/images/icon_selected.png
-  AssetGenImage get iconSelected =>
-      const AssetGenImage('assets/images/icon_selected.png');
-
-  /// File path: assets/images/image_annotation.png
-  AssetGenImage get imageAnnotation =>
-      const AssetGenImage('assets/images/image_annotation.png');
-
   $AssetsImagesIntroGen get intro => const $AssetsImagesIntroGen();
-
-  /// File path: assets/images/jrjye.png
-  AssetGenImage get jrjye => const AssetGenImage('assets/images/jrjye.png');
-
-  /// File path: assets/images/librarian-svgrepo-com.svg
-  SvgGenImage get librarianSvgrepoCom =>
-      const SvgGenImage('assets/images/librarian-svgrepo-com.svg');
-
+  $AssetsImagesLoginGen get login => const $AssetsImagesLoginGen();
   $AssetsImagesMineGen get mine => const $AssetsImagesMineGen();
-
-  /// File path: assets/images/ophthalmology-svgrepo-com.svg
-  SvgGenImage get ophthalmologySvgrepoCom =>
-      const SvgGenImage('assets/images/ophthalmology-svgrepo-com.svg');
-
-  /// File path: assets/images/order_bg.png
-  AssetGenImage get orderBg =>
-      const AssetGenImage('assets/images/order_bg.png');
-
-  /// File path: assets/images/order_bg1.png
-  AssetGenImage get orderBg1 =>
-      const AssetGenImage('assets/images/order_bg1.png');
-
-  /// File path: assets/images/top1.png
-  AssetGenImage get top1 => const AssetGenImage('assets/images/top1.png');
-
-  /// File path: assets/images/top2.png
-  AssetGenImage get top2 => const AssetGenImage('assets/images/top2.png');
-
-  /// File path: assets/images/top3.png
-  AssetGenImage get top3 => const AssetGenImage('assets/images/top3.png');
-
-  /// File path: assets/images/worker-svgrepo-com.svg
-  SvgGenImage get workerSvgrepoCom =>
-      const SvgGenImage('assets/images/worker-svgrepo-com.svg');
-
-  /// File path: assets/images/xdd.png
-  AssetGenImage get xdd => const AssetGenImage('assets/images/xdd.png');
-
-  /// List of all assets
-  List<dynamic> get values => [
-        chartFg,
-        defAvatar,
-        dps,
-        fitnessSvgrepoCom,
-        happyBirthday,
-        icRightArrowGrey,
-        icSmallCode,
-        iconSelected,
-        imageAnnotation,
-        jrjye,
-        librarianSvgrepoCom,
-        ophthalmologySvgrepoCom,
-        orderBg,
-        orderBg1,
-        top1,
-        top2,
-        top3,
-        workerSvgrepoCom,
-        xdd
-      ];
+  $AssetsImagesSplashGen get splash => const $AssetsImagesSplashGen();
 }
 
 class $AssetsLottiesGen {
@@ -162,8 +73,159 @@ class $AssetsLottiesGen {
       ];
 }
 
+class $AssetsRivesGen {
+  const $AssetsRivesGen();
+
+  /// File path: assets/rives/a1298-2487-animated-icon-set-1-color.riv
+  String get a12982487AnimatedIconSet1Color =>
+      'assets/rives/a1298-2487-animated-icon-set-1-color.riv';
+
+  /// File path: assets/rives/a1374-2709-menu-button-to-close-button.riv
+  String get a13742709MenuButtonToCloseButton =>
+      'assets/rives/a1374-2709-menu-button-to-close-button.riv';
+
+  /// File path: assets/rives/a1542-3018-party.riv
+  String get a15423018Party => 'assets/rives/a1542-3018-party.riv';
+
+  /// File path: assets/rives/a1714-4322-rives-animated-emojis.riv
+  String get a17144322RivesAnimatedEmojis =>
+      'assets/rives/a1714-4322-rives-animated-emojis.riv';
+
+  /// File path: assets/rives/a205-1404-zombie-character.riv
+  String get a2051404ZombieCharacter =>
+      'assets/rives/a205-1404-zombie-character.riv';
+
+  /// File path: assets/rives/a2084-4123-sign-uplogin-animation.riv
+  String get a20844123SignUploginAnimation =>
+      'assets/rives/a2084-4123-sign-uplogin-animation.riv';
+
+  /// File path: assets/rives/a2244-4437-animated-login-screen.riv
+  String get a22444437AnimatedLoginScreen =>
+      'assets/rives/a2244-4437-animated-login-screen.riv';
+
+  /// File path: assets/rives/a3113-6567-weather-app-demo.riv
+  String get a31136567WeatherAppDemo =>
+      'assets/rives/a3113-6567-weather-app-demo.riv';
+
+  /// File path: assets/rives/a3151-6658-success-tik.riv
+  String get a31516658SuccessTik => 'assets/rives/a3151-6658-success-tik.riv';
+
+  /// File path: assets/rives/a3335-6999-congratulations.riv
+  String get a33356999Congratulations =>
+      'assets/rives/a3335-6999-congratulations.riv';
+
+  /// File path: assets/rives/a3366-7078-material-loader.riv
+  String get a33667078MaterialLoader =>
+      'assets/rives/a3366-7078-material-loader.riv';
+
+  /// File path: assets/rives/a3547-7419-animated-theme-icon.riv
+  String get a35477419AnimatedThemeIcon =>
+      'assets/rives/a3547-7419-animated-theme-icon.riv';
+
+  /// File path: assets/rives/a3563-7455-character-controller.riv
+  String get a35637455CharacterController =>
+      'assets/rives/a3563-7455-character-controller.riv';
+
+  /// File path: assets/rives/a3623-7573-cheackmark.riv
+  String get a36237573Cheackmark => 'assets/rives/a3623-7573-cheackmark.riv';
+
+  /// File path: assets/rives/a3695-7723-funny-buttom.riv
+  String get a36957723FunnyButtom => 'assets/rives/a3695-7723-funny-buttom.riv';
+
+  /// File path: assets/rives/a375-1405-light-like.riv
+  String get a3751405LightLike => 'assets/rives/a375-1405-light-like.riv';
+
+  /// File path: assets/rives/a405-6776-rating-animation.riv
+  String get a4056776RatingAnimation =>
+      'assets/rives/a405-6776-rating-animation.riv';
+
+  /// File path: assets/rives/a4153-8584-404-land.riv
+  String get a41538584404Land => 'assets/rives/a4153-8584-404-land.riv';
+
+  /// File path: assets/rives/a4197-8716-3-bar-loading-animation.riv
+  String get a419787163BarLoadingAnimation =>
+      'assets/rives/a4197-8716-3-bar-loading-animation.riv';
+
+  /// File path: assets/rives/a4208-8736-error.riv
+  String get a42088736Error => 'assets/rives/a4208-8736-error.riv';
+
+  /// File path: assets/rives/a4283-8836-developer.riv
+  String get a42838836Developer => 'assets/rives/a4283-8836-developer.riv';
+
+  /// File path: assets/rives/a4337-8928-new-notification.riv
+  String get a43378928NewNotification =>
+      'assets/rives/a4337-8928-new-notification.riv';
+
+  /// File path: assets/rives/a478-978-message-icon.riv
+  String get a478978MessageIcon => 'assets/rives/a478-978-message-icon.riv';
+
+  /// File path: assets/rives/a479-941-clean-the-car.riv
+  String get a479941CleanTheCar => 'assets/rives/a479-941-clean-the-car.riv';
+
+  /// File path: assets/rives/a52-69-marty-animation.riv
+  String get a5269MartyAnimation => 'assets/rives/a52-69-marty-animation.riv';
+
+  /// File path: assets/rives/a632-1231-jumping-giftbux.riv
+  String get a6321231JumpingGiftbux =>
+      'assets/rives/a632-1231-jumping-giftbux.riv';
+
+  /// File path: assets/rives/a708-1647-vitta-network-splash-screen.riv
+  String get a7081647VittaNetworkSplashScreen =>
+      'assets/rives/a708-1647-vitta-network-splash-screen.riv';
+
+  /// File path: assets/rives/a980-1894-lumberjack-squats.riv
+  String get a9801894LumberjackSquats =>
+      'assets/rives/a980-1894-lumberjack-squats.riv';
+
+  /// File path: assets/rives/raster_graphics.riv
+  String get rasterGraphics => 'assets/rives/raster_graphics.riv';
+
+  /// List of all assets
+  List<String> get values => [
+        a12982487AnimatedIconSet1Color,
+        a13742709MenuButtonToCloseButton,
+        a15423018Party,
+        a17144322RivesAnimatedEmojis,
+        a2051404ZombieCharacter,
+        a20844123SignUploginAnimation,
+        a22444437AnimatedLoginScreen,
+        a31136567WeatherAppDemo,
+        a31516658SuccessTik,
+        a33356999Congratulations,
+        a33667078MaterialLoader,
+        a35477419AnimatedThemeIcon,
+        a35637455CharacterController,
+        a36237573Cheackmark,
+        a36957723FunnyButtom,
+        a3751405LightLike,
+        a4056776RatingAnimation,
+        a41538584404Land,
+        a419787163BarLoadingAnimation,
+        a42088736Error,
+        a42838836Developer,
+        a43378928NewNotification,
+        a478978MessageIcon,
+        a479941CleanTheCar,
+        a5269MartyAnimation,
+        a6321231JumpingGiftbux,
+        a7081647VittaNetworkSplashScreen,
+        a9801894LumberjackSquats,
+        rasterGraphics
+      ];
+}
+
 class $AssetsTflitesGen {
   const $AssetsTflitesGen();
+}
+
+class $AssetsVideosGen {
+  const $AssetsVideosGen();
+
+  /// File path: assets/videos/login_bg.mp4
+  String get loginBg => 'assets/videos/login_bg.mp4';
+
+  /// List of all assets
+  List<String> get values => [loginBg];
 }
 
 class $AssetsImagesDesignCourseGen {
@@ -245,6 +307,16 @@ class $AssetsImagesIntroGen {
         relaxImage,
         welcome
       ];
+}
+
+class $AssetsImagesLoginGen {
+  const $AssetsImagesLoginGen();
+
+  /// File path: assets/images/login/bg_1.png
+  AssetGenImage get bg1 => const AssetGenImage('assets/images/login/bg_1.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bg1];
 }
 
 class $AssetsImagesMineGen {
@@ -394,13 +466,31 @@ class $AssetsImagesMineGen {
       ];
 }
 
+class $AssetsImagesSplashGen {
+  const $AssetsImagesSplashGen();
+
+  /// File path: assets/images/splash/android12splash.png
+  AssetGenImage get android12splash =>
+      const AssetGenImage('assets/images/splash/android12splash.png');
+
+  /// File path: assets/images/splash/logo_lockup_flutter_vertical.png
+  AssetGenImage get logoLockupFlutterVertical => const AssetGenImage(
+      'assets/images/splash/logo_lockup_flutter_vertical.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [android12splash, logoLockupFlutterVertical];
+}
+
 class MyAssets {
   MyAssets._();
 
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
+  static const $AssetsRivesGen rives = $AssetsRivesGen();
   static const $AssetsTflitesGen tflites = $AssetsTflitesGen();
+  static const $AssetsVideosGen videos = $AssetsVideosGen();
 }
 
 class AssetGenImage {
@@ -462,57 +552,6 @@ class AssetGenImage {
   }
 
   ImageProvider provider() => AssetImage(_assetName);
-
-  String get path => _assetName;
-
-  String get keyName => _assetName;
-}
-
-class SvgGenImage {
-  const SvgGenImage(this._assetName);
-
-  final String _assetName;
-
-  SvgPicture svg({
-    Key? key,
-    bool matchTextDirection = false,
-    AssetBundle? bundle,
-    String? package,
-    double? width,
-    double? height,
-    BoxFit fit = BoxFit.contain,
-    AlignmentGeometry alignment = Alignment.center,
-    bool allowDrawingOutsideViewBox = false,
-    WidgetBuilder? placeholderBuilder,
-    String? semanticsLabel,
-    bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
-    ColorFilter? colorFilter,
-    @deprecated Color? color,
-    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated bool cacheColorFilter = false,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      cacheColorFilter: cacheColorFilter,
-    );
-  }
 
   String get path => _assetName;
 

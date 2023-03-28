@@ -530,7 +530,7 @@ class _DynamicWithCommentState extends State<DynamicWithComment> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(ImageUtils.getImgPath('dps'), width: 20.0),
+          Image.asset(ImageUtils.getImgPath('_/dps'), width: 20.0),
           const SizedBox(width: 8.0),
           Expanded(
             child: Column(

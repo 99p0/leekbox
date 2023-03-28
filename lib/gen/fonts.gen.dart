@@ -10,6 +10,9 @@
 class MyFontFamily {
   MyFontFamily._();
 
+  /// Font family: DINPro
+  static const String dINPro = 'DINPro';
+
   /// Font family: Digital
   static const String digital = 'Digital';
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_set_cell.dart';
 
@@ -28,7 +28,7 @@ class MyDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
                       child: Image.asset(
-                        "assets/images/def_avatar.png",
+                        ImageUtils.getImgPath('_/def_avatar'),
                         width: 80,
                       ),
                     ),

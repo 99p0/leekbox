@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:leekbox/common/utils/utils.dart';
 
 import 'r_dotted_line_border.dart';
 
@@ -211,7 +212,7 @@ class _DemoVerityState extends State<DemoVerity> with TickerProviderStateMixin {
                     ),
                   ],
                 ),
-                child: Image.asset('assets/img/safe_icon.jpg'),
+                child: Image.asset(ImageUtils.getImgPath('_/safe_icon')),
               ),
             ),
           ),
