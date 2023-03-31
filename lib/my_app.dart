@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,6 +43,9 @@ class MyApp extends ConsumerWidget {
         ///
         title: '',
         debugShowCheckedModeBanner: false,
+
+        ///
+        scrollBehavior: CustomScrollBehaviour(),
 
         ///
         builder: FlutterSmartDialog.init(
@@ -113,4 +118,12 @@ class MyApp extends ConsumerWidget {
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
+}
+
+class CustomScrollBehaviour extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

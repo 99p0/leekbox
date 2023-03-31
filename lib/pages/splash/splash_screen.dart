@@ -70,9 +70,9 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   }
 
   ///
-  final String launcher_def = 'assets/images/ic_launcher.png';
-  String launcher_birthday = 'assets/images/happy_birthday.png';
-  String launcher_special = 'assets/images/launcher_lc.png';
+  final String launcher_def = 'assets/images/common/ic_launcher.png';
+  String launcher_birthday = 'assets/images/common/happy_birthday.png';
+  String launcher_special = 'assets/images/common/launcher_lc.png';
 
   // 默认
   late String launcher = launcher_def;

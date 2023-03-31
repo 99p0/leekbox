@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leekbox/common/utils/utils.dart';
 
 class StatisticsItem extends StatelessWidget {
   final String title;
@@ -50,7 +51,7 @@ class StatisticsItem extends StatelessWidget {
                   height: 38,
                   padding: const EdgeInsets.all(13),
                   child: Image.asset(
-                    'assets/images/icon_selected.png',
+                    ImageUtils.getImgPath('common/icon_selected'),
                     height: 16,
                     width: 16,
                   ),

@@ -19,4 +19,4 @@
 您的捐赠将用于支付该项目的一些费用支出，并激励开发者们以便更好的推动项目的发展，同时欢迎捐赠**公网服务器**用于提高在线演示系统体验。
 
 
-image:assets/images/_/moneyqr.png["alt text"]
+image:assets/images/common/moneyqr.png["alt text"]

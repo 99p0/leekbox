@@ -212,7 +212,7 @@ class _DemoVerityState extends State<DemoVerity> with TickerProviderStateMixin {
                     ),
                   ],
                 ),
-                child: Image.asset(ImageUtils.getImgPath('_/safe_icon')),
+                child: Image.asset(ImageUtils.getImgPath('common/safe_icon')),
               ),
             ),
           ),

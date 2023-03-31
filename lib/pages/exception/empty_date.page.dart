@@ -17,7 +17,7 @@ class EmptyDateWidget extends StatelessWidget {
           SizedBox(
             width: 120.0,
             height: 120.0,
-            child: Image.asset(ImageUtils.getImgPath('_/def_avatar')),
+            child: Image.asset(ImageUtils.getImgPath('common/def_avatar')),
           ),
           Text(
             '暂时未获取到数据',

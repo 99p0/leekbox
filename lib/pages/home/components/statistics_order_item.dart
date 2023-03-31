@@ -70,8 +70,8 @@ class _StatisticsOrderItemState extends State<StatisticsOrderItem>
       padding: const EdgeInsets.only(top: 16),
       decoration: BoxDecoration(
         color: widget.bgColor,
-        image: DecorationImage(
-          image: AssetImage('assets/images/chart_fg.png'),
+        image: const DecorationImage(
+          image: AssetImage('assets/images/common/chart_fg.png'),
           fit: BoxFit.fill,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(8)),

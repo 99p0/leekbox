@@ -117,7 +117,7 @@ class _MinePageState extends ConsumerState<MinePage>
                   GestureDetector(
                     onTap: () => {
                       _showAvatarView(
-                          context, ImageUtils.getAssetImage('def_avatar'))
+                          context, ImageUtils.getAssetImage('common/def_avatar'))
                     },
                     child: SizedBox(
                       width: 55.w,
@@ -125,7 +125,7 @@ class _MinePageState extends ConsumerState<MinePage>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          ImageUtils.getImgPath('_/def_avatar'),
+                          ImageUtils.getImgPath('common/def_avatar'),
                           gaplessPlayback: true,
                         ),
                       ),

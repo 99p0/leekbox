@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:leekbox/common/models/list_task_date.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/activity/activities.page.dart';
@@ -24,9 +25,9 @@ import 'package:leekbox/pages/splash/intro/introduction_animation_screen.dart';
 import 'package:leekbox/pages/splash/privacy_policy_page.dart';
 import 'package:leekbox/pages/splash/splash_screen.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:nil/nil.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:scrolls_to_top/scrolls_to_top.dart';
+
+import 'components/checkin_record.dart';
 
 ///
 class IndexPage extends ConsumerStatefulWidget {
@@ -97,11 +98,6 @@ class _IndexPageState extends ConsumerState<IndexPage>
     return true;
   }
 
-  Future<bool> getRecentNewsData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 0));
-    return true;
-  }
-
   @override
   void dispose() {
     _connectivitySubscription.cancel();
@@ -150,137 +146,49 @@ class _IndexPageState extends ConsumerState<IndexPage>
     );
   }
 
-  ///
-  Widget _buildRecentNews(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: getRecentNewsData(),
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        if (!snapshot.hasData) {
-          return const Nil();
-        } else {
-          return GestureDetector(
-            onTap: () {
-              // context.go(RecentNoticePage.routeLocation);
-            },
-            child: Container(
-              margin: const EdgeInsets.only(left: 8, right: 8),
-              height: 90,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 8, right: 16),
-                    height: 30,
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
-                            '最近消息',
-                            style: TextStyle(fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 14,
-                          height: 14,
-                          child: Image.asset(
-                            'assets/images/icon_selected.png',
-                            // height: 16,
-                            // width: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 60,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        itemCount: litemsTop2.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    litemsTop2[index],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(fontSize: 12.0),
-                                  ),
-                                ),
-                                Text(
-                                  '三小时前',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(fontSize: 10.0),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-      },
-    );
-  }
-
   List<String> litemsTop2 = [
     "Disruptor是LMAX开发的一个高性能队列",
     "回来后咱看看这几套吧，如果还没有卖的话",
   ];
-
-  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
-    //TODO: Your code
-  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     Log.debug('IndexPage build...');
     final themeData = Theme.of(context);
-    return ScrollsToTop(
-      onScrollsToTop: _onScrollsToTop,
-      child: Scaffold(
-        body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            /// appbar
-            _buildSliverAppBar(),
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          /// appbar
+          _buildSliverAppBar(),
 
-            /// 问候语
-            SliverToBoxAdapter(
-              child: _buildGreetings(context),
-            ),
+          /// 问候语
+          SliverToBoxAdapter(
+            child: _buildGreetings(context),
+          ),
 
-            /// 近期收益曲线
-            SliverToBoxAdapter(
-              child: _buildRecentYieldCurve(context),
-            ),
+          /// 近期收益曲线
+          SliverToBoxAdapter(
+            child: _buildRecentYieldCurve(context),
+          ),
 
-            /// 最近消息
-            SliverToBoxAdapter(
-              child: _buildRecentNews(context),
-            ),
+          /// 推荐组合，瀑布流的形式
+          // const SliverToBoxAdapter(
+          //   child: CheckinRecord(),
+          // ),
 
-            /// 推荐组合，瀑布流的形式
-            SliverToBoxAdapter(
-              child: getBody(context),
-            ),
+          /// 打卡消息
+          const SliverToBoxAdapter(
+            child: CheckinRecord(),
+          ),
 
-            ///
-            SliverFixedExtentList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(
+          ///
+          SliverFixedExtentList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kSpacing),
+                child: Container(
                   foregroundDecoration: RotatedCornerDecoration.withColor(
                     badgeCornerRadius: const Radius.circular(8),
                     color: Colors.blue,
@@ -328,33 +236,33 @@ class _IndexPageState extends ConsumerState<IndexPage>
                     ),
                   ),
                 ),
-                childCount: 21,
               ),
-              itemExtent: 120.0.h,
+              childCount: 21,
             ),
+            itemExtent: 120.0.h,
+          ),
 
-            /// 底线
-            SliverFixedExtentList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '-------- 我是有底线的 --------',
-                    style: themeData.textTheme.labelSmall
-                        ?.copyWith(color: Colors.black26),
-                  ),
+          /// 底线
+          SliverFixedExtentList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => Container(
+                alignment: Alignment.center,
+                child: Text(
+                  '-------- 我是有底线的 --------',
+                  style: themeData.textTheme.labelSmall
+                      ?.copyWith(color: Colors.black26),
                 ),
-                childCount: 1,
               ),
-              itemExtent: 50.0,
+              childCount: 1,
             ),
+            itemExtent: 50.0,
+          ),
 
-            /// 间距
-            const SliverPadding(
-              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
-            ),
-          ],
-        ),
+          /// 间距
+          const SliverPadding(
+            padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
+          ),
+        ],
       ),
     );
   }
@@ -508,92 +416,95 @@ class _IndexPageState extends ConsumerState<IndexPage>
   }
 }
 
-class DynamicWithComment extends StatefulWidget {
-  const DynamicWithComment({Key? key}) : super(key: key);
-
-  @override
-  State<DynamicWithComment> createState() => _DynamicWithCommentState();
-}
-
-class _DynamicWithCommentState extends State<DynamicWithComment> {
-  bool _expanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      onExpansionChanged: (expanded) {
-        setState(() {
-          _expanded = expanded;
-        });
-      },
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(ImageUtils.getImgPath('_/dps'), width: 20.0),
-          const SizedBox(width: 8.0),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  '这是标题',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  '这是说明文字',
-                  style: TextStyle(fontSize: 14.0, color: Colors.grey),
-                  textAlign: TextAlign.left,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      initiallyExpanded: _expanded,
-      // 展开后的 title 组件的 text 颜色（未指定颜色时）
-      // textColor: Colors.red,
-      // 展开后背景色
-      // backgroundColor: Colors.blue[50],
-      //收起状态背景色
-      // collapsedBackgroundColor: Colors.grey[50],
-      trailing: Icon(
-          _expanded
-              ? Icons.keyboard_arrow_up_outlined
-              : Icons.keyboard_arrow_down_outlined,
-          color: Colors.grey),
-      expandedAlignment: Alignment.centerLeft,
-      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-      childrenPadding: EdgeInsets.zero,
-      children: [
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 0.0),
-          padding: const EdgeInsets.all(5.0),
-          // color: Colors.grey[400],
-          child: const Text('xx1: 评论'),
-        ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 0.0),
-          padding: const EdgeInsets.all(5.0),
-          // color: Colors.grey[400],
-          alignment: Alignment.centerRight,
-          child: const Text('xx2: 评论'),
-        ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
-          padding: const EdgeInsets.all(5.0),
-          // color: Colors.grey[400],
-          child: const Text('xx3: 评论'),
-        ),
-      ],
-    );
-  }
-}
+final taskGroup = [
+  [
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 2, hours: 10)),
+      label: "5 posts on  instagram",
+      jobdesk: "Marketing",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 2, hours: 11)),
+      label: "Platform Concept",
+      jobdesk: "Animation",
+    ),
+  ],
+  [
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 4, hours: 5)),
+      label: "UI UX Marketplace",
+      jobdesk: "Design",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 4, hours: 6)),
+      label: "Create Post For App",
+      jobdesk: "Marketing",
+    ),
+  ],
+  [
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 6, hours: 5)),
+      label: "2 Posts on Facebook",
+      jobdesk: "Marketing",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 6, hours: 6)),
+      label: "Create Icon App",
+      jobdesk: "Design",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 6, hours: 8)),
+      label: "Fixing Error Payment",
+      jobdesk: "Programmer",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 6, hours: 10)),
+      label: "Create Form Interview",
+      jobdesk: "System Analyst",
+    ),
+  ],
+  [
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 1, hours: 5)),
+      label: "2 Posts on Facebook",
+      jobdesk: "Marketing",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 1, hours: 6)),
+      label: "Create Icon App",
+      jobdesk: "Design",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 1, hours: 8)),
+      label: "Fixing Error Payment",
+      jobdesk: "Programmer",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 1, hours: 10)),
+      label: "Create Form Interview",
+      jobdesk: "System Analyst",
+    ),
+  ],
+  [
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 1, hours: 5)),
+      label: "2 Posts on Facebook",
+      jobdesk: "Marketing",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 2, hours: 6)),
+      label: "Create Icon App",
+      jobdesk: "Design",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 3, hours: 8)),
+      label: "Fixing Error Payment",
+      jobdesk: "Programmer",
+    ),
+    ListTaskDateData(
+      date: DateTime.now().add(const Duration(days: 4, hours: 10)),
+      label: "Create Form Interview",
+      jobdesk: "System Analyst",
+    ),
+  ]
+];

@@ -39,7 +39,7 @@ class ConnectionExceptionPage extends StatelessWidget {
                       backgroundColor: Colors.grey[100],
                       radius: 45.0,
                       child: Image.asset(
-                        ImageUtils.getImgPath('_/no_network'),
+                        ImageUtils.getImgPath('common/no_network'),
                         // height: 290,
                       ),
                     ),

@@ -28,18 +28,18 @@ class MyDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
                       child: Image.asset(
-                        ImageUtils.getImgPath('_/def_avatar'),
+                        ImageUtils.getImgPath('common/def_avatar'),
                         width: 80,
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       "Wendux",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Divider(), //一条线
+                  const Divider(), //一条线
                   Padding(
                     padding: const EdgeInsets.only(right: 18.0),
                     child: GestureDetector(

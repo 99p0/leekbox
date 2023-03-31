@@ -9,10 +9,10 @@ class StatisticsHeaderContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Row(
         children: [
-          Expanded(child: _item('assets/images/xdd.png', '新订单(单)', '80')),
-          Expanded(child: _item('assets/images/dps.png', '待配送(单)', '80')),
+          Expanded(child: _item('assets/images/common/xdd.png', '新订单(单)', '80')),
+          Expanded(child: _item('assets/images/common/dps.png', '待配送(单)', '80')),
           Expanded(
-              child: _item('assets/images/jrjye.png', '今日交易额(元)', '8000.00')),
+              child: _item('assets/images/common/jrjye.png', '今日交易额(元)', '8000.00')),
         ],
       ),
     );
@@ -27,12 +27,12 @@ class StatisticsHeaderContent extends StatelessWidget {
           width: 40,
           height: 40,
         ),
-        SizedBox(height: 6),
+        const SizedBox(height: 6),
         Text(
           title,
           style: const TextStyle(color: Color(0xFF999999), fontSize: 12),
         ),
-        SizedBox(height: 6),
+        const SizedBox(height: 6),
         Text(
           content,
           style: const TextStyle(fontSize: 18),

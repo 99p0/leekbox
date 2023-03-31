@@ -78,15 +78,15 @@ class _ItemTurnWidgetState extends State<ItemTurnWidget> {
             Positioned(
                 left: widget.img != null ? 40 : 0,
                 child: Text(
-                  widget.title ?? '',
+                  widget.title,
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 )),
             Positioned(
                 right: 20,
                 child: Text(
-                  widget.rightTitle ?? '',
+                  widget.rightTitle,
                   style: TextStyle(
-                      color: Color.fromARGB(150, 255, 255, 255).withAlpha(90),
+                      color: const Color.fromARGB(150, 255, 255, 255).withAlpha(90),
                       fontSize: 14),
                 )),
             Positioned(
@@ -95,7 +95,7 @@ class _ItemTurnWidgetState extends State<ItemTurnWidget> {
                     ? Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 12,
-                        color: Color.fromARGB(150, 255, 255, 255).withAlpha(90),
+                        color: const Color.fromARGB(150, 255, 255, 255).withAlpha(90),
                       )
                     : Container())
           ],

@@ -128,36 +128,4 @@ zhuomuniaodaka.com
 //
 // == 音律社群
 
-
-[tree,file="文章结构.png"]
---
-#时间管理
-##时间观念
-###什么是守时？
---
-
-
-.饼图
-[chart,pie,file="secim-2014-pie.png",opt="title=饼图标题"]
---
-AKP,  45.6, orange
-CHP,  27.8,red
-MHP,  15.2
-BDP,  4.2
-SP,  2
---
-
-
-[plantuml, target=diagram-classes, format=png]
-....
-class BlockProcessor
-class DiagramBlock
-class DitaaBlock
-class PlantUmlBlock
-
-BlockProcessor <|-- DiagramBlock
-DiagramBlock <|-- DitaaBlock
-DiagramBlock <|-- PlantUmlBlock
-....
-
 {checkedbox} That's done!
