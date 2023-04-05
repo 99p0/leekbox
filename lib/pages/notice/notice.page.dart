@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:leekbox_infra/log/log.dart';
+import 'package:go_router/go_router.dart';
+import 'package:leekbox/common/widgets/my_app_bar.dart';
+import 'package:leekbox/pages/notice/recent_notice.dart';
 
 /// 页面
 class NoticePage extends ConsumerStatefulWidget {
@@ -17,31 +19,22 @@ class NoticePage extends ConsumerStatefulWidget {
 class _NoticePageState extends ConsumerState<NoticePage>
     with AutomaticKeepAliveClientMixin {
   @override
-  void initState() {
-    super.initState();
-    Log.debug('NoticePage initState...');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    Log.debug('NoticePage build');
-    final themeData = Theme.of(context);
     return Scaffold(
+      appBar: MyAppBar(
+        title: '消息',
+        rightDMActions: [
+          TextButton(
+            onPressed: () => context.push(RecentNoticePage.routeLocation),
+            child: const Text('通知示例'),
+          ),
+        ],
+      ),
       body: Container(),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

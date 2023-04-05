@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:leekbox/common/models/list_task_date.dart';
+import 'package:leekbox/common/services/notification_service.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/responsive_builder.dart';
@@ -115,6 +116,8 @@ class _IndexPageState extends ConsumerState<IndexPage>
     super.dispose();
   }
 
+  final NotificationService _notificationService = NotificationService();
+
   ///
   Widget _buildGreetings(BuildContext context) {
     return FutureBuilder<bool>(
@@ -174,6 +177,9 @@ class _IndexPageState extends ConsumerState<IndexPage>
         /// 推荐组合，瀑布流的形式
         SliverToBoxAdapter(
           child: getBody(context),
+        ),
+        SliverToBoxAdapter(
+          child: buildNotification(context),
         ),
 
         /// 打卡消息
@@ -459,6 +465,18 @@ class _IndexPageState extends ConsumerState<IndexPage>
       //   preferredSize: const Size(double.infinity, 80),
       //   child: _buildGreetings(context),
       // ),
+    );
+  }
+
+  Widget buildNotification(context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [],
+        ),
+      ),
     );
   }
 

@@ -9,6 +9,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:leekbox/common/global.dart';
+import 'package:leekbox/common/services/notification_service.dart';
 import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
@@ -42,6 +43,7 @@ void main() {
 
     ///
     await _configureLocalTimeZone();
+    await NotificationService().init();
 
     /// 咸鱼 PowerImage图片库
     // PowerImageBinding();
