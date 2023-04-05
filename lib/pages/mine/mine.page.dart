@@ -1,6 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
@@ -8,6 +9,7 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox/common/widgets/photoview.dart';
 import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'card_package.page.dart';
 import 'moneybags.page.dart';
@@ -116,12 +118,12 @@ class _MinePageState extends ConsumerState<MinePage>
                 children: <Widget>[
                   GestureDetector(
                     onTap: () => {
-                      _showAvatarView(
-                          context, ImageUtils.getAssetImage('common/def_avatar'))
+                      _showAvatarView(context,
+                          ImageUtils.getAssetImage('common/def_avatar'))
                     },
                     child: SizedBox(
-                      width: 55.w,
-                      height: 55.w,
+                      width: 55,
+                      height: 55,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
@@ -140,30 +142,37 @@ class _MinePageState extends ConsumerState<MinePage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           '润歌',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0,
                           ),
                         ),
                         Gaps.hGap16,
-                        const Icon(
-                          Icons.male,
-                          size: 14,
-                          color: Color(0xFF027AFF), //Color(0xFFFA8072),
-                        ),
+                        (Random().nextBool())
+                            ? const Icon(
+                                PhosphorIcons.genderMale,
+                                size: 12,
+                                color: Color(0xFF027AFF),
+                              )
+                            : const Icon(
+                                PhosphorIcons.genderFemale,
+                                size: 12,
+                                color: Color(0x7EFF02C4), //Color(0xFFFA8072),
+                              ),
                       ],
                     ),
                     Gaps.vGap12,
                     Row(
                       children: <Widget>[
-                        Text(
+                        const Text(
                           '账号：666666',
                           style: TextStyle(
-                            color: const Color(0xFF828282),
+                            color: Color(0xFF828282),
                             fontSize: 11.0,
                           ),
                         ),
@@ -188,8 +197,8 @@ class _MinePageState extends ConsumerState<MinePage>
                                   context.push(UserProfilePage.routeLocation)
                                 },
                                 child: const Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 14,
+                                  PhosphorIcons.caretRight,
+                                  size: 18,
                                   color: Color(0xFF828282),
                                 ),
                               ),
@@ -207,26 +216,26 @@ class _MinePageState extends ConsumerState<MinePage>
                           size: 14,
                           color: Color(0xFF828282),
                         ),
-                        Text(
+                        const Text(
                           '河北 沧州',
                           style: TextStyle(
-                            color: const Color(0xFF828282),
+                            color: Color(0xFF828282),
                             fontSize: 10.0,
                           ),
                         ),
                         Gaps.hGap15,
-                        Text(
+                        const Text(
                           'IP属地:',
                           style: TextStyle(
-                            color: const Color(0xFF828282),
+                            color: Color(0xFF828282),
                             fontSize: 10.0,
                           ),
                         ),
                         Gaps.hGap5,
-                        Text(
+                        const Text(
                           '中国 北京 北京市',
                           style: TextStyle(
-                            color: const Color(0xFF828282),
+                            color: Color(0xFF828282),
                             fontSize: 10.0,
                           ),
                         ),

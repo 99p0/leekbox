@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/common/widgets/responsive_builder.dart';
-import 'package:leekbox/pages/home/components/checkin_record.dart';
-import 'package:leekbox/pages/home/components/list_task_assigned.dart';
 import 'package:leekbox/pages/home/index.dart';
 import 'package:leekbox/pages/mine/mine.page.dart';
 import 'package:leekbox/pages/notice/notice.page.dart';
@@ -18,9 +16,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-
-import 'components/task_progress.dart';
-import 'components/weekly_task.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
@@ -129,6 +124,10 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
     });
   }
 
+  Widget _buildBottomNavigationBarLikeGoogleStyle(themeData) {
+    return _buildItemsStyle2();
+  }
+
   Widget _buildBottomNavigationBar(themeData) {
     var borderRadius = const BorderRadius.only(
       topRight: Radius.circular(30),
@@ -168,105 +167,18 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
         // Important: to remove background of bottom navigation (making the bar transparent doesn't help)
         extendBody: true,
         // backgroundColor: Colors.transparent,
-        body: ResponsiveBuilder(
-          mobileBuilder: (context, constraints) {
-            return PageView(
-              // 禁止页面左右滑动切换
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageController,
-              children: _pages,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-            );
-          },
-          tabletBuilder: (context, constraints) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  flex: constraints.maxWidth > 800 ? 8 : 7,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: _buildTaskContent(
-                      onPressedMenu: () => Scaffold.of(context).openDrawer(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: const VerticalDivider(),
-                ),
-                Flexible(
-                  flex: 4,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: const CheckinRecord(),
-                  ),
-                ),
-              ],
-            );
-          },
-          desktopBuilder: (context, constraints) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  flex: constraints.maxWidth > 1350 ? 3 : 4,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: _buildSidebar(context),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: const VerticalDivider(
-                    color: Colors.red,
-                    width: 10,
-                    thickness: 0.1,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                ),
-                Flexible(
-                  flex: constraints.maxWidth > 1350 ? 10 : 9,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: _buildTaskContent(),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: const VerticalDivider(
-                    color: Colors.red,
-                    width: 10,
-                    thickness: 0.1,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                ),
-                Flexible(
-                  flex: constraints.maxWidth > 1350 ? 3 : 4,
-                  child: SingleChildScrollView(
-                    controller: ScrollController(),
-                    child: const CheckinRecord(),
-                  ),
-                ),
-              ],
-            );
+        body: PageView(
+          // 禁止页面左右滑动切换
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _pageController,
+          children: _pages,
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
           },
         ),
-        drawer: ResponsiveBuilder.isDesktop(context)
-            ? null
-            : Drawer(
-                child: SafeArea(
-                  child: SingleChildScrollView(
-                    child: _buildSidebar(context),
-                  ),
-                ),
-              ),
+
         bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) ||
                 ResponsiveBuilder.isTablet(context) ||
                 kIsWeb)
@@ -352,124 +264,4 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
           ),
         ],
       );
-
-  Widget _buildSidebar(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 15),
-        const Divider(
-          indent: 20,
-          thickness: 1,
-          endIndent: 20,
-          height: 60,
-        ),
-        const SizedBox(height: kSpacing),
-        Padding(
-          padding: const EdgeInsets.all(kSpacing),
-          child: Text(
-            "2023 99p0team LICENSE",
-            style: Theme.of(context).textTheme.caption,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTaskContent({Function()? onPressedMenu}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kSpacing),
-      child: Column(
-        children: [
-          const SizedBox(height: kSpacing),
-          Row(
-            children: [
-              if (onPressedMenu != null)
-                Padding(
-                  padding: const EdgeInsets.only(right: kSpacing / 2),
-                  child: IconButton(
-                    onPressed: onPressedMenu,
-                    icon: const Icon(Icons.menu),
-                  ),
-                ),
-              Expanded(
-                child: Text('LEEXBOX'),
-              ),
-            ],
-          ),
-          const SizedBox(height: kSpacing),
-          Row(
-            children: [
-              Expanded(
-                child: Text('${DateTime.now().toString()}'),
-              ),
-              const SizedBox(width: kSpacing / 2),
-              SizedBox(
-                width: 200,
-                child: TaskProgress(
-                    data: TaskProgressData(totalTask: 5, totalCompleted: 1)),
-              ),
-            ],
-          ),
-          const SizedBox(height: kSpacing),
-          // _TaskInProgress(data: controller.taskInProgress),
-          const SizedBox(height: kSpacing * 2),
-          Row(
-            children: [
-              const Text("每日任务"),
-              const Spacer(),
-              ElevatedButton.icon(
-                icon: const Icon(
-                  Icons.double_arrow,
-                  size: 16,
-                ),
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  elevation: 0,
-                ),
-                label: const Text("更多"),
-              ),
-            ],
-          ),
-          const SizedBox(height: kSpacing),
-          WeeklyTask(
-            data: weeklyTask,
-            onPressed: (index, data) {},
-            onPressedAssign: (index, data) {},
-            onPressedMember: (index, data) {},
-          )
-        ],
-      ),
-    );
-  }
 }
-
-final weeklyTask = [
-  ListTaskAssignedData(
-    icon: const Icon(Icons.monitor, color: Colors.blueGrey),
-    label: "Slicing UI",
-    jobDesk: "Programmer",
-    assignTo: "Alex Ferguso",
-    editDate: DateTime.now().add(-const Duration(hours: 2)),
-  ),
-  ListTaskAssignedData(
-    icon: const Icon(Icons.star, color: Colors.amber),
-    label: "Personal branding",
-    jobDesk: "Marketing",
-    assignTo: "Justin Beck",
-    editDate: DateTime.now().add(-const Duration(days: 50)),
-  ),
-  const ListTaskAssignedData(
-    icon: Icon(Icons.color_lens, color: Colors.blue),
-    label: "UI UX ",
-    jobDesk: "Design",
-  ),
-  const ListTaskAssignedData(
-    icon: Icon(Icons.pie_chart, color: Colors.redAccent),
-    label: "Determine meeting schedule ",
-    jobDesk: "System Analyst",
-  ),
-];

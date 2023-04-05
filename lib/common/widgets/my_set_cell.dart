@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const double _imgWH = 25.0; //左侧图片宽高
 const double _titleSpace = 160.0; //左侧title默认宽
@@ -109,7 +109,7 @@ class _MySetCellState extends State<MySetCell> {
                     style: widget.titleStyle ??
                         Theme.of(context).textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 16,
                             ),
                   ),
                 ),
@@ -131,8 +131,11 @@ class _MySetCellState extends State<MySetCell> {
                 Container(),
               Offstage(
                 offstage: widget.hiddenArrow,
-                child: const Icon(Icons.chevron_right,
-                    size: 26, color: Color(0xFF9A9696)),
+                child: const Icon(
+                  PhosphorIcons.caretRight,
+                  size: 22,
+                  color: Color(0xFF9A9696),
+                ),
               ),
             ],
           ),

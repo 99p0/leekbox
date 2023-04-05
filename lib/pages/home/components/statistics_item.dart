@@ -16,21 +16,12 @@ class StatisticsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.only(bottom: 16),
       decoration: const BoxDecoration(
-        // color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
-          // BoxShadow(
-          //   color: const Color(0xffDCE7FA).withOpacity(0.5),
-          //   offset: Offset(0, 2),
-          //   blurRadius: 8,
-          //   spreadRadius: 2,
-          // ),
-        ],
+        // color: Colors.blue,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: [],
       ),
-      height: 160,
+      height: 180,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -39,7 +30,6 @@ class StatisticsItem extends StatelessWidget {
             behavior: HitTestBehavior.translucent,
             child: Row(
               children: [
-                const SizedBox(width: 16),
                 Expanded(
                   child: Text(
                     title,
@@ -61,7 +51,6 @@ class StatisticsItem extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.only(left: 16, right: 16),
               child: content,
             ),
           ),

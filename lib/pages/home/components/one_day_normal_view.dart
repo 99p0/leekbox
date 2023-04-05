@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:leekbox/common/utils/date_util.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
@@ -23,10 +24,7 @@ class TimeAndWordView extends StatelessWidget {
           position: animation,
           child: Padding(
             padding: EdgeInsets.only(
-              left: 16,
-              right: 50,
               top: MediaQuery.of(context).padding.top,
-              bottom: 16,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,23 +40,25 @@ class TimeAndWordView extends StatelessWidget {
                   ),
                 ),
                 Gaps.vGap10,
-                Text(
-                  words.word,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      // fontSize: 13,
-                      // fontWeight: FontWeight.normal,
-                      ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      words.word,
+                      textStyle: Theme.of(context).textTheme.titleSmall,
+                      speed: const Duration(milliseconds: 200),
+                    ),
+                    TypewriterAnimatedText(
+                      words.wordEnglish,
+                      textStyle: Theme.of(context).textTheme.titleSmall,
+                      speed: const Duration(milliseconds: 200),
+                    ),
+                  ],
+                  totalRepeatCount: 10,
+                  pause: const Duration(seconds: 2),
+                  displayFullTextOnTap: false,
+                  stopPauseOnTap: false,
                 ),
-                // Gaps.vGap8,
-                // Text(
-                //   words.wordEnglish,
-                //   style: GoogleFonts.lato(
-                //     textStyle: Theme.of(context).textTheme.headline1,
-                //     fontSize: 13,
-                //     fontWeight: FontWeight.normal,
-                //     fontStyle: FontStyle.italic,
-                //   ),
-                // ),
+                Gaps.vGap8,
               ],
             ),
           ),

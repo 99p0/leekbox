@@ -60,7 +60,7 @@ class ListTaskDate extends StatelessWidget {
 
   Widget _buildHours() {
     return Text(
-      DateFormat.Hm().format(data.date),
+      DateFormat.Hms().format(data.date),
       style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 16,

@@ -71,15 +71,14 @@ class _AboutPageState extends ConsumerState<AboutPage> {
           CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 45,
-            backgroundImage: ImageUtils.getAssetImage('ic_logo'),
+            backgroundImage: ImageUtils.getAssetImage('common/ic_logo'),
           ),
           Gaps.vGap24,
           Text(
             _subStr,
-            style: const TextStyle(
-              fontSize: 8,
-              color: Colors.black54,
-            ),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontSize: 8.0,
+                ),
           ),
           Gaps.vGap24,
           MySetCell(

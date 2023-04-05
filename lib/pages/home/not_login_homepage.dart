@@ -18,7 +18,7 @@ class NotLoggedInHomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
-            title: Text('因律社群'),
+            title: Text('那些年，我们立下的flag都实现了吗？'),
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(

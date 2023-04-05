@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,8 +12,8 @@ import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_button.2.dart';
 import 'package:leekbox/state/auth.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:nil/nil.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:rive/rive.dart';
 import 'package:video_player/video_player.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -71,24 +72,48 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Transform.scale(
-            scale: _videoPlayerController.value.aspectRatio /
-                MediaQuery.of(context).size.aspectRatio *
-                1.1,
-            // scale: _videoPlayerController.value.aspectRatio,
-            child: _videoPlayerController.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _videoPlayerController.value.aspectRatio,
-                    child: VideoPlayer(_videoPlayerController),
-                  )
-                : Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: ImageUtils.getAssetImage('login/bg_1'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+          // Transform.scale(
+          //   scale: _videoPlayerController.value.aspectRatio /
+          //       MediaQuery.of(context).size.aspectRatio *
+          //       1.1,
+          //   // scale: _videoPlayerController.value.aspectRatio,
+          //   child: _videoPlayerController.value.isInitialized
+          //       ? AspectRatio(
+          //           aspectRatio: _videoPlayerController.value.aspectRatio,
+          //           child: VideoPlayer(_videoPlayerController),
+          //         )
+          //       : Container(
+          //           decoration: BoxDecoration(
+          //             image: DecorationImage(
+          //               image: ImageUtils.getAssetImage('login/bg_1'),
+          //               fit: BoxFit.cover,
+          //             ),
+          //           ),
+          //         ),
+          // ),
+          Positioned(
+            width: MediaQuery.of(context).size.width * 1.4,
+            left: 100,
+            bottom: 100,
+            child: Image.asset(
+              ImageUtils.getImgPath('common/spline'),
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: const SizedBox(),
+            ),
+          ),
+          const RiveAnimation.asset(
+            "assets/rives/shapes.riv",
+            fit: BoxFit.fitWidth,
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: const SizedBox(),
+            ),
           ),
           // 头部欢迎语
           Positioned(
@@ -100,9 +125,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 Text(
                   '欢迎萌新驾到',
                   style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white),
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 SizedBox(
                   height: 10.0,
@@ -150,7 +175,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ],
                 ),
                 const SizedBox(height: 60.0),
-                Text(
+                const Text(
                   "我已阅读并同意《服务协议》及《隐私政策》",
                   style: TextStyle(
                     color: Colors.grey,
@@ -162,22 +187,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           ),
         ],
       ),
-      floatingActionButton: _videoPlayerController.value.isInitialized
-          ? FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  _videoPlayerController.value.isPlaying
-                      ? _videoPlayerController.pause()
-                      : _videoPlayerController.play();
-                });
-              },
-              child: Icon(
-                _videoPlayerController.value.isPlaying
-                    ? Icons.pause
-                    : Icons.play_arrow,
-              ),
-            )
-          : nil,
+      // floatingActionButton: _videoPlayerController.value.isInitialized
+      //     ? FloatingActionButton(
+      //         onPressed: () {
+      //           setState(() {
+      //             _videoPlayerController.value.isPlaying
+      //                 ? _videoPlayerController.pause()
+      //                 : _videoPlayerController.play();
+      //           });
+      //         },
+      //         child: Icon(
+      //           _videoPlayerController.value.isPlaying
+      //               ? Icons.pause
+      //               : Icons.play_arrow,
+      //         ),
+      //       )
+      //     : nil,
     );
   }
 

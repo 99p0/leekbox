@@ -8,6 +8,7 @@ import '../index.dart';
 import 'task_group.dart';
 
 const kSpacing = 20.0;
+const kBorderRadius = 20.0;
 
 class CheckinRecord extends ConsumerStatefulWidget {
   const CheckinRecord({super.key});

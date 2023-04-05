@@ -23,7 +23,7 @@ class MyButton2 extends StatelessWidget {
       alignment: Alignment.center,
       child: SizedBox(
         width: double.infinity,
-        height: 43.h,
+        height: 42,
         child: ElevatedButton(
           onPressed: onPressed,
           //定义一下文本样式

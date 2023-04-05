@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:leekbox/common/widgets/my_app_bar.dart';
 import 'package:leekbox_infra/log/log.dart';
 
 ///
@@ -29,6 +30,9 @@ class _ActivityDetailPageState extends ConsumerState<ActivityDetailPage> {
   Widget build(BuildContext context) {
     Log.debug('ActivityDetailPage build');
     return Scaffold(
+      appBar: MyAppBar(
+        title: '详情',
+      ),
       body: Center(
         child: Text("ActivityDetailPage"),
       ),
