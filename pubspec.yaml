@@ -175,6 +175,8 @@ dependencies:
     path: packages/salomon_bottom_bar
   sliding_clipped_nav_bar:
     path: packages/sliding_clipped_nav_bar
+  txt_nav_bar:
+    path: packages/txt_nav_bar
   # tabbar滑动方式：类似酷狗
   custom_tabbar:
     path: packages/custom_tabbar

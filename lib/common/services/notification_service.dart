@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 int id = 0;
@@ -15,9 +14,6 @@ final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
 
 final StreamController<String?> selectNotificationStream =
     StreamController<String?>.broadcast();
-
-// const MethodChannel platform =
-//     MethodChannel('dexterx.dev/flutter_local_notifications_example');
 
 const String portName = 'notification_send_port';
 

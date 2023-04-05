@@ -14,8 +14,6 @@ import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/responsive_builder.dart';
 import 'package:leekbox/pages/activity/activities.page.dart';
 import 'package:leekbox/pages/activity/activity_detail.page.dart';
-import 'package:leekbox/pages/demo/icon_flip_nav_bar/demo.dart';
-import 'package:leekbox/pages/demo/txt_nav_bar/bottom_9_page.dart';
 import 'package:leekbox/pages/demo/wakelock_demo.dart';
 import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
@@ -576,21 +574,11 @@ class _IndexPageState extends ConsumerState<IndexPage>
                 child: const Text('Wakelock'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BubbleTabBarDemo()),
-                  );
-                },
+                onPressed: () {},
                 child: const Text('icon_flip_nav_bar'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Bottom9Page()),
-                  );
-                },
+                onPressed: () {},
                 child: const Text('txt_nav_bar'),
               ),
             ],
