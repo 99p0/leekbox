@@ -36,34 +36,34 @@ class Sidebar extends StatelessWidget {
         SelectionButton(
           data: [
             SelectionButtonData(
-              activeIcon: PhosphorIcons.circleDashed,
-              icon: PhosphorIcons.circleDashed,
+              activeIcon: PhosphorIcons.regular.circleDashed,
+              icon: PhosphorIcons.regular.circleDashed,
               label: "Dashboard",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.archive,
-              icon: PhosphorIcons.archive,
+              activeIcon: PhosphorIcons.regular.archive,
+              icon: PhosphorIcons.regular.archive,
               label: "Reports",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.calendar,
-              icon: PhosphorIcons.calendar,
+              activeIcon: PhosphorIcons.regular.calendar,
+              icon: PhosphorIcons.regular.calendar,
               label: "Calendar",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.magicWand,
-              icon: PhosphorIcons.magicWand,
+              activeIcon: PhosphorIcons.regular.magicWand,
+              icon: PhosphorIcons.regular.magicWand,
               label: "Email",
               totalNotif: 20,
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.person,
-              icon: PhosphorIcons.person,
+              activeIcon: PhosphorIcons.regular.person,
+              icon: PhosphorIcons.regular.person,
               label: "Profil",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.scales,
-              icon: PhosphorIcons.scalesFill,
+              activeIcon: PhosphorIcons.regular.scales,
+              icon: PhosphorIcons.regular.scales,
               label: "Setting",
             ),
           ],

@@ -161,13 +161,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     thirdLoginIcon(
-                      PhosphorIcons.twitterLogo,
+                      PhosphorIcons.regular.twitterLogo,
                       HexColor('#1AAD19'),
                       _weChatAuth,
                     ),
                     Gaps.hGap32,
                     thirdLoginIcon(
-                      PhosphorIcons.appleLogo,
+                      PhosphorIcons.regular.appleLogo,
                       HexColor('#027AFF'),
                       _alipayAuth,
                     ),

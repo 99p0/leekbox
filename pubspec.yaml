@@ -15,11 +15,11 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   # Phosphor Icons
-  phosphor_flutter: ^1.4.0
+  phosphor_flutter: ^2.0.0
 #  font_awesome_flutter: ^10.4.0
   percent_indicator: ^4.2.3
   dotted_border: ^2.0.0+1
-  timeago: ^3.1.0
+  timeago: ^3.3.0
   nil: ^1.1.1
   tuple: ^2.0.1
   #protobuf: ^2.1.0
@@ -137,7 +137,7 @@ dependencies:
   flutter_quill: ^7.0.1
   # 图表库
   #  fl_chart: ^0.66.0
-  syncfusion_flutter_datagrid: ^20.3.60
+  syncfusion_flutter_datagrid: ^21.1.38
   # 图片缓存
   cached_network_image: ^3.2.3
   #

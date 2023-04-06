@@ -138,7 +138,7 @@ class CardTask extends StatelessWidget {
   Widget _buildDate() {
     return _IconLabel(
       color: onPrimary,
-      iconData: PhosphorIcons.calendar,
+      iconData: PhosphorIcons.regular.calendar,
       label: DateFormat('d MMM').format(data.dueDate),
     );
   }
@@ -146,7 +146,7 @@ class CardTask extends StatelessWidget {
   Widget _buildHours() {
     return _IconLabel(
       color: onPrimary,
-      iconData: PhosphorIcons.clock,
+      iconData: PhosphorIcons.regular.clock,
       label: data.dueDate.dueDate(),
     );
   }
@@ -158,7 +158,7 @@ class CardTask extends StatelessWidget {
         primary: onPrimary,
         onPrimary: primary,
       ),
-      icon: const Icon(PhosphorIcons.checkCircle),
+      icon: Icon(PhosphorIcons.regular.checkCircle),
       label: const Text("Done"),
     );
   }

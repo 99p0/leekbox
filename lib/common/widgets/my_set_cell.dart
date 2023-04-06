@@ -131,8 +131,8 @@ class _MySetCellState extends State<MySetCell> {
                 Container(),
               Offstage(
                 offstage: widget.hiddenArrow,
-                child: const Icon(
-                  PhosphorIcons.caretRight,
+                child: Icon(
+                  PhosphorIcons.regular.caretRight,
                   size: 22,
                   color: Color(0xFF9A9696),
                 ),

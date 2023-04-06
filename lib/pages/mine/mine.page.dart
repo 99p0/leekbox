@@ -154,13 +154,13 @@ class _MinePageState extends ConsumerState<MinePage>
                         ),
                         Gaps.hGap16,
                         (Random().nextBool())
-                            ? const Icon(
-                                PhosphorIcons.genderMale,
+                            ? Icon(
+                                PhosphorIcons.regular.genderMale,
                                 size: 12,
                                 color: Color(0xFF027AFF),
                               )
-                            : const Icon(
-                                PhosphorIcons.genderFemale,
+                            : Icon(
+                                PhosphorIcons.regular.genderFemale,
                                 size: 12,
                                 color: Color(0x7EFF02C4), //Color(0xFFFA8072),
                               ),
@@ -196,8 +196,8 @@ class _MinePageState extends ConsumerState<MinePage>
                                 onTap: () => {
                                   context.push(UserProfilePage.routeLocation)
                                 },
-                                child: const Icon(
-                                  PhosphorIcons.caretRight,
+                                child: Icon(
+                                  PhosphorIcons.regular.caretRight,
                                   size: 18,
                                   color: Color(0xFF828282),
                                 ),

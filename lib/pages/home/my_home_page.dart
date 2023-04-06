@@ -196,25 +196,25 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
         selectedIndex: _currentIndex,
         barItems: <BarItem>[
           BarItem(
-            icon: PhosphorIcons.calendarCheck,
+            icon: PhosphorIcons.regular.calendarCheck,
             title: '首页',
             activeColor: Colors.blue,
             inactiveColor: Colors.orange,
           ),
           BarItem(
-            icon: PhosphorIcons.chatCircleDots,
+            icon: PhosphorIcons.regular.chatCircleDots,
             title: '消息',
             activeColor: Colors.pink,
             inactiveColor: Colors.green,
           ),
           BarItem(
-            icon: PhosphorIcons.activity,
+            icon: PhosphorIcons.regular.paintBrush,
             title: '统计',
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
           ),
           BarItem(
-            icon: PhosphorIcons.user,
+            icon: PhosphorIcons.regular.user,
             title: '我',
             activeColor: Colors.cyan,
             inactiveColor: Colors.purple,

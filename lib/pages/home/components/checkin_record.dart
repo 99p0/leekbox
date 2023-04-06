@@ -53,7 +53,7 @@ class _CheckinRecordState extends ConsumerState<CheckinRecord> {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(PhosphorIcons.calendar),
+                        icon: Icon(PhosphorIcons.regular.calendar),
                         tooltip: "calendar",
                       )
                     ],
