@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
@@ -9,7 +10,6 @@ import 'package:leekbox/common/widgets/my_set_cell.dart';
 import 'package:leekbox/common/widgets/photoview.dart';
 import 'package:leekbox/pages/setting/setting.page.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'card_package.page.dart';
 import 'moneybags.page.dart';
@@ -154,13 +154,13 @@ class _MinePageState extends ConsumerState<MinePage>
                         ),
                         Gaps.hGap16,
                         (Random().nextBool())
-                            ? Icon(
-                                PhosphorIcons.regular.genderMale,
+                            ? FaIcon(
+                                FontAwesomeIcons.mars,
                                 size: 12,
                                 color: Color(0xFF027AFF),
                               )
                             : Icon(
-                                PhosphorIcons.regular.genderFemale,
+                                FontAwesomeIcons.venus,
                                 size: 12,
                                 color: Color(0x7EFF02C4), //Color(0xFFFA8072),
                               ),
@@ -197,7 +197,7 @@ class _MinePageState extends ConsumerState<MinePage>
                                   context.push(UserProfilePage.routeLocation)
                                 },
                                 child: Icon(
-                                  PhosphorIcons.regular.caretRight,
+                                  FontAwesomeIcons.caretRight,
                                   size: 18,
                                   color: Color(0xFF828282),
                                 ),

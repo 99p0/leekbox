@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:leekbox/common/utils/utils.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'list_profil_image.dart';
 
@@ -138,7 +138,7 @@ class CardTask extends StatelessWidget {
   Widget _buildDate() {
     return _IconLabel(
       color: onPrimary,
-      iconData: PhosphorIcons.regular.calendar,
+      iconData: FontAwesomeIcons.calendar,
       label: DateFormat('d MMM').format(data.dueDate),
     );
   }
@@ -146,7 +146,7 @@ class CardTask extends StatelessWidget {
   Widget _buildHours() {
     return _IconLabel(
       color: onPrimary,
-      iconData: PhosphorIcons.regular.clock,
+      iconData: FontAwesomeIcons.clock,
       label: data.dueDate.dueDate(),
     );
   }
@@ -158,7 +158,7 @@ class CardTask extends StatelessWidget {
         primary: onPrimary,
         onPrimary: primary,
       ),
-      icon: Icon(PhosphorIcons.regular.checkCircle),
+      icon: Icon(FontAwesomeIcons.checkCircle),
       label: const Text("Done"),
     );
   }

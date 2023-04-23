@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:nil/nil.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../index.dart';
 import 'task_group.dart';
@@ -53,7 +53,7 @@ class _CheckinRecordState extends ConsumerState<CheckinRecord> {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(PhosphorIcons.regular.calendar),
+                        icon: Icon(FontAwesomeIcons.calendar),
                         tooltip: "calendar",
                       )
                     ],

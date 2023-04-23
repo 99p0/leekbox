@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double _imgWH = 25.0; //左侧图片宽高
 const double _titleSpace = 160.0; //左侧title默认宽
@@ -132,7 +132,7 @@ class _MySetCellState extends State<MySetCell> {
               Offstage(
                 offstage: widget.hiddenArrow,
                 child: Icon(
-                  PhosphorIcons.regular.caretRight,
+                  FontAwesomeIcons.caretRight,
                   size: 22,
                   color: Color(0xFF9A9696),
                 ),

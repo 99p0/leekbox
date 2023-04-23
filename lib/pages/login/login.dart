@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/hex_color.dart';
 import 'package:leekbox/common/utils/utils.dart';
@@ -12,7 +13,6 @@ import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_button.2.dart';
 import 'package:leekbox/state/auth.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:rive/rive.dart';
 import 'package:video_player/video_player.dart';
 
@@ -161,13 +161,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     thirdLoginIcon(
-                      PhosphorIcons.regular.twitterLogo,
+                      FontAwesomeIcons.weixin,
                       HexColor('#1AAD19'),
                       _weChatAuth,
                     ),
                     Gaps.hGap32,
                     thirdLoginIcon(
-                      PhosphorIcons.regular.appleLogo,
+                      FontAwesomeIcons.alipay,
                       HexColor('#027AFF'),
                       _alipayAuth,
                     ),

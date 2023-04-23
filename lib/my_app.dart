@@ -32,16 +32,19 @@ class MyApp extends ConsumerWidget {
 
         /// localization
         localizationsDelegates: const [
+          //
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
+          //
           RefreshLocalizations.delegate,
+
           S.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
 
         ///
-        title: '',
+        title: S.of(context).title,
         debugShowCheckedModeBanner: false,
 
         ///

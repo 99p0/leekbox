@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:leekbox/common/utils/utils.dart';
 import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/pages/home/components/user_profile.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'selection_button.dart';
 
@@ -36,34 +36,34 @@ class Sidebar extends StatelessWidget {
         SelectionButton(
           data: [
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.circleDashed,
-              icon: PhosphorIcons.regular.circleDashed,
+              activeIcon: FontAwesomeIcons.gauge,
+              icon: FontAwesomeIcons.gauge,
               label: "Dashboard",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.archive,
-              icon: PhosphorIcons.regular.archive,
+              activeIcon: FontAwesomeIcons.archive,
+              icon: FontAwesomeIcons.archive,
               label: "Reports",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.calendar,
-              icon: PhosphorIcons.regular.calendar,
+              activeIcon: FontAwesomeIcons.calendar,
+              icon: FontAwesomeIcons.calendar,
               label: "Calendar",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.magicWand,
-              icon: PhosphorIcons.regular.magicWand,
+              activeIcon: FontAwesomeIcons.mailchimp,
+              icon: FontAwesomeIcons.mailchimp,
               label: "Email",
               totalNotif: 20,
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.person,
-              icon: PhosphorIcons.regular.person,
+              activeIcon: FontAwesomeIcons.person,
+              icon: FontAwesomeIcons.person,
               label: "Profil",
             ),
             SelectionButtonData(
-              activeIcon: PhosphorIcons.regular.scales,
-              icon: PhosphorIcons.regular.scales,
+              activeIcon: FontAwesomeIcons.scaleBalanced,
+              icon: FontAwesomeIcons.scaleBalanced,
               label: "Setting",
             ),
           ],

@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.1+91
 
 environment:
-  sdk: '>=2.19.1 <3.0.0'
+  sdk: '>=2.19.1 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,9 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  # Phosphor Icons
-  phosphor_flutter: ^2.0.0
-#  font_awesome_flutter: ^10.4.0
+  font_awesome_flutter: ^10.4.0
   percent_indicator: ^4.2.3
   dotted_border: ^2.0.0+1
   timeago: ^3.3.0
@@ -34,30 +32,26 @@ dependencies:
   #
   freezed_annotation: ^2.2.0
   #
-  window_manager: ^0.3.1
+  window_manager: ^0.3.2
   #
   screenshot: ^1.3.0
   #
   flutter_zoom_drawer: ^3.0.4+1
-  #  window_size:
-  #    git:
-  #      url: git://github.com/google/flutter-desktop-embedding.git
-  #      path: plugins/window_size
   #  动态主题
   dynamic_color: ^1.6.2
   # 文件读写
   path_provider: ^2.0.14
   # 状态管理 + 路由
-  flutter_riverpod: ^2.3.2
-  hooks_riverpod: ^2.3.2
-  riverpod_annotation: ^2.0.2
-  go_router: ^6.5.0
+  flutter_riverpod: ^2.3.5
+  hooks_riverpod: ^2.3.5
+  riverpod_annotation: ^2.1.0
+  go_router: ^6.5.7
   #
-  package_info_plus: ^3.0.3
-  device_info_plus: ^8.1.0
-  battery_plus: ^3.0.3
+  package_info_plus: ^3.1.0
+  device_info_plus: ^8.2.0
+  battery_plus: ^3.0.4
   #  网络检查
-  connectivity_plus: ^3.0.3
+  connectivity_plus: ^3.0.4
   internet_connection_checker: ^1.0.0+1
   #  network_info_plus: ^3.0.2
   # 适配
@@ -77,7 +71,7 @@ dependencies:
   # card 角标
   rotated_corner_decoration: ^2.1.0
   # 角标
-  badges: ^3.0.2
+  badges: ^3.1.1
   # 时间线 https://github.com/JHBitencourt/timeline_tile
   timeline_tile: ^2.0.0
   # 输入框
@@ -108,8 +102,8 @@ dependencies:
   # 二维码：扫码
 #  flutter_scankit: ^1.2.4
   # 动画
-  lottie: ^2.3.0
-  rive: ^0.10.3
+  lottie: ^2.3.2
+  rive: ^0.10.4
   #  网络请求
   dio: ^5.0.3
   dio_cookie_manager: ^2.1.3
@@ -121,27 +115,27 @@ dependencies:
   # 弹窗
   flutter_smart_dialog: ^4.9.0+4
   # WeChatSDK 插件
-  fluwx: ^3.9.2
+  fluwx: ^3.13.1
   # 视频图片压缩
   #  video_compress: ^3.1.0
   #  flutter_image_compress: ^1.1.3
   # 存储 ？？？
   shared_preferences: ^2.0.20
   # 数据存储 基于sqlite3 封装
-  drift: ^2.6.0
+  drift: ^2.7.0
   db_viewer: ^1.0.3
   # isar 缓存
-  isar: ^3.0.5
-  isar_flutter_libs: ^3.0.5
+  isar: ^3.1.0
+  isar_flutter_libs: ^3.1.0
   # 富文本编辑器：markdown
-  flutter_quill: ^7.0.1
+  flutter_quill: ^7.1.9
   # 图表库
   #  fl_chart: ^0.66.0
   syncfusion_flutter_datagrid: ^21.1.38
   # 图片缓存
   cached_network_image: ^3.2.3
   #
-  flutter_svg: ^2.0.4
+  flutter_svg: ^2.0.5
   # 图片预览
   photo_view: ^0.14.0
   # 模糊图片
@@ -153,12 +147,12 @@ dependencies:
   # 新拟物
   # flutter_neumorphic: ^3.2.0
   #
-  webview_flutter: ^4.0.7
+  webview_flutter: ^4.2.0
   # 本地通知
   flutter_local_notifications: ^13.0.0
   # flutter_local_notifications 依赖
   flutter_timezone: ^1.0.4
-  intl: ^0.17.0
+  intl: any
   #
   #  table_calendar: ^3.0.7
   #
@@ -166,7 +160,7 @@ dependencies:
   #
   local_auth: ^2.1.2
   # 高刷
-  flutter_displaymode: ^0.5.0
+  flutter_displaymode: ^0.6.0
   #  tensorflow
   #  tflite_flutter: ^0.9.0
   #  tflite_flutter_helper: ^0.3.1
@@ -177,6 +171,8 @@ dependencies:
     path: packages/sliding_clipped_nav_bar
   txt_nav_bar:
     path: packages/txt_nav_bar
+  bottom_blur_bar:
+    path: packages/bottom_blur_bar
   # tabbar滑动方式：类似酷狗
   custom_tabbar:
     path: packages/custom_tabbar
@@ -198,7 +194,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.1
   # git hook 相关
-  process_run: ^0.12.5+2
+  process_run: ^0.13.0
   git_hooks: ^1.0.0
   #
   build_runner: ^2.3.3
@@ -211,17 +207,17 @@ dev_dependencies:
   # 路由generator
   go_router_builder: ^1.1.7
   # 状态管理generator
-  riverpod_generator: ^2.1.4
+  riverpod_generator: ^2.2.0
   # 国际化generator
-  intl_utils: ^2.8.2
+  intl_utils: any
   # generator
   isar_generator: ^3.0.5
   #
   drift_dev: ^2.6.0
   # logo 生成插件   flutter pub run flutter_launcher_icons
-  flutter_launcher_icons: ^0.12.0
+  flutter_launcher_icons: ^0.13.1
   # 打包 windows
-  msix: ^3.9.1
+  msix: ^3.11.0
 
 
 

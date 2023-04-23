@@ -4,6 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:leekbox/common/utils/android_back_desktop.dart';
 import 'package:leekbox/common/widgets/responsive_builder.dart';
 import 'package:leekbox/pages/home/index.dart';
@@ -13,7 +14,6 @@ import 'package:leekbox/pages/tongji/tongji.page.dart';
 import 'package:leekbox_infra/log/log.dart';
 import 'package:leekbox_infra/watermark/watermark_controller.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
@@ -196,25 +196,25 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
         selectedIndex: _currentIndex,
         barItems: <BarItem>[
           BarItem(
-            icon: PhosphorIcons.regular.calendarCheck,
+            icon: FontAwesomeIcons.calendarCheck,
             title: '首页',
             activeColor: Colors.blue,
             inactiveColor: Colors.orange,
           ),
           BarItem(
-            icon: PhosphorIcons.regular.chatCircleDots,
+            icon: FontAwesomeIcons.facebookMessenger,
             title: '消息',
             activeColor: Colors.pink,
             inactiveColor: Colors.green,
           ),
           BarItem(
-            icon: PhosphorIcons.regular.paintBrush,
+            icon: FontAwesomeIcons.paintBrush,
             title: '统计',
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
           ),
           BarItem(
-            icon: PhosphorIcons.regular.user,
+            icon: FontAwesomeIcons.user,
             title: '我',
             activeColor: Colors.cyan,
             inactiveColor: Colors.purple,
