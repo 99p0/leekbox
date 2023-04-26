@@ -21,11 +21,12 @@ ____
 [IMPORTANT]
 ====
 coderay
-域名与4月2号过期，提前一周续期
-alipay.zhuomuniaodaka.com
-api.zhuomuniaodaka.com
-console.zhuomuniaodaka.com
-zhuomuniaodaka.com
+首次打卡app，进行资源初始化：
+1 字体文件下载，
+2 图表文件下载，
+3 语音配置下载
+4 视频相关下载
+
 ====
 
 ### 2065 去年打卡情况

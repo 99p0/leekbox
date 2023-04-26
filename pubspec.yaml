@@ -274,17 +274,18 @@ flutter:
     - assets/rives/
     - assets/lotties/
 
-  fonts:
-    # 电子屏：时间显示 ：紧凑
-    - family: Digital
-      fonts:
-        - asset: assets/fonts/digital-7.ttf
-          style: italic
-    # 数字： 涉及金额需要使用的字体
-    - family: DINPro
-      fonts:
-        - asset: assets/fonts/DIN-Pro-Regular.otf
-          style: normal
+# 动态加载
+#  fonts:
+#    # 电子屏：时间显示 ：紧凑
+#    - family: Digital7
+#      fonts:
+#        - asset: assets/fonts/digital-7.ttf
+#          style: italic
+#    # 数字： 涉及金额需要使用的字体
+#    - family: DINPro
+#      fonts:
+#        - asset: assets/fonts/DIN-Pro-Regular.otf
+#          style: normal
 #
 flutter_intl:
   enabled: true

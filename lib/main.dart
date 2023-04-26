@@ -35,6 +35,28 @@ Future<void> _configureLocalTimeZone() async {
   tz.setLocalLocation(tz.getLocation(timeZoneName!));
 }
 
+/// only： TTF，OTF
+Future<void> _loadFonts() async {
+  await Future.wait([
+    // 金额数字
+    rootBundle.load('assets/fonts/DIN-Pro-Regular.otf').then(
+      (data) {
+        final font = FontLoader('DINPro');
+        font.addFont(Future.value(data));
+        return font.load();
+      },
+    ),
+    // 时间字体
+    rootBundle.load('assets/fonts/digital-7.ttf').then(
+      (data) {
+        final font = FontLoader('Digital7');
+        font.addFont(Future.value(data));
+        return font.load();
+      },
+    ),
+  ]);
+}
+
 void main() {
   runZonedGuarded(() async {
     /// use 'flutter_native_splash' packages build Splash view
@@ -54,6 +76,9 @@ void main() {
     // }));
 
     // setPathUrlStrategy();
+
+    /// 加载字体
+    await _loadFonts();
 
     /// desktop
     if (isDesktop) {
