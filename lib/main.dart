@@ -16,6 +16,7 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:window_manager/window_manager.dart';
+import 'package:workmanager/workmanager.dart';
 
 bool get isDesktop {
   if (kIsWeb) return false;
@@ -24,6 +25,22 @@ bool get isDesktop {
     TargetPlatform.linux,
     TargetPlatform.macOS,
   ].contains(defaultTargetPlatform);
+}
+
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) {
+    print("Native called background task: $task");
+    return Future.value(true);
+  });
+}
+
+Future<void> _configWorkmanager() async {
+  Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: false,
+  );
+  Workmanager().registerOneOffTask("task-identifier", "simpleTask");
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -64,7 +81,12 @@ void main() {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
     ///
+    await _configWorkmanager();
+
+    ///
     await _configureLocalTimeZone();
+
+    ///
     await NotificationService().init();
 
     /// 咸鱼 PowerImage图片库

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -668,6 +669,12 @@ class _IndexPageState extends ConsumerState<IndexPage>
         ],
       ),
     );
+  }
+
+  AudioPlayer player = AudioPlayer();
+
+  void playMusic() async {
+    await player.play(DeviceFileSource('assets/sounds/slow_spring_board.mp3'));
   }
 }
 

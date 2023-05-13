@@ -104,7 +104,7 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: LoginPage.routeName,
           builder: (context, state) {
             // 传递原始的 location 给 LoginScreen (如果有)
-            return LoginPage(from: state.queryParams['from']);
+            return LoginPage(from: state.queryParameters['from']);
           },
         ),
         GoRoute(

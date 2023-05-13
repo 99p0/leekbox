@@ -3,12 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  audioplayers_windows
   battery_plus
   connectivity_plus
   dynamic_color
   isar_flutter_libs
   local_auth_windows
-  pasteboard
   permission_handler_windows
   rive_common
   screen_retriever
