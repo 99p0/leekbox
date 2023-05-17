@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
+import 'package:fluwx/fluwx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/hex_color.dart';
@@ -46,7 +46,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           });
 
     //
-    // initFluwx();
+    initFluwx();
   }
 
   @override
@@ -119,9 +119,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           Positioned(
             width: MediaQuery.of(context).size.width,
             top: 80.0.h,
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text(
                   '欢迎萌新驾到',
                   style: TextStyle(
@@ -235,10 +235,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> initFluwx() async {
     Log.debug('init Fluwx...');
-    await fluwx.registerWxApi(
-      appId: 'wx461d03aca7072c02', //查看微信开放平台
-      universalLink: 'https://your.univerallink.com/link/', //查看微信开放平台
+    Fluwx fluwx = Fluwx();
+    await fluwx.registerApi(
+      appId: 'wx461d03aca7072c02',
+      universalLink: 'https://your.univerallink.com/link/',
     );
+    var result = await fluwx.isWeChatInstalled;
+    Log.debug('is installed $result');
   }
 
   Future<void> _mobileAuth() async {

@@ -13,6 +13,7 @@ import 'package:leekbox/common/services/notification_service.dart';
 import 'package:leekbox/common/utils/state_logger.dart';
 import 'package:leekbox/my_app.dart';
 import 'package:leekbox_infra/log/log.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:window_manager/window_manager.dart';
@@ -49,7 +50,26 @@ Future<void> _configureLocalTimeZone() async {
   }
   tz.initializeTimeZones();
   final String timeZoneName = await FlutterTimezone.getLocalTimezone();
-  tz.setLocalLocation(tz.getLocation(timeZoneName!));
+  tz.setLocalLocation(tz.getLocation(timeZoneName));
+}
+
+Future<void> _windowManager(Size initSize) async {
+  /// desktop
+  if (isDesktop) {
+    await windowManager.ensureInitialized();
+
+    WindowOptions windowOptions = WindowOptions(
+      size: initSize,
+      center: true,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    );
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
+  }
 }
 
 /// only： TTF，OTF
@@ -89,6 +109,8 @@ void main() {
     ///
     await NotificationService().init();
 
+    timeago.setLocaleMessages('zh_CN', timeago.ZhCnMessages());
+
     /// 咸鱼 PowerImage图片库
     // PowerImageBinding();
     // PowerImageLoader.instance.setup(PowerImageSetupOptions(renderingTypeTexture,
@@ -101,23 +123,7 @@ void main() {
 
     /// 加载字体
     await _loadFonts();
-
-    /// desktop
-    if (isDesktop) {
-      await windowManager.ensureInitialized();
-
-      WindowOptions windowOptions = const WindowOptions(
-        size: Size(1200, 800),
-        center: true,
-        backgroundColor: Colors.transparent,
-        skipTaskbar: false,
-        titleBarStyle: TitleBarStyle.hidden,
-      );
-      windowManager.waitUntilReadyToShow(windowOptions, () async {
-        await windowManager.show();
-        await windowManager.focus();
-      });
-    }
+    await _windowManager(const Size(1200, 800));
 
     /// 全屏模式 SystemUiMode.edgeToEdge
     // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
