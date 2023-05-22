@@ -38,7 +38,7 @@ class MyApp extends ConsumerWidget {
           GlobalCupertinoLocalizations.delegate,
           //
           RefreshLocalizations.delegate,
-
+          //
           S.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
