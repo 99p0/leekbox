@@ -191,7 +191,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
   Widget _buildItemsStyle1() => SlidingClippedNavBar.colorful(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         onButtonPressed: _onItemTapped,
-        iconSize: 25,
+        iconSize: 22,
         fontSize: 14.0,
         selectedIndex: _currentIndex,
         barItems: <BarItem>[
@@ -208,7 +208,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
             inactiveColor: Colors.green,
           ),
           BarItem(
-            icon: FontAwesomeIcons.paintBrush,
+            icon: FontAwesomeIcons.paintbrush,
             title: '统计',
             activeColor: Colors.blue,
             inactiveColor: Colors.red,

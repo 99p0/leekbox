@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluwx/fluwx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:leekbox/common/utils/hex_color.dart';
@@ -13,7 +12,6 @@ import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/my_button.2.dart';
 import 'package:leekbox/state/auth.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:rive/rive.dart';
 import 'package:video_player/video_player.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -105,10 +103,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               child: const SizedBox(),
             ),
           ),
-          const RiveAnimation.asset(
-            "assets/rives/shapes.riv",
-            fit: BoxFit.fitWidth,
-          ),
+          // const RiveAnimation.asset(
+          //   "assets/rives/shapes.riv",
+          //   fit: BoxFit.fitWidth,
+          // ),
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
@@ -235,13 +233,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> initFluwx() async {
     Log.debug('init Fluwx...');
-    Fluwx fluwx = Fluwx();
-    await fluwx.registerApi(
-      appId: 'wx461d03aca7072c02',
-      universalLink: 'https://your.univerallink.com/link/',
-    );
-    var result = await fluwx.isWeChatInstalled;
-    Log.debug('is installed $result');
+    // Fluwx fluwx = Fluwx();
+    // await fluwx.registerApi(
+    //   appId: 'wx461d03aca7072c02',
+    //   universalLink: 'https://your.univerallink.com/link/',
+    // );
+    // var result = await fluwx.isWeChatInstalled;
+    // Log.debug('is installed $result');
   }
 
   Future<void> _mobileAuth() async {

@@ -1,4 +1,3 @@
-import 'package:bottom_blur_bar/bottom_blur_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
@@ -84,32 +83,7 @@ class _ActivityDetailPageState extends ConsumerState<ActivityDetailPage> {
               ),
             );
           }),
-      bottomNavigationBar: BlurNavbar(
-        onTap: (idx) => setState(() {
-          _idx = idx;
-          debugPrint('$idx');
-        }),
-        items: [
-          BlurNavbarItem(
-            icon: Icon(Icons.home, color: color, size: 24),
-            title: "HOME",
-          ),
-          BlurNavbarItem(
-            icon: Icon(Icons.search, color: color, size: 24),
-            title: "SEARCH",
-          ),
-          BlurNavbarItem(
-            icon: Icon(Icons.notifications, color: color, size: 24),
-            title: "NOTIFICATIONS",
-          ),
-          BlurNavbarItem(
-            icon: Icon(Icons.local_library_rounded, color: color, size: 24),
-            title: "LIBRARY",
-          )
-        ],
-        currentIndex: _idx,
-        selectedColor: Colors.cyanAccent,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -37,14 +37,14 @@ class MyApp extends ConsumerWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
           //
-          RefreshLocalizations.delegate,
-          //
           S.delegate,
+          //
+          RefreshLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
 
         ///
-        title: S.of(context).title,
+        title: '',
         debugShowCheckedModeBanner: false,
 
         ///

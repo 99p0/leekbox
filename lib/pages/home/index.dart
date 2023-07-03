@@ -15,7 +15,6 @@ import 'package:leekbox/common/widgets/gaps.dart';
 import 'package:leekbox/common/widgets/responsive_builder.dart';
 import 'package:leekbox/pages/activity/activities.page.dart';
 import 'package:leekbox/pages/activity/activity_detail.page.dart';
-import 'package:leekbox/pages/demo/wakelock_demo.dart';
 import 'package:leekbox/pages/developer/dashboard.dart';
 import 'package:leekbox/pages/developer/device_info.dart';
 import 'package:leekbox/pages/home/components/card_task.dart';
@@ -565,13 +564,7 @@ class _IndexPageState extends ConsumerState<IndexPage>
           Row(
             children: [
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => WakelockExampleApp()),
-                  );
-                },
+                onPressed: () {},
                 child: const Text('Wakelock'),
               ),
               ElevatedButton(

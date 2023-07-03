@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'color_schemes.g.dart';
 
@@ -14,8 +13,8 @@ class AppTheme {
     );
 
     return baseTheme.copyWith(
-      textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
-    );
+        // textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
+        );
   }
 
   //
@@ -26,7 +25,7 @@ class AppTheme {
     );
 
     return baseTheme.copyWith(
-      textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
-    );
+        // textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
+        );
   }
 }

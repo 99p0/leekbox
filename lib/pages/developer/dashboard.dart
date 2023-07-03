@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox/common/utils/image_utils.dart';
 import 'package:leekbox/common/widgets/my_app_bar.dart';
-import 'package:rive/rive.dart';
 
 class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
@@ -41,10 +40,10 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
               child: const SizedBox(),
             ),
           ),
-          const RiveAnimation.asset(
-            "assets/rives/shapes.riv",
-            fit: BoxFit.fitWidth,
-          ),
+          // const RiveAnimation.asset(
+          //   "assets/rives/shapes.riv",
+          //   fit: BoxFit.fitWidth,
+          // ),
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),

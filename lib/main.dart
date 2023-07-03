@@ -17,7 +17,6 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:window_manager/window_manager.dart';
-import 'package:workmanager/workmanager.dart';
 
 bool get isDesktop {
   if (kIsWeb) return false;
@@ -26,22 +25,6 @@ bool get isDesktop {
     TargetPlatform.linux,
     TargetPlatform.macOS,
   ].contains(defaultTargetPlatform);
-}
-
-@pragma('vm:entry-point')
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) {
-    print("Native called background task: $task");
-    return Future.value(true);
-  });
-}
-
-Future<void> _configWorkmanager() async {
-  Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: false,
-  );
-  Workmanager().registerOneOffTask("task-identifier", "simpleTask");
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -54,7 +37,7 @@ Future<void> _configureLocalTimeZone() async {
 }
 
 Future<void> _windowManager(Size initSize) async {
-  /// desktop
+  /// only desktop
   if (isDesktop) {
     await windowManager.ensureInitialized();
 
@@ -101,25 +84,12 @@ void main() {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
     ///
-    await _configWorkmanager();
-
-    ///
     await _configureLocalTimeZone();
 
     ///
     await NotificationService().init();
 
     timeago.setLocaleMessages('zh_CN', timeago.ZhCnMessages());
-
-    /// 咸鱼 PowerImage图片库
-    // PowerImageBinding();
-    // PowerImageLoader.instance.setup(PowerImageSetupOptions(renderingTypeTexture,
-    //     errorCallbackSamplingRate: null,
-    //     errorCallback: (PowerImageLoadException exception) {
-    //   Log.error(exception);
-    // }));
-
-    // setPathUrlStrategy();
 
     /// 加载字体
     await _loadFonts();
@@ -148,7 +118,7 @@ void main() {
             ],
             // 开发模式
             child: DevicePreview(
-              enabled: false, //kDebugMode,
+              enabled: (kDebugMode && isDesktop) ? true : false,
               builder: (context) => const MyApp(),
             ),
           ),

@@ -5,6 +5,7 @@ flutter_icons:
   image_path: "assets/images/ic_logo.png"
   min_sdk_android: 22 # android min sdk min:16, default 21
   web:
+
     generate: true
     image_path: "assets/images/ic_logo.png"
     background_color: "#005BC1"

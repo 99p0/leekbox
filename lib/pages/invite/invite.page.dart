@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leekbox_infra/log/log.dart';
-import 'package:rive/rive.dart';
 
 ///
 class InvitePage extends ConsumerStatefulWidget {
@@ -46,19 +45,19 @@ class _InvitePageState extends ConsumerState<InvitePage>
             automaticallyImplyLeading: false,
             centerTitle: false,
           ),
-          SliverFixedExtentList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(
-                      color: Colors.transparent,
-                      alignment: Alignment.center,
-                      child: RiveAnimation.asset(
-                        'assets/rives/raster_graphics.riv',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                childCount: 1),
-            itemExtent: 460.0,
-          ),
+          // SliverFixedExtentList(
+          //   delegate: SliverChildBuilderDelegate(
+          //       (context, index) => Container(
+          //             color: Colors.transparent,
+          //             alignment: Alignment.center,
+          //             child: RiveAnimation.asset(
+          //               'assets/rives/raster_graphics.riv',
+          //               fit: BoxFit.cover,
+          //             ),
+          //           ),
+          //       childCount: 1),
+          //   itemExtent: 460.0,
+          // ),
         ],
       ),
     );

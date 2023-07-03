@@ -8,9 +8,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
   dynamic_color
   isar_flutter_libs
-  local_auth_windows
   permission_handler_windows
-  rive_common
   screen_retriever
   url_launcher_windows
   window_manager
