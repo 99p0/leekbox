@@ -16,7 +16,6 @@ import 'package:leekbox_infra/log/log.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:window_manager/window_manager.dart';
 
 bool get isDesktop {
   if (kIsWeb) return false;
@@ -36,24 +35,25 @@ Future<void> _configureLocalTimeZone() async {
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
-Future<void> _windowManager(Size initSize) async {
-  /// only desktop
-  if (isDesktop) {
-    await windowManager.ensureInitialized();
-
-    WindowOptions windowOptions = WindowOptions(
-      size: initSize,
-      center: true,
-      backgroundColor: Colors.transparent,
-      skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.hidden,
-    );
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
-    });
-  }
-}
+// 暂时不用 await _windowManager(const Size(1200, 800));
+// Future<void> _windowManager(Size initSize) async {
+//   /// only desktop
+//   if (isDesktop) {
+//     await windowManager.ensureInitialized();
+//
+//     WindowOptions windowOptions = WindowOptions(
+//       size: initSize,
+//       center: true,
+//       backgroundColor: Colors.transparent,
+//       skipTaskbar: false,
+//       titleBarStyle: TitleBarStyle.hidden,
+//     );
+//     windowManager.waitUntilReadyToShow(windowOptions, () async {
+//       await windowManager.show();
+//       await windowManager.focus();
+//     });
+//   }
+// }
 
 /// only： TTF，OTF
 Future<void> _loadFonts() async {
@@ -93,7 +93,6 @@ void main() {
 
     /// 加载字体
     await _loadFonts();
-    await _windowManager(const Size(1200, 800));
 
     /// 全屏模式 SystemUiMode.edgeToEdge
     // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);

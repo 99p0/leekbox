@@ -5,10 +5,10 @@ import 'color_schemes.g.dart';
 class AppTheme {
   AppTheme._();
 
-  //
-  static ThemeData buildDarkTheme(darkDynamic) {
+  //  use material 3
+  static ThemeData buildDarkTheme() {
     var baseTheme = ThemeData(
-      colorScheme: darkDynamic ?? darkColorScheme,
+      colorScheme: darkColorScheme,
       useMaterial3: true,
     );
 
@@ -17,10 +17,10 @@ class AppTheme {
         );
   }
 
-  //
-  static ThemeData buildLightTheme(lightDynamic) {
+  //  use material 3
+  static ThemeData buildLightTheme() {
     var baseTheme = ThemeData(
-      colorScheme: lightDynamic ?? lightColorScheme,
+      colorScheme: lightColorScheme,
       useMaterial3: true,
     );
 

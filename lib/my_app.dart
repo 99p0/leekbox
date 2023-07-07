@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,60 +20,58 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     /// 动态主题 + go_router + SmartDialog
-    final baseApp = DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
-      return MaterialApp.router(
-        /// go_router
-        routerConfig: router,
+    final baseApp = MaterialApp.router(
+      /// go_router
+      routerConfig: router,
 
-        /// theme use material 3
-        theme: AppTheme.buildLightTheme(lightDynamic),
-        darkTheme: AppTheme.buildDarkTheme(darkDynamic),
+      /// theme
+      theme: AppTheme.buildLightTheme(),
+      darkTheme: AppTheme.buildDarkTheme(),
 
-        /// localization
-        localizationsDelegates: const [
-          //
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          //
-          S.delegate,
-          //
-          RefreshLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
+      /// localization
+      localizationsDelegates: const [
+        //
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        //
+        S.delegate,
+        //
+        RefreshLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
 
-        ///
-        title: '',
-        debugShowCheckedModeBanner: false,
+      ///
+      title: '',
+      debugShowCheckedModeBanner: false,
 
-        ///
-        scrollBehavior: CustomScrollBehaviour(),
+      ///
+      scrollBehavior: CustomScrollBehaviour(),
 
-        ///
-        builder: FlutterSmartDialog.init(
-          builder: (context, widget) {
-            return MediaQuery(
-              /// Setting font does not change with system font size
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      ///
+      builder: FlutterSmartDialog.init(
+        builder: (context, widget) {
+          return MediaQuery(
+            /// Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
 
-              /// app scroll
-              child: ScrollConfiguration(
-                behavior: AppScrollBehavior(),
-                child: widget!,
-              ),
-            );
-          },
-        ),
+            /// app scroll
+            child: ScrollConfiguration(
+              behavior: AppScrollBehavior(),
+              child: widget!,
+            ),
+          );
+        },
+      ),
 
-        /// others settings
-      );
-    });
+      /// others settings
+    );
 
     ///  是否置灰：纪念某个时刻
     return ColorFiltered(
       colorFilter: const ColorFilter.mode(Colors.transparent, BlendMode.color),
 
-      ///  配置ScreenUtil
+      ///  配置 ScreenUtil
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
         minTextAdapt: true,
