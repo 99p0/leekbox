@@ -92,7 +92,7 @@ void main() {
     timeago.setLocaleMessages('zh_CN', timeago.ZhCnMessages());
 
     /// 加载字体
-    await _loadFonts();
+    // await _loadFonts();
 
     /// 全屏模式 SystemUiMode.edgeToEdge
     // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
