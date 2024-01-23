@@ -60,6 +60,8 @@
 		<true/>
 		<key>FLTEnableImpeller</key>
 		<true/>
+		<key>FLTEnableWideGamut</key>
+		<true/>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
