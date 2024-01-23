@@ -61,12 +61,14 @@ class ConnectionExceptionPage extends StatelessWidget {
                 maxLines: 2,
               ),
               TextButton(
-                  onPressed: () => AppSettings.openWIFISettings(),
+                  onPressed: () =>
+                      AppSettings.openAppSettings(type: AppSettingsType.wifi),
                   child: const Text('去设置')),
               Gaps.vGap4,
               const Text('  检查手机是否已接入移动网络，并且手机没有被停机。'),
               TextButton(
-                  onPressed: () => AppSettings.openDataRoamingSettings(),
+                  onPressed: () => AppSettings.openAppSettings(
+                      type: AppSettingsType.dataRoaming),
                   child: const Text('去设置')),
               Gaps.vGap4,
               Gaps.vGap12,
