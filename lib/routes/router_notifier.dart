@@ -78,10 +78,10 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
   String? redirect(BuildContext context, GoRouterState state) {
     if (this.state.isLoading) return null;
     //
-    if (noAuthPages.contains(state.location)) return null;
+    if (noAuthPages.contains(state.fullPath)) return null;
 
     // 是否登录页
-    final isLoggingIn = state.location == LoginPage.routeLocation;
+    final isLoggingIn = state.fullPath == LoginPage.routeLocation;
 
     // 用户未登录，且不是前往 /login，则需要登录。
     // 用户已登录且是前往 /login，则不需要再次登录。
@@ -104,7 +104,7 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<void>
           name: LoginPage.routeName,
           builder: (context, state) {
             // 传递原始的 location 给 LoginScreen (如果有)
-            return LoginPage(from: state.queryParameters['from']);
+            return LoginPage(from: state.pathParameters['from']);
           },
         ),
         GoRoute(
