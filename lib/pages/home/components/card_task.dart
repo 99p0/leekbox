@@ -154,10 +154,7 @@ class CardTask extends StatelessWidget {
   Widget _doneButton() {
     return ElevatedButton.icon(
       onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        primary: onPrimary,
-        onPrimary: primary,
-      ),
+
       icon: Icon(FontAwesomeIcons.checkCircle),
       label: const Text("Done"),
     );

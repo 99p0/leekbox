@@ -30,7 +30,6 @@ class ConnectionExceptionPage extends StatelessWidget {
               Center(
                 child: AvatarGlow(
                   glowColor: Colors.blue,
-                  endRadius: 90.0,
                   child: Material(
                     // Replace this child with your own
                     elevation: 8.0,
